@@ -1,0 +1,406 @@
+/* styles.css - Modern, Premium, & Responsive Telepsychiatry Intake Form */
+
+/* Define CSS Variables for theming and consistency */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary-color: #64748b;
+    --background-color: #f8fafc;
+    --surface-color: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --border-color: #cbd5e1;
+    --input-bg: #f8fafc;
+    --input-focus-border: #3b82f6;
+    --input-focus-ring: rgba(59, 130, 246, 0.2);
+    --error-color: #ef4444;
+    --success-color: #10b981;
+    --amber-bg: #fffbeb;
+    --amber-border: #fcd34d;
+    --amber-text: #b45309;
+    --info-bg: #eff6ff;
+    --info-border: #bfdbfe;
+    --info-text: #1d4ed8;
+    
+    --border-radius: 8px;
+    --border-radius-sm: 6px;
+    --border-radius-lg: 12px;
+    --transition-speed: 0.2s;
+}
+
+/* Global Reset and Box Sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--background-color);
+    /* Subtle background pattern/gradient for premium feel */
+    background-image: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Main Container */
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Form Wrapper as a Card */
+.form-wrapper {
+    background: var(--surface-color);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.02);
+    padding: 2.5rem 3rem;
+    overflow: hidden;
+}
+
+/* Header Section */
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.form-header h1 {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+.form-header p {
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+    margin-bottom: 0;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e2e8f0;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+h3 {
+    font-size: 1.15rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+/* Form Groups and Layouts */
+.field-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    /* Soft animation for conditional displays */
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.border-left-pad {
+    padding-left: 1.5rem;
+    border-left: 4px solid #cbd5e1;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Labels */
+label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.required-mark {
+    color: var(--error-color);
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+.help-text {
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    font-weight: normal;
+}
+
+/* Additional styles (progress, navigation, inputs, accessibility) */
+
+/* Progress bar container and text */
+.progress-container {
+    margin: 1rem 0 1.5rem 0;
+}
+
+#progress-bar {
+    height: 10px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary-color), #60a5fa);
+    border-radius: 999px;
+    transition: width var(--transition-speed) ease;
+    box-shadow: 0 1px 3px rgba(37,99,235,0.15) inset;
+}
+
+.progress-text {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+/* Navigation buttons */
+.nav-controls {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    align-items: center;
+}
+    .nav-controls {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+.nav-controls button {
+    background: var(--primary-color);
+    color: #fff;
+    border: 0;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+    .nav-controls button {
+        background: var(--primary-color);
+        color: #fff;
+        border: 0;
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+    }
+
+.nav-controls button:hover {
+    background: var(--primary-hover);
+}
+
+.nav-controls button[disabled], .nav-controls button[aria-disabled="true"] {
+    background: #e6eefc;
+    color: #9bb7ff;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#btn-prev {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.9rem;
+}
+    #btn-prev {
+        background: transparent;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        padding: 0.5rem 0.9rem;
+    }
+
+    /* Support for existing markup: .form-navigation and .progress-indicator */
+    .form-navigation {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        justify-content: space-between;
+        margin-top: 1.25rem;
+    }
+
+    .progress-indicator {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .progress-bar-container {
+        width: 100%;
+        background: #eef2ff;
+        border-radius: 999px;
+        height: 12px;
+        padding: 2px;
+    }
+
+    /* Button utility classes from existing markup */
+    .btn { font-family: inherit; border-radius: 8px; padding: 0.5rem 0.9rem; border: none; cursor: pointer; }
+    .btn-primary { background: var(--primary-color); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-secondary { background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); }
+
+#btn-prev:hover {
+    background: #f1f5f9;
+}
+
+#btn-submit {
+    background: linear-gradient(90deg, #06b6d4, #3b82f6);
+}
+
+/* Form-section default behaviour: script toggles display; ensure a11y-friendly hidden state */
+.form-section[hidden], .form-section[aria-hidden="true"] {
+    display: none !important;
+}
+
+/* Inputs */
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea, select {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    background: var(--input-bg);
+    color: var(--text-primary);
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 4px var(--input-focus-ring);
+}
+
+/* Small screens tweaks */
+@media (max-width: 640px) {
+    .form-wrapper { padding: 1.25rem; }
+    .nav-controls { justify-content: space-between; }
+}
+
+/* Option list layout: show radio/checkbox and label side-by-side */
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.option-item input[type="radio"], .option-item input[type="checkbox"] {
+    margin: 3px 0 0 0; /* align with first line of label */
+    flex: 0 0 auto;
+}
+
+.option-item label {
+    margin: 0;
+    color: var(--text-primary);
+    line-height: 1.35;
+    flex: 1 1 auto; /* allow long labels to wrap */
+}
+
+/* Make the whole option row easier to tap on touch devices by increasing hit area */
+.option-item { padding: 6px 4px; border-radius: 6px; }
+.option-item:hover { background: rgba(37,99,235,0.03); }
+
+
+/* Alerts */
+.alert {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+.alert-amber {
+    background-color: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    color: var(--amber-text);
+}
+
+.alert-info {
+    background-color: var(--info-bg);
+    border: 1px solid var(--info-border);
+    color: var(--info-text);
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    padding: 2.5rem;
+    border-radius: var(--border-radius-lg);
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.modal-content p {
+    margin-bottom: 1rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* End of stylesheet */

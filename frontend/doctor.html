@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Portal - Patient Forms</title>
+    <!-- We'll link to the same styles but add some custom overrides -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .portal-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            height: 100vh;
+            background: var(--background-color);
+        }
+        
+        .patient-list {
+            width: 350px;
+            background: var(--surface-color);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .portal-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: white;
+        }
+
+        .patient-card {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background var(--transition-speed);
+        }
+
+        .patient-card:hover {
+            background: var(--background-color);
+        }
+
+        .patient-card.active {
+            background-color: var(--info-bg);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .patient-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        .patient-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .patient-viewer {
+            flex: 1;
+            padding: 2rem 3rem;
+            overflow-y: auto;
+            background: white;
+        }
+
+        .no-selection {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .no-selection svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 0;
+        }
+
+        .data-grid:last-child {
+            border-bottom: none;
+        }
+
+        .data-key {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .data-value {
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+        }
+        
+        .array-value {
+            padding-left: 1rem;
+            border-left: 2px solid var(--primary-color);
+            margin-top: 0.25rem;
+        }
+
+        .viewer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #e2e8f0;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .loading-spinner {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .array-value {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 4px 8px;
+            margin: 2px 4px 2px 0;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: var(--text-primary);
+            border-left: none; /* override previous border-left */
+        }
+    </style>
+</head>
+<body style="padding: 0; min-height: 100vh; overflow: hidden;">
+
+    <div class="portal-container">
+        <!-- Sidebar List -->
+        <aside class="patient-list">
+            <div class="portal-header">
+                <h2>Clinical Inbox</h2>
+                <div style="font-size: 0.85rem; margin-top: 0.2rem; opacity: 0.9;">Pending Intakes</div>
+            </div>
+            <div id="patientListContainer">
+                <div class="loading-spinner">Loading patients...</div>
+            </div>
+        </aside>
+
+        <!-- Main Viewing Pane -->
+        <main class="patient-viewer" id="patientViewer">
+            <div class="no-selection">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                Select a patient from the sidebar<br>to view their detailed intake questionnaire.
+            </div>
+        </main>
+    </div>
+
+    <script src="doctor.js"></script>
+</body>
+</html>
