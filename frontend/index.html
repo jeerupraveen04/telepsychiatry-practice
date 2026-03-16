@@ -1293,6 +1293,7 @@
                     <div class="med-followup-details"
                         style="margin-top:10px; padding:15px; background: #f0f7ff; border-radius: 5px; border-left: 4px solid #007bff;">
                         <h4 style="margin-top:0;">Medication Details: <span class="med-title-placeholder"></span></h4>
+
                         <div class="field-group">
                             <label>Are you currently taking this medication?</label>
                             <div class="options-list">
@@ -1304,14 +1305,26 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="field-group">
                             <label>Approximate dose (if known):</label>
                             <input type="text" class="med-dose">
                         </div>
+
                         <div class="field-group">
-                            <label>How long did you take this medication?</label>
-                            <input type="text" class="med-duration">
+                            <label>Approximate Length of Treatment <span class="required-mark">*</span></label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="radio" class="length-radio" value="Less than 2 weeks"> <label>Less than 2 weeks</label></div>
+                                <div class="option-item"><input type="radio" class="length-radio" value="2 to 4 weeks"> <label>2 to 4 weeks</label></div>
+                                <div class="option-item"><input type="radio" class="length-radio" value="1 to 2 months"> <label>1 to 2 months</label></div>
+                                <div class="option-item"><input type="radio" class="length-radio" value="3 months"> <label>3 months</label></div>
+                                <div class="option-item"><input type="radio" class="length-radio" value="4 to 6 months"> <label>4 to 6 months</label></div>
+                                <div class="option-item"><input type="radio" class="length-radio" value="7 to 12 months"> <label>7 to 12 months</label></div>
+                                <div class="option-item"><input type="radio" class="length-radio" value="Over a year"> <label>Over a year</label></div>
+                                <div class="option-item"><input type="radio" class="length-radio length-other-radio" value="Other"> <label>Other</label> <input type="text" class="length-other-input" style="display:none; margin-left:8px;" placeholder="Please specify"></div>
+                            </div>
                         </div>
+
                         <div class="field-group">
                             <label>Did this medication help your symptoms?</label>
                             <div class="options-list">
@@ -1328,20 +1341,54 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="field-group">
-                            <label>Did you experience side effects?</label>
-                            <div class="options-list">
-                                <div class="option-item"><input type="radio" class="side-radio-no" value="No">
-                                    <label>No</label>
-                                </div>
-                                <div class="option-item"><input type="radio" class="side-radio-yes" value="Yes">
-                                    <label>Yes — please describe:</label> <input type="text" class="side-desc">
-                                </div>
+                            <label>Reason Medication Was Stopped (Select all that apply)</label>
+                            <div class="options-list med-stop-reasons">
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Intolerable side effects"> <label>Intolerable side effects</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Adverse reaction or allergy"> <label>Adverse reaction or allergy</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Medication was not effective"> <label>Medication was not effective</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Partial improvement but not enough benefit"> <label>Partial improvement but not enough benefit</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Cost or insurance issues"> <label>Cost or insurance issues</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Switched to a different medication"> <label>Switched to a different medication</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Provider recommendation"> <label>Provider recommendation</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Patient preference"> <label>Patient preference</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Symptoms improved"> <label>Symptoms improved</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Effective but too expensive"> <label>Effective but too expensive</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Effective but unable to obtain prescription"> <label>Effective but unable to obtain prescription</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason" value="Pregnancy / trying to conceive / breastfeeding"> <label>Pregnancy / trying to conceive / breastfeeding</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-stop-reason med-stop-reason-other" value="Other"> <label>Other:</label> <input type="text" class="med-stop-reason-other-text" style="display:none; margin-left:8px;" placeholder="Please specify"></div>
                             </div>
                         </div>
+
+                        <div class="field-group side-effects-container" style="display:none; margin-top:8px;">
+                            <label>Side Effects Experienced (Select all that apply)</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Sexual side effects"> <label>Sexual side effects</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Weight gain"> <label>Weight gain</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Weight loss"> <label>Weight loss</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Headaches"> <label>Headaches</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="GI issues (indigestion, nausea, vomiting)"> <label>GI issues (indigestion, nausea, vomiting)</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Diarrhea"> <label>Diarrhea</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Constipation"> <label>Constipation</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Jaw clenching"> <label>Jaw clenching</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Irritability"> <label>Irritability</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Restlessness"> <label>Restlessness</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Sedation / fatigue"> <label>Sedation / fatigue</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Insomnia"> <label>Insomnia</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Increased anxiety"> <label>Increased anxiety</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Dizziness"> <label>Dizziness</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Dry mouth"> <label>Dry mouth</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Sweating"> <label>Sweating</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Palpitations"> <label>Palpitations</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option" value="Tremor"> <label>Tremor</label></div>
+                                <div class="option-item"><input type="checkbox" class="med-se-option med-se-other" value="Other"> <label>Other:</label> <input type="text" class="med-se-other-text" style="display:none; margin-left:8px;" placeholder="Please specify"></div>
+                            </div>
+                        </div>
+
                         <div class="field-group">
-                            <label>Why was the medication stopped (if applicable)?</label>
-                            <textarea class="med-stopped-why"></textarea>
+                            <label>Additional notes about this medication (optional):</label>
+                            <textarea class="med-additional-notes" placeholder="Any other details you'd like to add"></textarea>
                         </div>
                     </div>
                 </template>

@@ -741,28 +741,81 @@ window.toggleMedDetails = function () {
             const safeId = med.id.replace(/[^a-zA-Z0-9]/g, '_');
             wrapper.querySelector('.med-title-placeholder').innerText = med.name;
 
-            wrapper.querySelectorAll('input[type="radio"]').forEach(r => {
-                const baseName = r.className.replace('-radio', '').replace('current', 'curr').replace('help', 'hlp').replace('side', 'se');
-                r.name = `med_${baseName}_${safeId}`;
-                // Set required for radios
+            // Current taking radios
+            wrapper.querySelectorAll('.current-radio-yes, .current-radio-no').forEach(r => {
+                r.name = `med_current_${safeId}`;
                 r.setAttribute('required', 'required');
             });
 
-            wrapper.querySelector('.med-dose').name = `med_dose_${safeId}`;
-            wrapper.querySelector('.med-duration').name = `med_dur_${safeId}`;
-            wrapper.querySelector('.med-stopped-why').name = `med_stop_${safeId}`;
+            // Help / benefit radios
+            wrapper.querySelectorAll('.help-radio-yes, .help-radio-no, .help-radio-partial, .help-radio-unsure').forEach(r => {
+                r.name = `med_help_${safeId}`;
+                r.setAttribute('required', 'required');
+            });
 
-            const sideDesc = wrapper.querySelector('.side-desc');
-            sideDesc.name = `med_se_text_${safeId}`;
-
-            // Handle side effect conditional text
-            const sideYes = wrapper.querySelector('.side-radio-yes');
-            const sideNo = wrapper.querySelector('.side-radio-no');
-            if (sideYes && sideNo) {
-                sideYes.addEventListener('change', () => { sideDesc.style.display = 'inline-block'; sideDesc.setAttribute('required', 'required'); });
-                sideNo.addEventListener('change', () => { sideDesc.style.display = 'none'; sideDesc.removeAttribute('required'); });
-                sideDesc.style.display = 'none';
+            // Length radios (required)
+            wrapper.querySelectorAll('.length-radio').forEach(r => {
+                r.name = `med_length_${safeId}`;
+                r.setAttribute('required', 'required');
+            });
+            const lengthOtherRadio = wrapper.querySelector('.length-other-radio');
+            const lengthOtherInput = wrapper.querySelector('.length-other-input');
+            if (lengthOtherRadio && lengthOtherInput) {
+                lengthOtherRadio.addEventListener('change', () => { lengthOtherInput.style.display = 'inline-block'; lengthOtherInput.setAttribute('required','required'); });
+                // Hide/clear when other not selected
+                wrapper.querySelectorAll('.length-radio').forEach(r => { if (r !== lengthOtherRadio) r.addEventListener('change', () => { lengthOtherInput.style.display = 'none'; lengthOtherInput.removeAttribute('required'); lengthOtherInput.value = ''; }); });
+                lengthOtherInput.style.display = 'none';
+                lengthOtherInput.name = `med_length_other_${safeId}`;
             }
+
+            // Dose
+            const doseEl = wrapper.querySelector('.med-dose');
+            if (doseEl) doseEl.name = `med_dose_${safeId}`;
+
+            // Reasons (checkboxes) - allow multiple, name as array
+            const stopReasons = wrapper.querySelectorAll('.med-stop-reason');
+            stopReasons.forEach(cb => {
+                cb.name = `med_stop_${safeId}[]`;
+            });
+
+            // 'Other' text for stop reasons
+            const stopOtherCb = wrapper.querySelector('.med-stop-reason-other');
+            const stopOtherText = wrapper.querySelector('.med-stop-reason-other-text');
+            if (stopOtherCb && stopOtherText) {
+                stopOtherCb.addEventListener('change', () => {
+                    if (stopOtherCb.checked) { stopOtherText.style.display = 'inline-block'; stopOtherText.name = `med_stop_other_${safeId}`; stopOtherText.setAttribute('required','required'); }
+                    else { stopOtherText.style.display = 'none'; stopOtherText.removeAttribute('name'); stopOtherText.removeAttribute('required'); stopOtherText.value = ''; }
+                });
+                stopOtherText.style.display = 'none';
+            }
+
+            // Side effects options - hidden unless 'Intolerable side effects' selected
+            const seOptions = wrapper.querySelectorAll('.med-se-option');
+            seOptions.forEach(cb => { cb.name = `med_se_${safeId}[]`; });
+            const seOtherCb = wrapper.querySelector('.med-se-other');
+            const seOtherText = wrapper.querySelector('.med-se-other-text');
+            if (seOtherCb && seOtherText) {
+                seOtherCb.addEventListener('change', () => {
+                    if (seOtherCb.checked) { seOtherText.style.display = 'inline-block'; seOtherText.name = `med_se_other_${safeId}`; seOtherText.setAttribute('required','required'); }
+                    else { seOtherText.style.display = 'none'; seOtherText.removeAttribute('name'); seOtherText.removeAttribute('required'); seOtherText.value = ''; }
+                });
+                seOtherText.style.display = 'none';
+            }
+
+            // Show/hide side-effects container when intolerable reason checked
+            const sideEffectsContainer = wrapper.querySelector('.side-effects-container');
+            const intolerableCb = Array.from(stopReasons).find(c => (c.value && c.value.toLowerCase().includes('intolerable')) );
+            const updateSeVisibility = () => {
+                if (intolerableCb && intolerableCb.checked) { if (sideEffectsContainer) sideEffectsContainer.style.display = 'block'; }
+                else { if (sideEffectsContainer) sideEffectsContainer.style.display = 'none'; }
+            };
+            stopReasons.forEach(cb => cb.addEventListener('change', updateSeVisibility));
+            // initialize
+            updateSeVisibility();
+
+            // Additional notes
+            const notes = wrapper.querySelector('.med-additional-notes');
+            if (notes) notes.name = `med_notes_${safeId}`;
 
             container.appendChild(wrapper);
         } else if (block) {
