@@ -1,0 +1,643 @@
+General Form Usability Updates
+Please apply the following usability updates across the form where applicable.
+1. Phone and Fax Fields
+Phone and fax fields should not be required.
+Many patients do not know these numbers.
+Examples include (but are not limited to):
+•Previous psychiatric provider phone number
+•Previous provider fax number
+•Therapist phone number
+•Therapist fax number
+•Pharmacy fax number
+•Hospital or facility phone numbers
+These fields should remain optional.
+Patients should be able to proceed without entering this information.
+2. Date Fields (Hospitalizations, Labs, Visits, etc.)
+For date questions such as:
+•Last psychiatric hospitalization
+•Last medical hospitalization
+•Most recent laboratory testing
+•Last visit with a previous psychiatric provider
+•Last therapy visit
+•Last substance use treatment episode
+Patients may not remember exact dates.
+Please allow the following options.
+Option A (preferred)Add a checkbox option:
+☐ Date unknown
+If selected, the date field should no longer be required.
+Option B (acceptable alternative)
+Allow the patient to type text into the date field such as:
+•Unknown
+•Approximate
+•Not sure
+3. Medication Dose Fields
+Patients frequently do not remember exact medication doses.
+For fields such as:
+•Highest dose taken
+•Current dose
+•Previous dose
+•Dose at time medication was stopped
+Please update the field label to read:
+Highest Dose (if known)
+And allow patients to enter text such as:
+•Unknown
+•Not sure
+•Approximate
+Dose fields should not prevent completion of the form if the patient does not know
+the dose.
+Implementation Notes• These updates are intended to reduce form abandonment and improve completion
+accuracy.
+• Patients should be able to continue even if these details are not available.
+• Required fields should remain limited to information necessary for clinical evaluation.
+Please add a final review page before submission so patients can easily revisit earlier
+sections if they remember additional details they would like to include.
+Page Title
+Review Your Intake Before Submitting
+Page Text
+Add the following message:
+You may review or update any section before submitting your intake form.
+If you remember additional information or want to add details, you may return to any
+section below.
+Section Navigation Links
+Provide navigation buttons or links to the following sections:
+• Personal Information
+• Medical History
+• Psychiatric History
+• Current Psychiatric Medications
+• Past Psychiatric Medications
+• Substance Use
+• Trauma History
+• PTSD Symptoms
+• Family Psychiatric History
+• Social History
+• Women’s Health / Hormonal History
+• Safety Screening
+Each link should return the patient to the relevant section without clearing previously
+entered responses.
+Submission Confirmation
+At the bottom of the page include:INTAKE COMPLETION CONFIRMATION
+☐ I confirm that the information provided in this intake form is accurate to the best of my
+knowledge.
+Submit Button
+Final button:
+Submit Intake Form
+SECTION 5B – CURRENT PSYCHIATRIC MEDICATIONS
+Developer Instruction
+Add the following helper text directly below the medication entry fields:
+If you are unsure about the exact medication name or dose, please enter whatever
+information you remember (for example: “blue capsule for anxiety,” “Adderall XR 20 mg
+maybe,” or “sleep medication from my PCP”). Your provider can help clarify during the
+appointment.
+---
+Add the following screening question at the beginning of this subsection.
+Are you currently taking any medications for mental health or emotional health?
+Response options:
+• Yes
+• No
+• Unsure
+Trigger Logic
+• If Yes → display the Current Psychiatric Medication entry fields
+• If Unsure → display the Current Psychiatric Medication entry fields
+• If No → skip the medication entry fields and trigger the Medication Confirmation
+reminder
+Logic 1 of 2 – Confirmation if patient selects “No”Trigger condition:
+If the patient selects No.
+Display the following message before allowing the section to be completed.
+Medication Confirmation
+You indicated that you are not currently taking medication for mental health
+treatment.
+Some patients receive psychiatric medications from a primary care provider or another
+clinician.
+If you are currently taking medication for mental health treatment, please return and
+update your response.
+If you are not currently taking psychiatric medication, you may continue.
+Options:
+• Return to update responses
+• Continue if correct
+Logic 2 of 2 – Medication fields blank
+Trigger condition:
+If the patient selects Yes or Unsure but the medication fields are left blank or
+incomplete.
+Display the following message:
+Medication Information Reminder
+You indicated that you are currently taking psychiatric medication, but no medications
+were listed.
+If possible, please list the medication name(s) so your provider can review your
+treatment history before your appointment.
+If you do not have the medication information available right now, you may continue and
+discuss it during your visit.
+Options:
+• Return to update responses
+• Continue if information is not availableImplementation Notes
+• These reminders should appear within Section 5B, not at the end of the form.
+• The reminders should not prevent form completion.
+• They should prompt the patient to review their responses before continuing.
+SECTION 6 – PAST PSYCHIATRIC MEDICATIONS
+Developer Instruction
+Add the following helper text directly below the medication entry fields:
+If you are unsure about the exact medication name or dose, please enter whatever
+information you remember (for example: “blue capsule for anxiety,” “Adderall XR 20 mg
+maybe,” or “sleep medication from my PCP”). Your provider can help clarify during the
+appointment.
+---
+The initial screening question already exists and should remain as written:
+Have you previously taken any psychiatric medications for mental health
+treatment?
+Response options:
+• Yes
+• No
+• Unsure
+Trigger Logic
+• If Yes → display the Past Psychiatric Medication history fields
+• If Unsure → display the Past Psychiatric Medication history fields
+• If No → skip the medication history entry fields and trigger the Medication History
+Confirmation reminder
+Logic 1 of 2 – Confirmation if patient selects “No”
+Trigger condition:
+If the patient selects No.Display the following message before allowing the section to be completed.
+Medication History Confirmation
+You indicated that you have not taken psychiatric medications in the past.
+Many people have tried medications previously through a primary care provider,
+therapist, psychiatrist, urgent care, or other clinician.
+If you have taken psychiatric medication at any point in the past, please return and list
+any medications you remember.
+If you have never taken psychiatric medications, you may continue.
+Options:
+• Return to update responses
+• Continue if correct
+Logic 2 of 2 – Medication history fields blank
+Trigger condition:
+If the patient selects Yes or Unsure, but the medication history fields are left blank or
+incomplete.
+Display the following message:
+Medication History Reminder
+You indicated that you have taken psychiatric medications in the past, but no
+medications were listed.
+If possible, please list any medications you remember. This information helps your
+provider understand which treatments have previously been helpful or not helpful.
+If you do not remember the medication names, you may continue without entering them.
+Options:
+• Return to update responses
+• Continue if information is not available
+Required fields for each medication trial entered
+For each medication entered, include the following required field:
+Approximate Length of Treatment• Less than 2 weeks
+• 2 to 4 weeks
+• 1 to 2 months
+• 3 months
+• 4 to 6 months
+• 7 to 12 months
+• Over a year
+• Other
+Reason medication was stopped (select all that apply)
+• Intolerable side effects
+• Adverse reaction or allergy
+• Medication was not effective
+• Partial improvement but not enough benefit
+• Cost or insurance issues
+• Switched to a different medication
+• Provider recommendation
+• Patient preference
+• Symptoms improved
+• Effective but too expensive
+• Effective but unable to obtain prescription
+• Pregnancy / trying to conceive / breastfeeding
+• Other
+Conditional follow-up question
+If “Intolerable side effects” is selected, display:
+Side Effects Experienced (select all that apply)
+• Sexual side effects
+• Weight gain
+• Weight loss
+• Headaches
+• GI issues (indigestion, nausea, vomiting)
+• Diarrhea
+• Constipation
+• Jaw clenching
+• Irritability• Restlessness
+• Sedation / fatigue
+• Insomnia
+• Increased anxiety
+• Dizziness
+• Dry mouth
+• Sweating
+• Palpitations
+• Tremor
+• Other
+Additional optional field
+At the end of this section, include one optional text field for any additional information
+about past medications.
+Implementation Notes
+• These reminders should appear within Section 6, not at the end of the form.
+• They should not prevent form completion.
+• The reminders should prompt the patient to review their responses before
+continuing.
+SECTION 8 - MENTAL HEALTH SCREENING (DSM-5 SYMPTOM CHECKLISTS)
+Please update this section as follows:
+1. Remove pre-screen questions for these conditions
+The following conditions should not have pre-screen yes/no gate questions.
+Instead, show the symptom checklists directly.
+•Depression
+•OCD
+•OCPD
+•Borderline
+•ADHD
+•AutismFor each of these symptom lists:
+•add “None of the above”
+•make the symptom checklist required
+2. Keep pre-screen questions for these conditions
+The following conditions should keep their pre-screen questions:
+•Bipolar / Mania
+•GAD
+•Panic
+•Social Anxiety
+•PTSD
+•Psychosis
+•Eating Disorder
+•Substance Use Disorder
+For each of these pre-screens, the response options should be:
+•Yes
+•Yes — but only under the influence of alcohol, cannabis, or other
+substances
+•Unsure
+•No
+3. Trigger logic for retained pre-screens
+For all retained pre-screens:
+•If Yes → show symptom checklist
+•If Yes — but only under the influence of alcohol, cannabis, or other
+substances → show symptom checklist
+•If Unsure → show symptom checklist
+•If No → do not show symptom checklist4. Bipolar / Mania special logic
+Bipolar has two pre-screen questions.
+The bipolar symptom checklist should appear if either bipolar pre-screen question is
+answered:
+•Yes
+•Yes — but only under the influence of alcohol, cannabis, or other
+substances
+•Unsure
+Only skip the bipolar symptom checklist if both bipolar pre-screen questions are
+answered No.
+5. Required fields rule
+All symptom checklists and all triggered follow-up questions in Section 8 should be
+required if they appear.
+The only exception is any optional added details / free-text comments field, which
+should remain optional.
+So:
+•symptom checklists = required
+•triggered follow-up questions = required
+•optional added details text boxes = optional
+6. “None of the above” requirement
+Any symptom checklist that does not have a pre-screen question should include:
+•
+None of the above
+This allows the question to remain required without forcing inaccurate symptom
+endorsement.
+---
+SECTION 8 > PTSD Screening UpdatePlease update the PTSD section as follows.
+1. Replace the initial PTSD pre-screen question
+The current initial PTSD pre-screen question should be replaced with the following:
+PTSD SCREENING *
+Have you experienced something in your life that continues to cause distressing
+memories, avoidance, nightmares, or emotional reactions?
+Response options:
+○ Yes
+○ No
+○ Unsure
+Add this text directly below the question:
+If you are unsure whether your experiences qualify, you may still answer Yes or Unsure
+so your provider can discuss this with you during the appointment.
+2. Conditional logic
+•If Yes → display the PTSD symptom section
+•If Unsure → display the PTSD symptom section
+•If No → skip the PTSD symptom section
+3. Remove the symptom-category pre-screen questions
+Please remove the pre-screen questions that currently appear before the PTSD
+symptom lists (for example, the separate pre-questions for intrusion, avoidance,
+negative mood/cognition, and arousal/reactivity).
+The symptom lists themselves should remain, but the extra pre-screen questions before
+them should be removed to avoid confusion.
+4. Keep the symptom lists and add “None of the above”
+For each PTSD symptom list, keep the checklist and add “None of the above” as an
+option.
+The PTSD symptom lists should be presented as follows:
+Please select any symptoms you have experienced related to the traumatic
+event(s), either currently or in the past.
+Intrusion Symptoms☐ Unwanted memories of the trauma
+☐ Disturbing dreams or nightmares related to the trauma
+☐ Flashbacks or feeling as if the event is happening again
+☐ Emotional distress when reminded of the trauma
+☐ Physical reactions when reminded of the trauma (e.g., racing heart, sweating,
+nausea)
+☐ None of the above
+Avoidance Symptoms
+☐ Avoiding trauma-related thoughts or memories
+☐ Avoiding reminders such as people, places, conversations, or situations
+☐ None of the above
+Negative Mood / Cognition Changes
+☐ Persistent negative beliefs about yourself, others, or the world
+☐ Blaming yourself or others for the trauma
+☐ Persistent fear, anger, guilt, or shame
+☐ Loss of interest in activities you previously enjoyed
+☐ Feeling detached or emotionally distant from others
+☐ Difficulty experiencing positive emotions
+☐ None of the above
+Arousal / Reactivity Symptoms
+☐ Irritability or anger outbursts
+☐ Reckless or self-destructive behavior
+☐ Feeling constantly on guard or hypervigilant
+☐ Exaggerated startle response
+☐ Difficulty concentrating
+☐ Sleep disturbance (difficulty falling or staying asleep)
+☐ None of the above
+5. Required fields
+When the PTSD symptom section appears:
+•all symptom checklists should be required
+•the duration question should be required•the functional impairment question should be required
+•optional free-text detail fields can remain optional
+6. Duration and impairment questions
+Keep these questions after the symptom lists:
+Have these symptoms lasted longer than one month?
+○ Yes
+○ No
+○ Unsure
+Have these symptoms caused significant distress or impairment in daily life
+(work, relationships, or daily functioning)?
+○ Yes
+○ No
+○ Unsure
+Are you currently experiencing any of these symptoms?
+Yes — symptoms are currently present
+No — symptoms occurred in the past but are not currently active
+Unsure
+SECTION 8 > PERSONALITY PATTERNS SCREENER: >Section 5 – Attention &
+Self-Image Patterns
+Remove the duplicate section heading and duplicated questions so that this section
+appears only once.
+Currently the section appears twice as:
+5. Attention & Self-Image Patterns
+and again as
+6. Attention & Self-Image Patterns
+Only one version should remain.
+Section 8 – Diagnostic Screenings – LOGIC Review Check
+Screening Response Review Logic
+Please implement a response review reminder for Section 8 (Diagnostic Screenings).
+Trigger ConditionIf the patient selects “None of the above,” “No,” or equivalent negative responses
+for the majority of screening questions in Section 8, display a reminder message
+before allowing the form to be submitted.
+For implementation purposes:
+Trigger the reminder if all screening questions OR nearly all screening questions
+(approximately 85% or more) are answered with:
+• No
+• None of the above
+• Negative equivalent responses
+This logic should only evaluate the screening questions within Section 8.
+Responses such as N/A in other sections must not affect this trigger.
+Reminder Message
+Display the following message:
+Screening Review Reminder
+You indicated few or no symptoms across most of the screening questions.
+These screening questions ask about experiences that may have occurred at any point
+in your life, including symptoms that may have been present before treatment or
+before medications improved your symptoms.
+If your symptoms are currently well managed with medication or treatment, please
+consider selecting the experiences that applied before treatment.
+If your responses are accurate, you may continue and submit the form.
+If you may have misunderstood the questions or completed the section quickly, you may
+wish to review your answers before submitting.
+Providing accurate information helps your provider better understand your experiences
+and prepare for your visit.
+Options Displayed
+• Review responses
+• Continue and submitImplementation Notes
+• This reminder should not block submission.
+• It should appear only once, immediately before submission.
+• It should apply only to Section 8 (Diagnostic Screenings).
+• Medication reminder logic in other sections should remain separate and unchanged.
+SECTION 9: TRAUMA HISTORY
+Trauma History Section Update
+Please update the trauma history section to improve clarity and reduce missed
+disclosures.
+1. Remove “Prefer not to answer”
+Remove “Prefer not to answer” as a selectable option in the trauma checklist.
+Patients should instead be able to:
+•leave the question unanswered, or
+•choose None of the above if appropriate.
+This reduces accidental skipping while avoiding forcing disclosure.
+2. Update trauma timing question
+Replace the existing question:
+Current wording
+When did your mental health symptoms first begin?
+Replace with
+TRAUMA TIMING (if trauma selected)
+When did the trauma occur? (Select all that apply)
+Response options:
+☐ Early childhood (before age 6)
+☐ Childhood (6–12)
+☐ Adolescence (13–17)
+☐ Adulthood (18+)
+☐ Ongoing / repeated over time
+☐ Unsure3. Conditional logic
+If any trauma type is selected, display the trauma timing question.
+If None of the above is selected, skip the trauma timing question.
+4. Optional follow-up field
+Keep the optional free-text field:
+If you would like to share any additional context about these experiences, you may do
+so here.
+This field should remain optional.
+SECTION 10: SAFETY AND RISK
+Only one change requested. Add conditional details text box for “Yes” answer to self
+harm, as follows:
+Have you ever intentionally harmed yourself without intending to die (for example
+cutting, burning, or other self-injury)? *
+○ Yes
+○ No
+If yes, please share any details you feel comfortable providing:
+This keeps it consistent with the rest of your suicide/self-harm screening where:
+•Yes → optional details field
+•No → no additional prompt
+SECTION 11: SUBSTANCE USE AND TREATMENTPlease replace the previous versions of Kratom, Opioid Use, and Stimulant Use
+(unprescribed) with the below versions to include past and present use and
+details:
+Kratom
+Have you ever used kratom?
+☐ Never
+☐ Past use only
+☐ Current use
+If yes, how often do/did you use kratom?
+☐ Less than monthly
+☐ Monthly
+☐ Weekly
+☐ Daily
+☐ Not applicable
+Reason for use (select any):
+☐ Pain
+☐ Anxiety
+☐ Mood
+☐ Energy
+☐ Withdrawal symptoms
+☐ Other: _________________________________
+☐ Not applicable
+Opioids
+Have you ever used opioids outside of medical treatment?
+☐ Never
+☐ Past use only
+☐ Current use
+If yes, how often do/did you use opioids?
+☐ Less than monthly
+☐ Monthly☐ Weekly
+☐ Daily
+☐ Not applicable
+Which opioids have you used? (Select all that apply)
+☐ Prescription pain medications (e.g., oxycodone, hydrocodone, Percocet, Vicodin)
+☐ Fentanyl
+☐ Heroin
+☐ Buprenorphine (Suboxone, Subutex, Sublocade, etc.)
+☐ Methadone
+☐ Other opioid
+☐ Unsure
+Reason for use (select any):
+☐ Pain
+☐ Anxiety
+☐ Mood
+☐ Energy
+☐ Withdrawal symptoms
+☐ Other: _________________________________
+☐ Not applicable
+Stimulants (Non-Prescribed)
+Have you ever used stimulants such as cocaine, crack cocaine,
+methamphetamine, or non-prescribed stimulant medications?
+☐ Never
+☐ Past use only
+☐ Current use
+If yes, how often do/did you use stimulants?
+☐ Less than monthly
+☐ Monthly
+☐ Weekly☐ Daily
+☐ Not applicable
+Which stimulants have you used? (Select all that apply)
+☐ Cocaine
+☐ Crack cocaine
+☐ Methamphetamine
+☐ Non-prescribed stimulant medications (e.g., Adderall, Ritalin, Vyvanse)
+☐ Other stimulant: _________________________________
+☐ Unsure
+Reason for use (select any):
+☐ Energy or alertness
+☐ Focus or concentration
+☐ Weight loss or appetite suppression
+☐ Mood or euphoria
+☐ Partying or recreation
+☐ Other: _________________________________
+☐ Not applicable
+SECTION 12: OPIOID USE DISORDER TREATMENT
+Update Initial Question to include past treatment:
+Are you currently receiving or have you previously received treatment for opioid
+use disorder (OUD)? *
+☐ No
+☐ Yes — currently receiving treatment
+☐ Yes — in the past but not currently
+If yes, which medication is/was used?
+☐ Buprenorphine (Suboxone / Subutex / Sublocade / Brixadi)
+☐ Methadone
+☐ Naltrexone (Vivitrol)
+☐ Other: _________________________________Are you currently taking medication for opioid use disorder?
+☐ No
+☐ Yes
+If yes, which medication are you currently taking?
+☐ Buprenorphine (Suboxone / Subutex / Sublocade / Brixadi)
+☐ Methadone
+☐ Naltrexone (Vivitrol)
+☐ Other: _________________________________
+SECTION 13: MEDICATION AND MEDICAL HISTORY
+What sex were you assigned at birth? *
+○ Female
+○ Male
+○ Intersex
+(Remove: My information is not captured by these options)
+No other wording changes are needed. This will allow the form to reliably trigger the
+perinatal history section when “Female” is selected.
+Update the following questions to be REQUIRED:
+Please list all current non-psychiatric prescription medications, including dose,
+frequency, and reason for taking them. *
+(If none, please write “None” or “N/A”.)
+Please list all current over-the-counter medications, vitamins, supplements, or
+herbal products. *
+(If none, please write “None” or “N/A”.)
+Please list any past non-psychiatric medications that caused side effects, serious
+reactions, or were otherwise important for your care. *
+(If none, please write “None” or “N/A”.)SECTION 14: PERINATAL AND REPRODUCTIVE HEALTH
+Developer Instruction – Section 14 Logic Correction
+1. Remove “Please complete this section only if relevant”(keep section conditional
+on female/intersex).
+The logic for the contraception question should be updated.
+2. Make questions required since they already include N/A / None of the above
+3. For the question:
+“If NOT pregnant and NOT planning pregnancy: Are you currently using a method
+of contraception to prevent pregnancy?”
+this question should appear for any response except:
+•Currently Pregnant
+•Actively trying to conceive / Planning a pregnancy
+It should still appear if the patient selects:
+•Postpartum (delivered within the last 12 months)
+•Currently Lactating / Breastfeeding / Chestfeeding / Pumping
+•None of the above
+This is because pregnancy may still be possible in those situations.
+Correct Logic
+Hide the contraception question only if:
+•Currently Pregnant
+•Actively trying to conceive / Planning a pregnancy
+Show the contraception question if:
+•Postpartum
+•Lactating / Breastfeeding / Chestfeeding / Pumping
+•None of the above
+Developer Instruction – Section 15 Logic FixFor the question:
+“If you answered YES to any of the above, please describe/specify:”
+the text field should appear when the patient selects YES to any of the following
+questions:
+•Memory problems
+•Trouble concentrating
+•Disorientation/confusion
+•Unusual perceptions (hallucinations, illusions)
+•History of seizures, TBI, or stroke
+Currently the field only appears when “History of seizures, TBI, stroke = Yes.”
+Please update the conditional logic so the field appears when YES is selected for ANY
+of the above questions.
+Technically the logic should be:
+Show field if:
+Memory problems = Yes
+OR
+Trouble concentrating = Yes
+OR
+Disorientation/confusion = Yes
+OR
+Unusual perceptions = Yes
+OR
+Seizures/TBI/Stroke = Yes
+Section 17 – FAMILY PSYCHIATRIC HISTORY
+Everything in this section looks good overall, except there appears to be a duplication
+related to substance use disorder.
+Issue:
+“Substance use disorder” is already included in:
+Family history of mental health conditions (select all that apply)
+It is then asked again separately as:Family history of substance use disorder?
+This seems redundant and likely came from the original template.
+Requested update:
+Please remove the separate question:
+Family history of substance use disorder?
+since substance use disorder is already captured in the family psychiatric history
+checklist.
+The rest of Section 17 looks good.
+18. SOCIAL AND DEVELOPMENTAL HISTORY
+Developer Instruction – Update Childhood Environment Question
+Please update the response options for the following question to provide a more gradual
+range of experiences.
+Question:
+How would you describe your childhood overall? *
+Replace the current answer options with the following:
+○ Very stable and supportive
+○ Generally stable with some challenges
+○ Mixed or somewhat difficult
+○ Mostly stressful or unstable
+○ Prefer not to answer
+This update improves the response scale by adding a middle option between “stable”
+and “difficult.”

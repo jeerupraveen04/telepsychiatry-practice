@@ -1,0 +1,2236 @@
+
+
+ThriveLine: Telepsychiatry & Mental Wellness, PLLC
+From Surviving to Thriving — Together
+Website: www.thrivelinetelepsychiatry.com
+Phone: 838-884-7483 (call/text)
+Fax: 207-209-4142
+Secure Messaging: https://spruce.care/thriveline
+
+Here is the final cleaned instruction block with the DSM protection sentence included and no unnecessary filler. You can paste this directly into the project description or instructions.
+
+Intake Form Build Instructions
+The attached documents contain the full content of a psychiatric intake questionnaire. The sections have been split into multiple files only to make them easier to upload and process.
+All sections must be combined into one continuous digital form in the final product.
+Content Preservation
+All patient-facing wording must remain exactly as written.
+• Do not rewrite, summarize, simplify, shorten, or remove any patient-facing text.
+• The form may be structured differently in the digital format, but the actual wording, sentences, answer choices, and symptom lists must remain unchanged.
+• Any text labeled “Form Builder Instructions — DO NOT DISPLAY” should be used only for logic configuration and must not appear to patients.
+Important:
+DSM-style symptom checklists must remain exactly as written with each symptom listed as an individual selectable item. Do not combine, summarize, or restructure these symptom lists.
+Required Question Behavior
+All questions must be required, except for conditional questions that only appear when triggered by form logic.
+If a question includes options such as:
+• N/A
+• None
+• Prefer not to answer
+those options should remain selectable, but the question itself should still be required.
+Conditional Logic
+The form includes multiple conditional logic triggers.
+Examples include:
+• Perinatal section displayed based on Sex Assigned at Birth
+• Follow-up questions displayed when symptoms are endorsed
+• Additional detail fields triggered by positive responses
+These logic instructions are included throughout the document and must be implemented exactly as written.
+Symptom Checklist Behavior
+Some sections contain long symptom checklists (DSM-style screening lists).
+These lists must:
+• remain fully expanded when first shown
+• not be collapsed, summarized, shortened, converted to dropdowns, or merged into single summary questions
+• display each symptom as its own individually selectable item
+Each symptom must remain separately selectable so that multiple symptoms can be endorsed.
+If the platform allows it, completed symptom sections may collapse after completion only to make navigation easier, but all symptom items must remain individually selectable and available for review or editing.
+Section / Page Structure
+To reduce scrolling and improve completion rates, the form should be built using section breaks or separate pages rather than one extremely long scrolling page.
+Recommended structure:
+    1. Patient Information
+    2. Insurance / Pharmacy / Provider Information
+    3. Current and Past Psychiatric Medications
+    4. Medical History
+    5. Mental Health Symptom Screening
+    6. Trauma History / Symptom Onset / Safety
+    7. Substance Use and OUD Treatment
+    8. Perinatal and Reproductive Health (conditional)
+    9. Cognitive / Psychiatric / Family / Social History
+    10. Stressors / Functioning / Sleep / Final Review
+The uploaded files were divided only for easier processing and must be reassembled into one complete intake form.
+Progress Bar and Navigation
+If the platform supports it, please enable a progress bar so patients can see how far along they are in the form.
+Patients should be able to move forward and backward between sections to review and edit answers before submission.
+Long forms should not appear as one overwhelming page if section-based navigation is available.
+Google Forms / Long Form Stability
+Because this is a long psychiatric intake form, please build it in a way that avoids common Google Forms issues.
+To improve stability and usability:
+• use section breaks/pages for major sections
+• keep long DSM symptom lists within their own sections when possible
+• avoid placing multiple long symptom checklists on a single page
+• preserve all checkbox and radio button structures exactly as written
+• do not replace symptom lists with dropdown menus or paragraph fields
+If adjustments are required for platform compatibility, maintain the exact wording and clinical meaning.
+Formatting and Readability
+To improve legibility and navigation:
+• section titles should be bold and clearly visible
+• headings may use slightly larger font sizes than body text
+• related questions should be grouped logically within each section
+• spacing should allow the form to remain readable on both desktop and mobile
+The overall design should remain clean, professional, and easy to read.
+Branding
+If possible, include:
+• practice logo
+• simple professional color styling consistent with the website
+The form should remain professional and not overly decorative.
+File Structure
+The intake form content has been divided into multiple smaller sections for upload purposes only.
+These sections must be combined into one continuous form in the final version.
+There should not be artificial page breaks between uploaded files beyond the logical sections described above.
+Output Requirements
+The final form must be:
+• shareable with patients digitally
+• compatible with Google Forms or similar form distribution methods
+• exportable to PDF format for record keeping
+Form Privacy Settings
+Please confirm that settings are configured so that patient responses remain private:
+• Respondents cannot see other responses
+• Edit after submit should be disabled
+• Response receipts should not include other patient responses
+• The form should not allow respondents to view summary charts
+The form must ensure that each patient can only see their own responses while completing the form.
+
+
+Initial Psychiatric Evaluation Questionnaire
+Estimated completion time: 30–60 minutes
+Important: This intake form, voicemail, fax, email, and secure messaging are not monitored 24/7 and should not be used for emergencies or urgent situations.
+If you are in crisis, think you may harm yourself or someone else, are experiencing severe worsening of symptoms, or believe you are having a medical or psychiatric emergency, call or text 988, call 911, or go to the nearest emergency room immediately.
+Submitting this form does not establish emergency services, after-hours coverage, or an immediate provider response. It also does not guarantee same-day review, urgent medication refills, or immediate treatment recommendations.
+If you are running out of medication, experiencing withdrawal symptoms, or have another urgent concern, you should also contact your current prescriber, primary care provider, urgent care, emergency department, or 988/911 as appropriate.
+Please complete this form as accurately as possible. Your responses help your provider understand your history and prepare safely for your appointment.
+
+How to Complete This Form
+You may complete this form using your mouse or keyboard.
+Using your mouse
+    • Click circles or checkboxes to select answers
+    • Click in text boxes to type responses
+Using your keyboard
+    • Press Tab to move to the next question
+    • Press Shift + Tab to move to the previous question
+    • Use ↑ ↓ arrow keys to move between answer options
+    • Press Spacebar to select a checkbox or option
+If you do not know an answer, please write N/A where appropriate.
+
+Important: Medical Records, Labs, and Monitoring
+If you have recent medical records, laboratory results, imaging, urine drug screens, or medication history from another provider, please send them before your appointment if possible.
+Providing these records ahead of time may help your provider:
+    • better understand your overall health
+    • identify medical contributors to mental health symptoms
+    • avoid unnecessary repeat testing
+    • make medication decisions more safely
+    • avoid delays in treatment changes
+You may send records using one of the following options:
+Secure Message:
+Spruce Secure Messaging
+https://spruce.care/thriveline
+Fax:
+207-209-4142
+Your previous provider may also fax records directly to the number above.
+Please do not use Spruce secure messaging, fax, email, voicemail, or this intake form for urgent or emergent concerns. These communication methods are intended for routine administrative information and records only and are not monitored continuously.
+Some medications require periodic laboratory monitoring, including:
+    • Lithium
+    • Valproate / Depakote
+    • Carbamazepine
+Recent labs may be required before medication adjustments can be made. Providing recent labs in advance, if available, can help avoid delays in treatment changes.
+Laboratory results may also be helpful because some medical conditions and vitamin deficiencies may contribute to mental health symptoms, including:
+    • thyroid disorders
+    • anemia
+    • vitamin deficiencies
+    • hormonal changes
+    • metabolic conditions such as diabetes or high cholesterol
+If you are currently receiving treatment for opioid use disorder (OUD) or are prescribed medications such as buprenorphine, methadone, or naltrexone, your provider may require a recent urine drug screen (UDS) before initiating or continuing certain controlled medications.
+If you have had a recent UDS through another provider, please ask that provider to forward the results prior to your appointment if possible.
+Providing these results ahead of time may help avoid delays in treatment planning.
+
+Required Questions
+All questions are required unless otherwise indicated by conditional logic.
+If a question does not apply to you, please select the most appropriate answer such as:
+    • None
+    • Not applicable
+    • No history
+    • No current concern
+
+1. PATIENT INFORMATION
+Full Legal Name: _________________________________ (Required)
+Preferred Name: _________________________________
+Date of Birth: ____ / ____ / ________ (MM/DD/YYYY) (Required)
+Home Address: _______________________________________________ (Street, City, State, Zip) (Required)
+Mailing Address: _______________________________________________ (if different)
+Phone Number: _________________________________ (Required)
+Email Address: _________________________________ (Required)
+Emergency Contact Name: _________________________________ (Required)
+Emergency Contact Relationship: _________________________________ (Required)
+Emergency Contact Phone: _________________________________ (Required)
+Pronouns (Required; select one option)
+○ She / Her / Hers
+○ He / Him / His
+○ They / Them / Theirs
+○ Other (please specify): _________________________________
+○ No preference
+Gender Identity (Select all that apply)
+☐ Woman
+☐ Man
+☐ Transgender Woman
+☐ Transgender Man
+☐ Non-binary
+☐ Genderqueer / Genderfluid
+☐ Prefer to self-describe: _________________________________
+☐ Prefer not to say
+Sexual Orientation (Select all that apply)
+☐ Heterosexual (Straight)
+☐ Lesbian
+☐ Gay
+☐ Bisexual
+☐ Queer
+☐ Questioning
+☐ Other (please specify): _________________________________
+☐ Prefer not to say
+2. INSURANCE AND SECURE ID
+Required (Insurance Company Name and Member ID). Other fields should allow “Unknown” if the patient does not have the information available.
+Insurance Company Name: _________________________________
+Member/Subscriber ID No.: _________________________________
+Group No.: _________________________________
+Policyholder Name (if not self): _________________________________
+Policyholder Date of Birth: ____ / ____ / ________ (MM/DD/YYYY)
+Relationship to Patient: _________________________________
+Insurance Company Phone No.: _________________________________
+Secondary Insurance? (Required)
+○ Yes
+○ No
+If yes, Secondary Insurance Company Name: _________________________________
+Secondary Member/Subscriber ID No.: _________________________________
+Secondary Group No.: _________________________________
+Providing this information is strongly encouraged. It can help expedite medication prior authorizations and insurance coverage, which may reduce delays in treatment or unexpected out-of-pocket costs for prescriptions.
+Prescription Insurance Info (RxBIN, RxPCN, RxGroup): _________________________________
+RxBIN __________________
+RxPCN _________________
+RxGroup ________________
+Add this note above those fields:
+Providing this information is strongly encouraged. It can help expedite medication prior authorizations and insurance coverage, which may reduce delays in treatment or unexpected out-of-pocket costs for prescriptions.
+These fields should allow “Unknown” if the patient does not have the information available.
+
+
+3. PREFERRED PHARMACY, LAB AND PROVIDER (Required – patient can put unknown for phone, fax, address if needed and may put none for PCP if none)
+Preferred Pharmacy Name: _________________________________
+Pharmacy Address: _________________________________
+Pharmacy Phone: _________________________________
+Preferred Lab Name: _________________________________
+Lab Address: _________________________________
+Lab Phone/Fax: _________________________________
+Primary Care Provider (PCP) Name and Practice (if any): _________________________________
+PCP Phone/Fax (if known): _________________________________
+Date of most recent PCP visit (if known): _________________________________
+
+4. REASON FOR VISIT (Select all that apply)
+☐ Medication management (continuing current medications)
+☐ Medication adjustment (change or optimize medications)
+☐ Transfer of psychiatric medication care from another provider
+☐ First-time medication evaluation (consider starting medication)
+☐ Comprehensive psychiatric evaluation (diagnostic clarification)
+☐ Condition-specific evaluation (focused assessment for a specific concern)
+☐ ADHD evaluation
+☐ Perinatal mental health evaluation (pregnancy or postpartum)
+☐ Diagnostic clarification / second opinion
+☐ Other (please specify): __________________________
+
+Follow-up Question
+Please keep this question directly after the checklist:
+Please briefly describe the main symptoms, challenges, or goals you hope to address during mental health assessment and treatment:
+
+Is this visit urgent (are you at risk of running out of prescriptions for mental health)?
+○ Yes
+○ No
+If Yes, please specify: _________________________________
+
+5a. CURRENT OR RECENT CONTROLLED MEDICATIONS
+Some medications are classified as controlled substances and require additional documentation for safe prescribing.
+Please list any controlled medications you are currently taking or have taken within the past 12 months.
+Examples include medications used for ADHD, anxiety, sleep, or pain, such as stimulants, benzodiazepines, certain sleep medications, or buprenorphine products.
+Examples: Adderall, Vyvanse, Ritalin, Concerta, Xanax, Ativan, Klonopin, Valium, Ambien, Lunesta, Suboxone, buprenorphine products, or opioid pain medications.
+
+Screening Question
+Have you taken any controlled medications within the past 12 months?
+☐ Yes
+☐ No
+If No, skip the rest of this section.
+If Yes, display the following fields.
+
+Controlled Medication Information
+Medication name: ______________________
+Dose (if known): ______________________
+Prescribing provider: ______________________
+Pharmacy: ______________________
+Are you currently taking this medication?
+☐ Yes
+☐ No
+
+Additional Questions
+Have you received prescriptions for controlled medications from more than one provider in the past year?
+☐ Yes
+☐ No
+
+Have you ever completed a controlled medication agreement or urine drug screening for prescribed medications?
+☐ Yes
+☐ No
+☐ Not sure
+
+
+5b. CURRENTLY PRESCRIBED PSYCHIATRIC MEDICATIONS
+Please list all psychiatric medications you are currently taking, including:
+    • medication name
+    • dose
+    • how often you take it
+    • how long you have taken it
+    • prescribing provider
+    • side effects (if any)
+If none, write None.
+Medication Name: _________________________________
+Dose: _________________________________
+Frequency: _________________________________
+How long taken: _________________________________
+Prescriber: _________________________________
+Side effects (if any): _________________________________
+Medication Name: _________________________________
+Dose: _________________________________
+Frequency: _________________________________
+How long taken: _________________________________
+Prescriber: _________________________________
+Side effects (if any): _________________________________
+Medication Name: _________________________________
+Dose: _________________________________
+Frequency: _________________________________
+How long taken: _________________________________
+Prescriber: _________________________________
+Side effects (if any): _________________________________
+Medication Name: _________________________________
+Dose: _________________________________
+Frequency: _________________________________
+How long taken: _________________________________
+Prescriber: _________________________________
+Side effects (if any): _________________________________
+Medication Name: _________________________________
+Dose: _________________________________
+Frequency: _________________________________
+How long taken: _________________________________
+Prescriber: _________________________________
+Side effects (if any): _________________________________
+Additional psychiatric medications (if more than five):
+
+Current Medications Section — Response Review Logic
+Please add a response consistency reminder within the Current Medications section (Section 5B only).
+Trigger condition:
+If a patient indicates that they are currently taking psychiatric medication, but the medication fields are left blank or incomplete.
+Display the following reminder before allowing the section to be completed:
+Medication Information Reminder
+You indicated that you are currently taking psychiatric medication, but no medications were listed.
+If this was entered in error, you may return to update your response.
+If you are currently taking medication, please list the medication name(s) if possible so your provider can review your treatment history before the appointment.
+If you do not have the information available, you may continue without entering it.
+Options:
+• Return to update responses
+• Continue if information is not available
+
+6. PAST PSYCHIATRIC MEDICATION HISTORY
+Psychiatric Medication History — Form Builder Instructions
+The following sections list psychiatric medications organized by medication class. These sections are used to collect a patient’s past and current psychiatric medication history.
+Please build this section using the following rules.
+All medication lists must be displayed as multi-select checklists (checkboxes) so patients can select all medications they have ever taken, including medications they are currently taking and medications they used in the past.
+Patients must be able to select multiple medications within each class.
+Do not convert medication lists to dropdown menus, and do not remove, collapse, or abbreviate medication names.
+Medication names must remain fully visible as checkboxes.
+Medication classes must remain separate sections and should not be merged together.
+Each medication class will include the option:
+☐ Other medication in this class: __________
+If this option is selected, the same follow-up questions should appear.
+Medication lists must remain fully expanded as checkboxes and should not be converted to dropdown menus or condensed selections.
+
+Screening Question Before Medication Lists
+Include this question before displaying medication classes:
+Have you previously taken any psychiatric medications for mental health treatment?
+○ Yes
+○ No
+○ Unsure
+Form Builder Logic:
+If Yes or Unsure is selected → display medication class sections below.
+If No is selected → skip medication sections and move to the next form section.
+
+Conditional Follow-Up Questions for Each Medication Selected
+For every medication selected, display the following follow-up questions.
+These questions should appear only for medications the patient selects.
+Medication Details
+Are you currently taking this medication?
+○ Yes
+○ No
+Approximate dose (if known):
+
+How long did you take this medication?
+
+Did this medication help your symptoms?
+○ Yes
+○ No
+○ Partially
+○ Unsure
+Did you experience side effects?
+○ No
+○ Yes — please describe: __________
+Why was the medication stopped (if applicable)?
+
+Form Builder Logic:
+• These questions appear only after a medication is selected.
+• If a medication is not selected, these questions should not appear.
+• Each medication selected should display its own set of follow-up questions.
+
+Please select any psychiatric medications you have taken in the past, even if only briefly.
+If you select a medication, you may be asked to provide additional details if you remember them, such as:
+    • approximate dose
+    • how long you took the medication
+    • why the medication was stopped (ineffective, side effects, cost, etc.)
+Antidepressants
+Selective Serotonin Reuptake Inhibitors (SSRIs)
+☐ Citalopram (Celexa)
+☐ Escitalopram (Lexapro)
+☐ Fluoxetine (Prozac)
+☐ Fluvoxamine (Luvox)
+☐ Paroxetine (Paxil)
+☐ Sertraline (Zoloft)
+☐ Vilazodone (Viibryd)
+☐ None of the Above
+
+Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs)
+☐ Desvenlafaxine (Pristiq)
+☐ Duloxetine (Cymbalta)
+☐ Levomilnacipran (Fetzima)
+☐ Milnacipran (Savella)
+☐ Venlafaxine (Effexor XR
+☐ None of the Above)
+Atypical Antidepressants
+☐ Bupropion (Wellbutrin)
+☐ Mirtazapine (Remeron)
+☐ Trazodone (Desyrel)
+☐ Vortioxetine (Trintellix)
+☐ Dextromethorphan / Bupropion (Auvelity)
+☐ None of the Above
+Tricyclic Antidepressants (TCAs)
+☐ Amitriptyline
+☐ Clomipramine (Anafranil)
+☐ Desipramine (Norpramin)
+☐ Doxepin (Silenor)
+☐ Imipramine (Tofranil)
+☐ Nortriptyline (Pamelor)
+☐ None of the Above
+Monoamine Oxidase Inhibitors (MAOIs)
+☐ Isocarboxazid (Marplan)
+☐ Phenelzine (Nardil)
+☐ Selegiline (Emsam patch)
+☐ Tranylcypromine (Parnate)
+☐ None of the Above
+Mood Stabilizers
+☐ Lithium
+☐ Valproate / Divalproex (Depakote)
+☐ Lamotrigine (Lamictal)
+☐ Carbamazepine (Tegretol)
+☐ Oxcarbazepine (Trileptal)
+☐ Topiramate (Topamax)
+☐ None of the Above
+Antipsychotic Medications
+Note: Some medications in this category are used for conditions other than psychosis, including:
+    • treatment-resistant depression
+    • mood stabilization
+    • anxiety disorders
+    • sleep support
+Please select any medications you have taken even if they were prescribed for depression, anxiety, sleep, or another reason.
+Second-Generation Antipsychotics
+☐ Aripiprazole (Abilify)
+☐ Brexpiprazole (Rexulti)
+☐ Cariprazine (Vraylar)
+☐ Lurasidone (Latuda)
+☐ Quetiapine (Seroquel)
+☐ Risperidone (Risperdal)
+☐ Olanzapine (Zyprexa)
+☐ Ziprasidone (Geodon)
+☐ Asenapine (Saphris)
+☐ Paliperidone (Invega)
+☐ Iloperidone (Fanapt)
+☐ Clozapine (Clozaril)
+☐ None of the Above
+If you have taken Clozapine, please briefly describe the treatment setting or monitoring program if known:
+
+First-Generation Antipsychotics
+☐ Haloperidol (Haldol)
+☐ Chlorpromazine (Thorazine)
+☐ Fluphenazine (Prolixin)
+☐ Perphenazine (Trilafon)
+☐ Loxapine (Loxitane)
+☐ None of the Above
+Anxiety / PTSD Medications
+☐ Buspirone (Buspar)
+☐ Hydroxyzine (Vistaril / Atarax)
+☐ Propranolol
+☐ Clonidine
+☐ Gabapentin
+☐ Prazosin
+☐ None of the Above
+Benzodiazepines
+☐ Alprazolam (Xanax)
+☐ Clonazepam (Klonopin)
+☐ Diazepam (Valium)
+☐ Lorazepam (Ativan)
+☐ Temazepam (Restoril)
+☐ None of the Above
+Sleep Medications
+☐ Zolpidem (Ambien)
+☐ Eszopiclone (Lunesta)
+☐ Zaleplon (Sonata)
+☐ Trazodone
+☐ Doxepin
+☐ Mirtazapine
+☐ Clonidine
+☐ Quetiapine
+☐ Melatonin
+☐ Benadryl or Nyquil (diphenhydramine)
+☐ None of the Above
+☐ Other sleep medication: _________________________________
+(Some medications may appear in more than one section depending on how they were prescribed.)
+ADHD Medications
+Stimulants
+☐ Adderall (dextroamphetamine & levoamphetamine)
+☐ Adderall XR (dextroamphetamine & levoamphetamine ER)
+☐ Vyvanse (lisdexamfetamine – prodrug of dextroamphetamine)
+☐ Methylphenidate (Ritalin)
+☐ Ritalin LA (Methylphenidate LA)
+☐ Concerta (Methylphenidate ER) 
+☐ Focalin (dexmethylphenidate)
+☐ Focalin XR (dexmethylphenidate ER)
+☐ Dexedrine (dextroamphetamine)
+☐ Methylphenidate IR / ER (other form)
+☐ Mixed amphetamine salts (other form)
+☐ I have taken a stimulant medication but do not remember the name
+☐ None of the Above
+
+Non-Stimulants
+☐ Atomoxetine (Strattera)
+☐ Viloxazine (Qelbree)
+☐ Bupropion (Wellbutrin)
+☐ Guanfacine ER (Intuniv)
+☐ Clonidine ER (Kapvay)
+☐ None of the Above
+
+Substance Use Treatment Medications
+☐ Buprenorphine / Suboxone / Subutex / Sublocade / Brixadi
+☐ Methadone
+☐ Naltrexone / Vivitrol
+☐ Acamprosate (Campral)
+☐ Disulfiram (Antabuse)
+☐ None of the Above
+
+Other Psychiatric Medications
+If you have taken psychiatric medications not listed above, please list them here:
+
+
+
+Medication Trial Details (If Known)
+[FORM BUILDER INSTRUCTION — DO NOT DISPLAY AS A SEPARATE SECTION TITLE IF NOT NEEDED]
+Show this detail box if any past psychiatric medication is selected.
+Medication Name: _________________________________
+Approximate Dates Taken: _________________________________
+Approximate Trial Length: _________________________________
+Highest Dose (if known): _________________________________
+Side Effects Experienced:
+
+Reason Medication Was Stopped (Select all that apply)
+☐ Intolerable side effects
+☐ Adverse reaction or allergy
+☐ Medication was not effective
+☐ Partial improvement but not enough benefit
+☐ Cost or insurance issues
+☐ Switched to a different medication
+☐ Provider recommendation
+☐ Patient preference
+☐ Symptoms improved
+☐ Other reason: _________________________________
+Have you ever taken a psychiatric medication that worked particularly well for you?
+○ Yes
+○ No
+If yes, which medication? _________________________________
+
+Past Psychiatric Medications Section — Response Review Logic 1 of 2
+Trigger condition:
+If a patient indicates that they have taken psychiatric medications in the past, but the medication history fields are left blank.
+Display the following message:
+Medication History Reminder
+You indicated that you have taken psychiatric medications in the past, but no medications were listed.
+If possible, please list any medications you remember. This information helps your provider understand which treatments have previously been helpful or not helpful.
+If you do not remember the medication names, you may continue without entering them.
+Options:
+• Return to update responses
+• Continue if information is not available
+
+Past Psychiatric Medications Section — Response Review Logic 2 of 2
+Trigger condition:
+If a patient indicates that they have taken psychiatric medications in the past, but the medication history fields are left blank.
+Display the following message:
+Medication History Reminder
+You indicated that you have taken psychiatric medications in the past, but no medications were listed.
+If possible, please list any medications you remember. This information helps your provider understand which treatments have previously been helpful or not helpful.
+If you do not remember the medication names, you may continue without entering them.
+Options:
+• Return to update responses
+• Continue if information is not available
+
+
+7. SYMPTOM INTERFERENCE
+In the past month, have your symptoms affected your: (Required)
+Work/School?
+○ Yes
+○ No
+If YES, please describe: _________________________________
+Family life?
+○ Yes
+○ No
+If YES, please describe: _________________________________
+Social life?
+○ Yes
+○ No
+If YES, please describe: _________________________________
+Daily responsibilities?
+○ Yes
+○ No
+If YES, please describe: _________________________________
+Self-care (hygiene, meals, household tasks)?
+○ Yes
+○ No
+If YES, please describe: _________________________________
+
+8. MENTAL HEALTH SCREENING (DSM-5 SYMPTOM CHECKLISTS)
+Form Builder Instructions — DO NOT DISPLAY
+These instructions apply to all DSM diagnostic screening sections below.
+Symptom Questions
+Each diagnosis section contains multiple symptom questions.
+• Field type: radio button
+• Mark every symptom question required
+Response options may vary by section depending on the symptom being assessed.
+Use the response options specified in each question.
+Conditional Follow-Up Logic (applies to every diagnosis section)
+If ANY symptom within a diagnosis section is answered positively, display the following questions once at the end of that diagnosis section.
+A positive response means any answer indicating the symptom has occurred, based on the response options used in that section.
+Do not display these questions for individual symptoms.
+Symptom Detail Question
+Display a large text box:
+“If you answered YES to any of the symptoms above, please provide additional details if you can recall (for example when symptoms occurred, how long they lasted, and whether treatment helped).”
+Field type: large text box
+Current vs Past Symptom Question
+Display the following question:
+“Are you currently experiencing any of these symptoms?”
+Response options:
+○ Yes — symptoms are currently present
+○ No — symptoms occurred in the past but are not currently active
+○ Unsure
+This question should be required when displayed.
+Placement
+These conditional questions should appear once at the end of each diagnosis section and should trigger when any symptom within that section is endorsed.
+
+MAJOR DEPRESSIVE DISORDER SCREENING
+Have you experienced symptoms consistent with depression during any period of your life?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which symptoms occurred during the same time period?
+☐ Persistent sadness or depressed mood
+☐ Loss of interest or pleasure in activities
+☐ Sleeping too much or too little
+☐ Significant appetite or weight change
+☐ Fatigue or loss of energy
+☐ Feelings of worthlessness or excessive guilt
+☐ Difficulty concentrating or making decisions
+☐ Noticeable slowing of movement or speech
+☐ Restlessness or agitation
+☐ Recurrent thoughts of death or suicide
+DSM Threshold Question
+Did five or more of these symptoms occur during the same two-week period, including either depressed mood or loss of interest?
+○ Yes
+○ No
+○ Unsure
+When these symptoms occurred, were they mostly happening during a major life stressor such as:
+• extreme work or school stress
+• caregiving or parenting exhaustion
+• relationship conflict or breakup
+• trauma or loss
+• chronic illness or medical problems
+• severe sleep deprivation
+• major life transitions
+○ Yes
+○ No
+○ Unsure
+Conditional Follow-up (Only if Yes)
+If YES:
+Please briefly describe the situation or stressor if you are comfortable sharing.
+[Large text box]
+
+BIPOLAR DISORDER / HYPOMANIA SCREENING
+Form Builder Instructions — DO NOT DISPLAY
+• Initial screening question = radio button
+• Responses:
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+• If initial question = Yes → show symptom checklist
+• Symptom list = multi-select checkbox
+• If any symptoms selected → show duration and consequence questions
+• If symptoms endorsed → display conditional text box for additional details
+
+Patient Instructions
+The following questions ask about periods when your mood or energy was noticeably different from your usual self.
+These periods may feel positive, productive, or energizing, so many people do not initially recognize them as mood symptoms.
+Please answer based on any time in your life, not just how you feel currently.
+
+Have you ever had a period lasting several days when your energy, confidence, or activity level was much higher than usual and it led to problems such as:
+• arguments or relationship conflict
+• risky or impulsive decisions
+• financial problems or unusual spending
+• work or school difficulties
+• concern from family, friends, or coworkers
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+
+Have you ever experienced a distinct period lasting several days when your mood or energy was noticeably different from your usual self (for example unusually energetic, confident, productive, or irritable)?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+
+If YES, which of the following occurred during those periods?
+(Select all that apply)
+☐ Increased energy or activity
+☐ Decreased need for sleep
+☐ Inflated self-esteem or unusually high confidence
+☐ More talkative than usual or pressure to keep talking
+☐ Racing thoughts
+☐ Easily distracted
+☐ Increased goal-directed activity (work, school, projects, cleaning, social plans)
+☐ Risky or impulsive behaviors (spending, sex, driving, substance use, major decisions)
+
+Sleep Clarifier
+During these periods when you slept less than usual, did you still feel rested or energized despite sleeping much less than normal?
+○ Yes
+○ No
+○ Unsure
+Which description best fits your symptoms?
+○ Symptoms are present most of the time and have been that way for years
+○ Symptoms come in distinct episodes that are different from my usual baseline
+○ Symptoms tend to flare in response to stress or reminders
+○ Unsure
+
+Duration Question
+How long did these periods usually last?
+○ 4 days or longer
+○ 7 days or longer
+○ Less than 4 days
+○ Required hospitalization
+○ Included psychotic symptoms
+○ Unsure
+
+If you selected any symptoms above, please provide additional details if you can recall:
+
+
+
+GENERALIZED ANXIETY DISORDER SCREENING
+Have you found it difficult to control or stop worrying?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+Have you experienced persistent anxiety or excessive worry about multiple areas of life?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which symptoms occurred?
+☐ Restlessness or feeling on edge
+☐ Easily fatigued
+☐ Difficulty concentrating
+☐ Irritability
+☐ Muscle tension
+☐ Sleep disturbance
+Duration question
+Did these symptoms occur more days than not for at least six months?
+○ Yes
+○ No
+○ Unsure
+
+PANIC DISORDER SCREENING
+Have you experienced sudden episodes of intense fear or panic that peaked within minutes (panic attacks)?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which symptoms occurred during those episodes?
+☐ Racing or pounding heart
+☐ Sweating
+☐ Trembling or shaking
+☐ Shortness of breath
+☐ Feeling like choking
+☐ Chest pain
+☐ Nausea or stomach distress
+☐ Dizziness or faintness
+☐ Feeling unreal or detached from yourself
+☐ Fear of losing control
+☐ Fear of dying
+☐ Numbness or tingling
+☐ Chills or hot flashes
+DSM Threshold Question
+Did four or more symptoms occur during the same attack?
+○ Yes
+○ No
+○ Unsure
+Follow-up panic disorder criteria
+After at least one panic attack, did you experience one month or more of:
+• worry about having another panic attack
+• concern about consequences (heart attack, losing control)
+• avoiding situations because of panic
+○ Yes
+○ No
+○ Unsure
+
+SOCIAL ANXIETY DISORDER SCREENING
+Have you experienced significant fear or anxiety in social situations where you may be observed, judged, or embarrassed?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which of the following have you experienced?
+☐ Fear of meeting new people
+☐ Fear of speaking in front of others
+☐ Fear of eating, drinking, or writing in front of others
+☐ Fear that others will judge you negatively
+☐ Avoiding social situations because of fear or embarrassment
+☐ Enduring social situations with intense distress
+Functional impact question
+Have these symptoms caused significant distress or problems in work, school, relationships, or daily life?
+○ Yes
+○ No
+○ Unsure
+If you answered YES to any symptoms above, please provide additional details if you can recall.
+
+PTSD SCREENING
+Have you experienced or witnessed an event involving actual or threatened death, serious injury, or sexual violence?
+○ Yes
+○ No
+○ Unsure
+
+Intrusion Symptoms
+Have you experienced intrusion symptoms related to the traumatic event?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which symptoms occurred?
+☐ Unwanted memories of the trauma
+☐ Disturbing dreams about the trauma
+☐ Flashbacks
+☐ Emotional distress when reminded of the trauma
+☐ Physical reactions when reminded of the trauma
+
+Avoidance Symptoms
+Have you experienced avoidance related to the trauma?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which symptoms occurred?
+☐ Avoiding trauma-related thoughts or memories
+☐ Avoiding reminders such as people, places, or situations
+
+Negative Mood / Cognition Changes
+Have you experienced negative changes in thinking or mood after trauma?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which symptoms occurred?
+☐ Persistent negative beliefs about yourself or others
+☐ Blaming yourself or others for the trauma
+☐ Persistent fear, anger, guilt, or shame
+☐ Loss of interest in activities
+☐ Feeling detached from others
+☐ Difficulty experiencing positive emotions
+
+Arousal / Reactivity Symptoms
+Have you experienced increased reactivity or arousal after trauma?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which symptoms occurred?
+☐ Irritability or anger outbursts
+☐ Reckless or self-destructive behavior
+☐ Hypervigilance
+☐ Exaggerated startle response
+☐ Difficulty concentrating
+☐ Sleep disturbance
+Duration question
+Have these symptoms lasted longer than one month?
+○ Yes
+○ No
+○ Unsure
+Functional impairment
+Have these symptoms caused significant distress or impairment in daily life?
+○ Yes
+○ No
+○ Unsure
+
+OBSESSIVE-COMPULSIVE DISORDER SCREENING
+Have you experienced obsessions or compulsions that felt difficult to control?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which of the following have you experienced?
+Obsessions
+☐ Recurrent unwanted thoughts, images, or urges
+☐ Trying to ignore, suppress, or neutralize these thoughts
+☐ Significant anxiety or distress caused by these thoughts
+Compulsions
+☐ Repetitive checking
+☐ Repetitive washing or cleaning
+☐ Counting, arranging, or repeating rituals
+☐ Mental rituals (praying, counting, reviewing)
+☐ Feeling driven to perform these behaviors to reduce anxiety or prevent something bad from happening
+DSM threshold question
+Do these thoughts or behaviors take more than one hour per day or significantly interfere with daily life?
+○ Yes
+○ No
+○ Unsure
+If you answered YES to any symptoms above, please provide additional details if you can recall.
+
+
+OBSESSIVE-COMPULSIVE PERSONALITY DISORDER SCREENING
+Have you experienced a long-standing pattern of rigidity, perfectionism, or excessive need for control?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which of the following have you experienced?
+☐ Preoccupation with rules, order, lists, schedules, or organization
+☐ Perfectionism that interferes with completing tasks
+☐ Excessive devotion to work or productivity at the expense of leisure or relationships
+☐ Overly rigid morals, ethics, or values
+☐ Difficulty discarding worn-out or worthless items
+☐ Reluctance to delegate unless others do things exactly your way
+☐ Excessive frugality or hoarding money
+☐ Stubbornness or rigidity
+Long-standing pattern question
+Have these traits been present across many situations and for a long time?
+○ Yes
+○ No
+○ Unsure
+If you answered YES to any symptoms above, please provide additional details if you can recall.
+
+PSYCHOTIC SYMPTOMS SCREENING
+Have you experienced symptoms such as hallucinations, unusual beliefs, or disorganized thinking?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which symptoms occurred?
+Positive symptoms
+☐ Hearing voices others cannot hear
+☐ Seeing things others cannot see
+☐ Believing things others say are not real
+☐ Feeling others control your thoughts
+☐ Feeling watched or persecuted
+☐ Disorganized speech or thinking
+Negative symptoms
+☐ Loss of motivation
+☐ Reduced emotional expression
+☐ Social withdrawal
+☐ Reduced speech
+Have these symptoms lasted one month or longer at any point?
+○ Yes
+○ No
+○ Unsure
+If you answered YES to any symptoms above, please provide additional details if you can recall.
+
+
+BORDERLINE PERSONALITY DISORDER SCREENING
+Have you experienced a long-standing pattern of intense emotions, unstable relationships, or difficulty with self-image?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which of the following have you experienced?
+☐ Intense fear of abandonment
+☐ Unstable or intense relationships
+☐ Unstable sense of self or identity
+☐ Impulsive behaviors that could be harmful (spending, sex, substances, reckless behavior)
+☐ Suicidal behavior, threats, or self-harm
+☐ Rapid mood shifts
+☐ Chronic feelings of emptiness
+☐ Difficulty controlling anger
+☐ Feeling suspicious, unreal, or disconnected under stress
+Long-standing pattern question
+Have these patterns been present for years or since adolescence / early adulthood?
+○ Yes
+○ No
+○ Unsure
+If you answered YES to any symptoms above, please provide additional details if you can recall.
+
+
+ADHD SCREENING
+Have you experienced attention or hyperactivity symptoms since childhood?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which symptoms occurred?
+Inattention
+☐ Difficulty sustaining attention
+☐ Careless mistakes
+☐ Difficulty listening
+☐ Difficulty completing tasks
+☐ Difficulty organizing
+☐ Avoiding tasks requiring sustained focus
+☐ Losing important items
+☐ Easily distracted
+☐ Forgetfulness
+Hyperactivity / Impulsivity
+☐ Fidgeting or restlessness
+☐ Difficulty remaining seated
+☐ Feeling internally restless
+☐ Difficulty engaging quietly
+☐ Excessive talking
+☐ Interrupting others
+☐ Difficulty waiting turn
+Which description best fits your symptoms?
+○ Symptoms are present most of the time and have been that way for years
+○ Symptoms come in distinct episodes that are different from my usual baseline
+○ Symptoms tend to flare in response to stress or reminders
+○ Unsure
+Were these attention or hyperactivity symptoms present before age 12?
+○ Yes
+○ No
+○ Unsure
+Do these symptoms occur in two or more settings (for example work, school, home, relationships, or daily responsibilities)?
+○ Yes
+○ No
+○ Unsure
+Do your attention or focus difficulties improve significantly when tasks are highly interesting, urgent, stimulating, or deadline-driven?
+○ Yes
+○ No
+○ Unsure
+How does caffeine typically affect you?
+○ Makes me feel energetic or wired
+○ Makes me feel calmer or more focused
+○ No noticeable effect
+○ Unsure
+
+AUTISM SPECTRUM DISORDER SCREENING
+Have you experienced long-standing differences in social communication, routines, or sensory sensitivity?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which of the following have you experienced?
+Social communication
+☐ Difficulty understanding social cues
+☐ Difficulty making or keeping friends
+☐ Difficulty with back-and-forth conversation
+☐ Difficulty understanding tone, facial expressions, or body language
+Restricted / repetitive patterns
+☐ Very strong or intense interests
+☐ Routines or rituals that are hard to change
+☐ Repetitive behaviors or movements
+☐ Distress when routines are disrupted
+Sensory symptoms
+☐ Sensitivity to sounds
+☐ Sensitivity to lights
+☐ Sensitivity to textures, smells, or touch
+Developmental timing question
+Did these traits begin during childhood or early development?
+○ Yes
+○ No
+○ Unsure
+If you answered YES to any symptoms above, please provide additional details if you can recall.
+
+EATING DISORDER SCREENING
+Have you experienced significant concerns about eating, weight, body shape, or compensatory behaviors?
+○ Yes
+○ No
+○ Yes — but only while using substances, medications, or during withdrawal
+If YES, which of the following have you experienced?
+☐ Intense fear of gaining weight
+☐ Restricting food intake significantly
+☐ Significant weight loss related to eating restriction
+☐ Binge eating episodes
+☐ Feeling out of control during eating episodes
+☐ Self-induced vomiting
+☐ Misuse of laxatives, diuretics, or other methods to control weight
+☐ Excessive exercise to influence weight or shape
+☐ Strong distress about body weight or body shape
+Frequency / severity question
+Have these behaviors occurred repeatedly or caused significant distress, medical concerns, or interference in daily life?
+○ Yes
+○ No
+○ Unsure
+If you answered YES to any symptoms above, please provide additional details if you can recall.
+
+
+
+SUBSTANCE USE DISORDER SCREENING
+Form Builder Instructions — DO NOT DISPLAY
+• Initial question = radio button
+Responses:
+○ Yes
+○ No
+○ Unsure
+• DSM symptom list = multi-select checkbox
+• If any symptoms selected → show timeframe question
+• If any symptoms selected → show conditional detail textbox
+
+Patient Instructions
+The following questions ask about problems related to alcohol, drugs, or misuse of prescription or over-the-counter medications.
+Substances may include:
+• alcohol
+• cannabis
+• opioids
+• stimulants
+• benzodiazepines
+• kratom
+• hallucinogens
+• prescription medications used differently than prescribed
+• other substances
+
+Have you experienced problems related to alcohol, drugs, or misuse of medications?
+○ Yes
+○ No
+○ Unsure
+
+If YES, which of the following have you experienced?
+(Select all that apply)
+☐ Using larger amounts or for longer than intended
+☐ Wanting to cut down or stop but being unable to
+☐ Spending a lot of time obtaining, using, or recovering from substances
+☐ Cravings or strong urges to use
+☐ Problems at work, school, or home related to use
+☐ Continuing use despite social or relationship problems
+☐ Giving up activities because of substance use
+☐ Using substances in physically dangerous situations
+☐ Continuing use despite physical or mental health problems
+☐ Needing more of the substance to get the same effect (tolerance)
+☐ Experiencing withdrawal symptoms when stopping or reducing use
+
+Have two or more of these problems occurred within the same 12-month period?
+○ Yes
+○ No
+○ Unsure
+
+Which substances have been involved? (Select all that apply)
+☐ Alcohol
+☐ Cannabis
+☐ Opioids
+☐ Prescription stimulants
+☐ Methamphetamine or other stimulants
+☐ Benzodiazepines
+☐ Kratom
+☐ Hallucinogens
+☐ Other
+
+If you answered YES above, please provide any additional details you feel are important:
+
+
+Personality Patterns Screener
+(Place this section at the end of the Diagnostic Screenings section)
+People sometimes develop long-standing patterns in how they think, feel, and relate to others. These patterns may influence relationships, emotional responses, decision-making, and how someone handles stress.
+This section helps your provider understand whether any long-term personality patterns may be affecting your life.
+Please review the statements below and check any that describe your experiences over a long period of time (often beginning in adolescence or early adulthood).
+Each group should allow multiple selections.
+
+Relationship & Emotional Regulation Patterns
+☐ My relationships sometimes feel intense, unstable, or difficult to maintain.
+☐ I may experience strong fears of abandonment or rejection in close relationships.
+☐ My mood or sense of self can change significantly depending on my relationships or circumstances.
+☐ I sometimes act impulsively when upset (for example spending, substances, anger, or risky behavior).
+☐ I occasionally feel empty, disconnected, or unsure about my identity or direction in life.
+☐ None of the above
+
+Dependence & Support Patterns
+☐ I often feel unsure about everyday decisions and need a lot of advice or reassurance before deciding.
+☐ I rely on other people to take responsibility for important parts of my life, such as finances or major decisions.
+☐ I find it difficult to disagree with people because I worry about losing their support or approval.
+☐ Being alone may feel very uncomfortable or frightening because I worry about managing things on my own.
+☐ I may go to great lengths to maintain relationships or receive care and support.
+☐ None of the above
+
+Avoidance & Social Sensitivity Patterns
+☐ I often avoid social situations because I worry about being judged, criticized, or rejected.
+☐ I tend to feel socially awkward, inadequate, or inferior compared to others.
+☐ I may want close relationships but hold back because I fear embarrassment or rejection.
+☐ I often feel very sensitive to criticism or disapproval.
+☐ None of the above
+
+Control, Perfectionism & Order Patterns
+☐ I feel strong pressure to do things perfectly or the “right” way.
+☐ I can become very focused on rules, details, or organization.
+☐ I sometimes struggle to delegate tasks because I want things done exactly a certain way.
+☐ I may prioritize productivity or work over relaxation or leisure.
+☐ I can become uncomfortable when plans change or things feel uncertain.
+☐ None of the above
+
+Attention & Self-Image Patterns
+☐ I sometimes feel uncomfortable when I am not the center of attention.
+☐ I may express emotions in ways that others experience as dramatic or intense.
+☐ I place strong importance on how I appear to others.
+☐ I may seek reassurance, attention, or approval in relationships.
+☐ None of the above
+
+Self-Importance & Recognition Patterns
+☐ I sometimes feel that my abilities or achievements are not fully recognized by others.
+☐ I may feel frustrated when others do not acknowledge my strengths or contributions.
+☐ I often hold myself to very high standards and expect a lot from others as well.
+☐ None of the above
+
+Suspicion & Trust Patterns
+☐ I sometimes find it difficult to trust others’ motives.
+☐ I may worry that others could take advantage of me or betray my trust.
+☐ I may feel guarded or cautious in close relationships.
+☐ None of the above
+
+Social Detachment Patterns
+☐ I often prefer spending time alone rather than engaging in social relationships.
+☐ I may feel emotionally distant from others.
+☐ I do not usually feel a strong need for close relationships.
+☐ None of the above
+
+Unusual Perception or Thinking Patterns
+☐ I sometimes feel that my thoughts or perceptions are different from others.
+☐ I may have unusual beliefs, strong intuitions, or feel highly sensitive to subtle signals from people or the environment.
+☐ Others may sometimes describe my thinking as unconventional or eccentric.
+☐ None of the above
+
+Context & Duration
+The statements above may reflect experiences that have occurred at different times in your life. Some patterns may have been present for many years, while others may occur mainly during stressful periods.
+Please check any of the options below that generally describe how these experiences occur for you.
+☐ Some of these patterns have been present for many years or most of my adult life.
+☐ Some of these patterns cause distress or emotional difficulty.
+☐ Some of these patterns affect my relationships, work, or daily functioning.
+☐ Some of these experiences mostly occur during periods of stress, trauma, or major life changes rather than consistently over time.
+☐ I am not sure how long these experiences have been present.
+
+Important Note
+This questionnaire is not used to diagnose personality disorders. Many people experience some of these patterns during times of stress, trauma, or life transitions.
+Your responses help your provider better understand your experiences and determine whether further discussion or evaluation may be helpful.
+
+Form Builder Instructions — Response Consistency Check (DO NOT DISPLAY)
+Diagnostic Screening Section (Section 8) — Updated Screening Consistency Logic
+Please update the existing screening response consistency logic so that it applies only to Section 8: Diagnostic Screenings.
+This logic should not evaluate responses from other sections of the intake form such as psychiatric history, medications, demographics, or other intake sections.
+The current logic appears to trigger only when 100% of screening responses are negative. I would like this adjusted so that the reminder appears when approximately 85% or more of the screening responses indicate no symptoms.
+This helps identify situations where a patient may have:
+• misunderstood the screening questions
+• rushed through the questionnaire
+• accidentally skipped relevant symptoms
+• overlooked symptoms that may have occurred earlier in life but are currently well managed with treatment
+
+Trigger Condition
+If the patient selects “None of the above,” “No,” or equivalent negative responses for approximately 85% or more of the screening questions in Section 8, display a reminder message before the form can be submitted.
+This reminder should not prevent submission, but should prompt the patient to review their responses.
+
+Screening Review Reminder
+Display the following message:
+You indicated few or no symptoms across most of the screening questions.
+These screening questions ask about experiences that may have occurred at any point in your life, including symptoms that may have been present before treatment or before medications improved your symptoms.
+If your symptoms are currently well managed with medication or treatment, please consider selecting the experiences that applied before treatment.
+If your responses are accurate, you may continue and submit the form.
+If you may have misunderstood the questions or completed the section quickly, you may wish to review your answers before submitting.
+Providing accurate information helps your provider better understand your experiences and prepare for your visit.
+Options:
+• Review responses
+• Continue and submit
+
+Implementation Notes
+• The medication reminders should appear within their respective sections, not at the end of the form.
+• The screening consistency logic applies only to Section 8 (Diagnostic Screenings).
+• Responses such as N/A in other sections should not affect the screening logic.
+• All reminders should allow the patient to continue if their responses are accurate.
+
+9. TRAUMA HISTORY
+Many people have experienced difficult or traumatic life events. These experiences can sometimes affect mood, anxiety, relationships, sleep, and physical health.
+This information helps your provider better understand your history and plan appropriate care.
+Please select any experiences that apply to you. You may select more than one.
+☐ Emotional abuse
+☐ Physical abuse
+☐ Sexual abuse or sexual assault
+☐ Childhood neglect
+☐ Witnessed domestic violence
+☐ Bullying or harassment
+☐ Serious accident or injury
+☐ Military combat or war exposure
+☐ Natural disaster
+☐ Sudden or traumatic loss of a loved one
+☐ Medical trauma or life-threatening illness
+☐ Exposure to violence in the community
+☐ Other traumatic experience
+☐ Prefer not to answer
+☐ No trauma history
+If you feel comfortable sharing, you may briefly describe the experience(s). This is optional and you do not need to provide details if you prefer not to.
+
+
+
+If you shared trauma history above, please indicate your preference:
+○ I am comfortable discussing this during my appointment
+○ I would prefer not to discuss details during my first appointment
+○ I would like to discuss it in a later appointment
+○ Unsure
+
+Question
+When did your mental health symptoms first begin?
+○ During childhood (before age 12)
+○ During adolescence (ages 12–17)
+○ During adulthood
+○ After a specific stressful or traumatic life event
+○ Symptoms have occurred at multiple points in life
+○ Unsure
+10. SAFETY AND RISK
+Thoughts About Death or Suicide
+Many people experience thoughts about death or suicide at some point, especially during stressful or difficult periods. These questions help your provider understand your safety and how best to support you.
+Have you ever experienced thoughts of not wanting to be alive or thoughts of suicide?
+○ No
+○ Yes — in the past only
+○ Yes — currently
+
+Current Thoughts (Conditional)
+(Display only if patient selects “Yes — currently” above)
+Which of the following best describes your experience right now?
+○ Passive thoughts (for example: wishing you would not wake up or wishing you were not alive, but without thoughts of harming yourself)
+○ Active thoughts of suicide but without a plan and intent
+○ Active thoughts of suicide with a plan or intent
+
+Support Resources (Conditional)
+(Display if either of the following is selected above)
+• Active thoughts of suicide but without a plan and intent
+• Active thoughts of suicide with a plan or intent
+Support Resources
+Thank you for sharing this information. If you are currently feeling unsafe or believe you may act on these thoughts, please reach out for immediate support.
+988 Suicide & Crisis Lifeline
+Call or text 988
+Chat: https://988lifeline.org
+If you believe you are in immediate danger, please call 911 or go to your nearest emergency department.
+You may continue completing this form. Your provider will review this information carefully during your appointment.
+
+Suicide Plan History
+Have you ever made a suicide plan?
+○ Yes
+○ No
+
+Suicide Attempt History
+Have you ever attempted suicide?
+○ Yes
+○ No
+
+Attempt Details (Conditional)
+(Display only if “Yes” is selected above)
+Please share any details you feel comfortable providing (for example approximate year, method, hospitalization, or circumstances):
+
+
+Non-Suicidal Self-Injury
+Have you ever intentionally harmed yourself without intending to die (for example cutting, burning, or other self-injury)?
+○ Yes
+○ No
+
+Recent Psychiatric Hospitalization
+Have you been hospitalized for mental health or safety concerns within the past 6 months?
+○ Yes
+○ No
+
+Hospitalization Details (Conditional)
+(Display only if “Yes” is selected above)
+Please provide any details you would like your provider to know (for example approximate date, hospital name, or reason for admission):
+
+
+Notice Regarding Hospital Records
+If you have had a recent psychiatric hospitalization (within the past 6 months), your provider may request permission to review your hospital discharge summary before scheduling your first appointment. This helps ensure that outpatient telehealth care is an appropriate and safe treatment setting and allows your provider to prepare for your visit.
+You may be asked to complete a release of information so records can be requested directly from the hospital if needed.
+
+Additional Support Needs Screening
+Are you currently receiving, or have you recently been recommended to receive, a higher level of care such as a Partial Hospitalization Program (PHP), Intensive Outpatient Program (IOP), or residential treatment program?
+○ Yes
+○ No
+○ Unsure
+
+Program Details (Conditional)
+(Display only if Yes or Unsure)
+Please share any details you would like your provider to know (for example program name, recommendation, or current participation):
+
+
+Means Safety (Conditional Section)
+(Display ONLY if patient selects either of the following earlier)
+• Active thoughts of suicide but without a plan and intent
+• Active thoughts of suicide with a plan or intent
+
+When people are going through a difficult time or experiencing thoughts of suicide, temporarily reducing access to potentially dangerous items can sometimes help keep them safe.
+Are there any firearms in your home or environment that you currently have access to?
+○ Yes
+○ No
+○ Prefer not to answer
+
+If yes, are these firearms currently stored securely (for example locked or otherwise safely secured)?
+○ Yes
+○ No
+○ Unsure
+○ Prefer not to answer
+
+Are there any other items in your home that could be used to harm yourself that you are concerned about right now?
+○ Yes
+○ No
+○ Prefer not to answer
+
+If you would like, you may share any additional information about safety planning or access to potentially dangerous items:
+
+
+Additional Safety Information
+If you answered YES to any safety questions above and would like to share more information with your provider, please describe below:
+
+
+Developer Implementation Instructions
+Conditional Logic
+Show Current Thoughts section if:
+Thoughts of not wanting to be alive = Yes — currently
+
+Show Support Resources notice if:
+Current thoughts = Active thoughts of suicide but without a plan and intent
+OR
+Current thoughts = Active thoughts of suicide with a plan or intent
+
+Show Attempt Details if:
+Suicide attempt history = Yes
+
+Show Hospitalization Details if:
+Psychiatric hospitalization within past 6 months = Yes
+
+Show Program Details if:
+Higher level of care question = Yes OR Unsure
+
+Show Means Safety Section if:
+Current thoughts = Active thoughts of suicide but without a plan and intent
+OR
+Current thoughts = Active thoughts of suicide with a plan or intent
+
+Important Behavior Requirements
+• The support notice must not block continuation of the form
+• The form should not auto-submit or terminate
+• Patients should be able to complete the entire intake normally
+
+Styling Recommendation
+Display the support message as an informational alert banner rather than an error warning.
+Suggested style:
+• soft amber or muted red background
+• information or help icon
+• clear readable box
+• not full-page red text
+Suicide Risk Variable
+Please create a single internal variable called risk_level derived from the Current Thoughts question.
+Possible values:
+none
+passive
+active_no_plan
+active_plan
+Assign values as follows:
+Patient Selection
+risk_level
+Passive thoughts
+passive
+Active thoughts without plan/intent
+active_no_plan
+Active thoughts with plan/intent
+active_plan
+If the patient selects:
+    • No
+    • Yes — in the past only
+then:
+risk_level = none
+All safety alerts and conditional sections related to suicidal ideation should reference this variable rather than repeating multiple conditions across the form.
+
+Conditional Sections
+Display the following sections only if:
+risk_level = active_no_plan
+OR
+risk_level = active_plan
+Conditional sections:
+• Support Resources notice
+• Means Safety section (firearms and other potential means)
+The support notice must not block completion of the form. It should appear as an informational alert banner.
+
+Independent Questions
+The following questions should remain visible to all patients regardless of whether they report current suicidal ideation:
+• Have you ever made a suicide plan
+• Have you ever attempted suicide
+• Suicide attempt details (if Yes)
+• Non-suicidal self-injury question
+• Psychiatric hospitalization within the past 6 months
+• Hospitalization details (if Yes)
+• Higher level of care question (PHP / IOP / residential)
+• Program details (if Yes or Unsure)
+• Additional safety information text box
+These questions must not be hidden based on the risk_level variable.
+
+Important Behavior
+• The support notice must not stop or submit the form
+• Patients must be able to continue completing the intake normally
+• The notice should appear as a soft informational banner, not an error message
+
+11. SUBSTANCE USE AND TREATMENT
+Honest answers about substance use help ensure safe prescribing and appropriate care. Your responses will not automatically prevent treatment.
+Alcohol
+Have you ever consumed alcohol?
+☐ Never
+☐ Past use only
+☐ Current use
+If past or current use, how often do you drink alcohol?
+☐ Less than once per month
+☐ 1–3 times per month
+☐ 1–2 times per week
+☐ 3–4 times per week
+☐ Daily or almost daily
+☐ Not applicable
+Typical number of drinks when drinking:
+☐ 1 drink
+☐ 2–3 drinks
+☐ 4–5 drinks
+☐ 6 or more drinks
+☐ Not applicable
+Have you ever experienced alcohol withdrawal symptoms?
+☐ No
+☐ Yes
+☐ Not applicable
+Cannabis / Marijuana
+Have you ever used cannabis or marijuana?
+☐ Never
+☐ Past use only
+☐ Current use
+If past or current use, how often do you use cannabis?
+☐ Less than monthly
+☐ Monthly
+☐ Weekly
+☐ Daily
+☐ Not applicable
+Method of use (select all that apply):
+☐ Smoking
+☐ Vaping
+☐ Edibles
+☐ Tinctures
+☐ Other
+☐ Not applicable
+Nicotine / Tobacco
+Have you ever used nicotine or tobacco products?
+☐ Never
+☐ Past use only
+☐ Current use
+Type used (select all that apply):
+☐ Cigarettes
+☐ Vaping
+☐ Cigars
+☐ Chewing tobacco
+☐ Nicotine pouches
+☐ Nicotine replacement (patch, gum, lozenge)
+☐ Other
+☐ Not applicable
+Approximate daily use if current: _________________________________
+Caffeine
+Do you currently use caffeine?
+☐ No history
+☐ Past use only
+☐ Current use
+If current, typical amount per day:
+☐ Less than 1 serving
+☐ 1–2 servings
+☐ 3–4 servings
+☐ 5 or more servings
+☐ Not applicable
+Kratom
+Have you ever used kratom?
+☐ Never
+☐ Past use only
+☐ Current use
+If yes, how often do you use kratom?
+☐ Less than monthly
+☐ Monthly
+☐ Weekly
+☐ Daily
+☐ Not applicable
+Reason for use (select any):
+☐ Pain
+☐ Anxiety
+☐ Mood
+☐ Energy
+☐ Withdrawal symptoms
+☐ Other: _________________________________
+☐ Not applicable
+Opioids
+Have you ever used opioids outside of medical treatment?
+☐ Never
+☐ Past use only
+☐ Current use
+Stimulants (Non-Prescribed)
+Have you ever used stimulants such as cocaine, crack cocaine, methamphetamine, or non-prescribed stimulant medications?
+☐ Never
+☐ Past use only
+☐ Current use
+Other Substances
+Have you used any of the following?
+☐ Hallucinogens (LSD, psilocybin, mushrooms)
+☐ MDMA / Ecstasy
+☐ Ketamine
+☐ Inhalants
+☐ Synthetic cannabinoids (K2, Spice)
+☐ Synthetic stimulants (“bath salts”)
+☐ Prescription drugs not as prescribed
+☐ Other substance not listed: _________________________________
+☐ None of the above
+Substance Use Treatment History
+Have you ever received treatment for substance use?
+○ Yes
+○ No
+If yes, please select any that apply:
+☐ Detox program
+☐ Inpatient rehabilitation
+☐ Intensive outpatient program (IOP)
+☐ Outpatient counseling
+☐ Medication-assisted treatment
+☐ Recovery support groups (AA, NA, SMART Recovery)
+☐ Other
+☐ None of the above
+History of overdose?
+○ Yes
+○ No
+History of IV drug use?
+○ Yes
+○ No
+If you answered YES to any of the above substance questions, please describe/specify:
+
+12. OPIOID USE DISORDER TREATMENT
+Are you currently receiving treatment for opioid use disorder (OUD)?
+○ Yes
+○ No
+If yes, which medication is used?
+☐ Buprenorphine (Suboxone / Subutex / Sublocade / Brixadi)
+☐ Methadone
+☐ Naltrexone (Vivitrol)
+☐ Other: _________________________________
+Prescribing provider or clinic:
+
+Pharmacy used for this medication:
+
+Note for patients currently prescribed buprenorphine or other medications for opioid use disorder:
+If controlled medications may be considered as part of your psychiatric treatment, it can be helpful to provide a recent urine drug screen (UDS) if available.
+If you have completed a UDS within approximately the past 90 days, you may ask your provider to forward the results before your appointment to help avoid delays in treatment planning.
+Results may be sent to ThriveLine by:
+Secure fax: 207-209-4142
+Secure messaging: https://spruce.care/thriveline
+If you do not have recent results available, this can be discussed during your appointment.
+
+
+
+13. MEDICATION AND MEDICAL HISTORY
+Form Builder Instructions — DO NOT DISPLAY
+• For the Allergies question, use radio buttons:
+○ Yes
+○ No
+• If Yes is selected, trigger a required large text box:
+“Please list the allergy or allergies and the reaction(s).”
+• For the medical conditions list, use multi-select checkboxes.
+• Include Other and None of the above.
+• If Other is selected, trigger a text box:
+“Please describe.”
+• For all Yes/No medical follow-up items, use radio buttons.
+• If a “Yes” response indicates additional detail is needed, trigger a text box.
+
+Sex Assigned at Birth
+What sex were you assigned at birth?
+○ Female
+○ Male
+○ Intersex
+
+Allergies
+Do you have any allergies to medications, foods, or environmental substances?
+○ Yes
+○ No
+If yes, please list the allergy or allergies and the reaction(s):
+
+
+
+Current or Past Medical Conditions
+Please select any current or past medical conditions that apply to you.
+(Select all that apply)
+☐ Thyroid disorder
+☐ Anemia or iron deficiency
+☐ Vitamin deficiency (such as B12, folate, vitamin D)
+☐ Diabetes or prediabetes
+☐ High cholesterol
+☐ High blood pressure / hypertension
+☐ Heart disease
+☐ Irregular heartbeat / arrhythmia
+☐ Fainting, syncope, or unexplained dizziness
+☐ Seizure disorder
+☐ Concussion and/or traumatic brain injury (TBI)
+☐ Stroke, TIA, or other neurologic event
+☐ Migraines or frequent headaches
+☐ Asthma
+☐ Sleep apnea or other sleep-breathing disorder
+☐ Chronic pain condition
+☐ Autoimmune or inflammatory disorder
+☐ Gastrointestinal disorder
+☐ Liver disease
+☐ Kidney disease
+☐ Pregnancy-related medical complication
+☐ Hormonal or endocrine disorder
+☐ History of eating disorder-related medical complications
+☐ Other medical condition
+☐ None of the above
+If you selected Other medical condition, please describe:
+
+
+Current Non-Psychiatric Medications
+Please list all current non-psychiatric prescription medications, including dose, frequency, and reason for taking them:
+
+
+
+
+Current Over-the-Counter Medications, Vitamins, Supplements, or Herbals
+Please list all current over-the-counter medications, vitamins, supplements, or herbal products:
+
+
+
+
+Past Non-Psychiatric Medications (if important for your care)
+Please list any past non-psychiatric medications that caused side effects, serious reactions, or were otherwise important:
+
+
+
+Surgeries, Procedures, or Hospitalizations
+Have you ever had surgery, a major medical procedure, or a medical hospitalization?
+○ Yes
+○ No
+If yes, please describe and include approximate dates if known:
+
+
+
+Concussion / Head Injury / TBI
+Have you ever had a concussion, head injury, or traumatic brain injury (TBI)?
+○ Yes
+○ No
+○ Unsure
+If yes, please describe and include approximate timing if known:
+
+
+Seizures
+Have you ever had a seizure?
+○ Yes
+○ No
+○ Unsure
+If yes, did this occur outside of substance use or withdrawal?
+○ Yes
+○ No
+○ Unsure
+If yes, please describe:
+
+
+Cardiac Safety Questions
+Have you ever been told you have a heart condition, irregular heartbeat, structural heart problem, or abnormal EKG?
+○ Yes
+○ No
+○ Unsure
+If yes, please describe:
+
+Have you ever fainted, passed out, or had unexplained palpitations?
+○ Yes
+○ No
+○ Unsure
+If yes, please describe:
+
+
+Primary Care / Specialist Care
+Do you currently have a primary care provider?
+○ Yes
+○ No
+If yes, PCP name and practice:
+
+Are you currently followed by any specialists relevant to your care?
+Examples: cardiology, neurology, endocrinology, OB/GYN, sleep medicine, pain management
+○ Yes
+○ No
+If yes, please list specialty and provider/practice if known:
+
+
+
+Vitals
+Height: __________
+Units:
+○ feet/inches
+○ cm
+Weight: __________
+Units:
+○ lbs
+○ kg
+Most recent blood pressure (if known): __________
+Most recent heart rate / pulse (if known): __________
+
+Recent Labs
+Have you had any laboratory testing within the past year?
+○ Yes
+○ No
+○ Unsure
+If yes, were any results abnormal?
+○ Yes
+○ No
+○ Unsure
+If yes or unsure, please describe anything you recall:
+
+If you have recent lab results available, please send them before your appointment if possible. Relevant labs may include thyroid testing, vitamin levels, metabolic labs, CBC, CMP, A1c, lipid panel, iron studies, and other results that may affect mental health symptoms or medication safety.
+
+Recent Imaging or Other Medical Testing
+Have you had any recent imaging or other medical testing relevant to your mental or physical health?
+Examples: brain imaging, sleep study, EKG, EEG
+○ Yes
+○ No
+○ Unsure
+If yes, please describe:
+
+
+Additional Medical Information
+Is there anything else about your medical history that may be important for your psychiatric care or medication safety?
+
+
+
+14. PERINATAL AND REPRODUCTIVE HEALTH
+Form Builder Instructions — DO NOT DISPLAY
+Perinatal Mental Health Section Logic
+Show Section 14: Perinatal and Reproductive Mental Health only if:
+Question 13 — Sex Assigned at Birth =
+• Female
+OR
+• Intersex
+If Sex Assigned at Birth = Male, do not display the Perinatal section.
+ Additional Conditional Logic Within the Perinatal Section
+Pregnancy Status
+If patient selects:
+○ Currently pregnant
+Display the following required fields:
+• Due date (if known)
+• Current OB/GYN provider (name and clinic if known)
+• Current pregnancy complications (if applicable)
+Notes for Builder
+• All pregnancy and postpartum follow-up fields should appear only when triggered.
+• Do not display the entire Perinatal section unless Sex Assigned at Birth criteria above are met.
+• All triggered text boxes should allow free-text patient description.
+
+Please complete this section only if relevant. Otherwise, continue to the next section.
+To help us prepare for your evaluation, please select all that apply to your current situation:
+☐ Currently Pregnant
+☐ Postpartum (delivered within the last 12 months)
+☐ Currently Lactating / Breastfeeding / Chestfeeding / Pumping
+☐ Actively trying to conceive / Planning a pregnancy
+☐ None of the above
+If you are currently pregnant, what is your estimated due date?
+____ / ____ / ______
+If you are postpartum, what was your delivery date?
+____ / ____ / ______
+If you are Lactating / Breastfeeding / Chestfeeding / Pumping, please provide the name and practice/hospital of your Lactation Consultant (if you have one). This is essential for coordinating your care.
+
+If you are Pregnant or Postpartum, please provide the name and practice/hospital of your Obstetrician (OB/GYN) or Midwife. This is essential for coordinating your care.
+
+Are you currently pregnant?
+☐ Yes
+☐ No
+Are you planning a pregnancy?
+☐ Yes
+☐ No
+
+Form Builder Instructions — DO NOT DISPLAY
+Display this question only if:
+• Section 14 is visible
+AND
+• Patient did NOT select "Currently pregnant" or “Actively trying to conceive / Planning a pregnancy”
+If Yes is selected → display the contraception method checklist:
+If NOT pregnant and NOT planning pregnancy: Do you currently use any form of birth control?
+Are you currently using a method of contraception to prevent pregnancy?
+○ Yes
+○ No
+○ Not applicable (post hysterectomy or postmenopausal or unable to become pregnant)
+If Yes, which method are you using?
+☐ Birth control pill
+☐ IUD
+☐ Implant (Nexplanon)
+☐ Injection (Depo-Provera)
+☐ Condom use
+☐ Partner vasectomy
+☐ Tubal ligation / surgical sterilization
+☐ Other: _______________________
+If you are currently taking psychiatric medications and pregnancy is possible, medication safety may need to be reviewed with your provider.
+
+Are you postpartum or lactating?
+☐ Yes
+☐ No
+Last menstrual period: (MM/DD/YYYY)
+____ / ____ / ______
+Number of pregnancies: ___________
+Number carried to term: ___________
+Any miscarriages, stillbirths, or adoptions?
+☐ Yes
+☐ No
+Fertility issues (you or partner)?
+☐ Yes
+☐ No
+If yes, please describe:
+Prenatal / Perinatal Vitamin or Folic Acid Use
+Are you currently taking a prenatal or perinatal vitamin, or a folic acid supplement?
+○ Prenatal / perinatal vitamin
+○ Folic acid supplement
+○ Both
+○ No
+○ N/A
+Reason for taking it (select all that apply):
+☐ Currently pregnant
+☐ Postpartum / breastfeeding / pumping
+☐ Trying to conceive or planning pregnancy
+☐ Recommended by provider
+☐ General health
+History of Perinatal Mental Health Symptoms
+Have you ever experienced mental health symptoms during pregnancy or after delivery in the past?
+○ Yes
+○ No
+○ Not applicable
+If Yes, please select any that applied:
+☐ Depression during pregnancy
+☐ Depression after delivery (postpartum depression)
+☐ Anxiety during pregnancy
+☐ Anxiety after delivery
+☐ Panic attacks
+☐ Intrusive or unwanted thoughts about harm coming to the baby
+☐ Difficulty bonding with the baby
+☐ Severe mood swings or irritability
+☐ Sleep disturbance unrelated to infant care
+☐ Postpartum OCD symptoms
+☐ Postpartum psychosis
+☐ Other: _________________________________
+If you feel comfortable, please briefly describe:
+
+Did any previous pregnancy require psychiatric medication treatment?
+○ Yes
+○ No
+○ N/A
+If yes, medication(s) used: _________________________________
+Form Builder Instructions — DO NOT DISPLAY
+Display this question only if the patient selects:
+• Currently pregnant
+OR
+• Within 12 months postpartum
+OR
+• Reports past perinatal mental health concerns:
+Since becoming pregnant or giving birth, have you experienced difficulty feeling emotionally connected to your baby or feeling like yourself as a parent?
+○ Yes
+○ No
+○ Not applicable
+If Yes, optional:
+Please describe if you feel comfortable sharing:
+
+15. COGNITIVE AND NEUROLOGICAL SYMPTOMS
+Memory problems?
+☐ Yes
+☐ No
+Trouble concentrating?
+☐ Yes
+☐ No
+Disorientation/confusion?
+☐ Yes
+☐ No
+Unusual perceptions (hallucinations, illusions)?
+☐ Yes
+☐ No
+History of seizures, TBI, stroke?
+☐ Yes
+☐ No
+If you answered YES to any of the above, please describe/specify:
+
+
+16. PAST PSYCHIATRIC HISTORY
+Previous diagnoses (list):
+
+Psychiatric hospitalizations?
+☐ Yes
+☐ No
+Outpatient programs (IOP/PHP)?
+☐ Yes
+☐ No
+Psychotherapy?
+☐ Yes
+☐ No
+History of suicidal ideation/plan/intent?
+☐ Yes
+☐ No
+History of suicide attempts?
+☐ Yes
+☐ No
+History of self-harm?
+☐ Yes
+☐ No
+If you answered YES to any of the above, please describe/specify:
+
+
+
+17. FAMILY HISTORY
+Psychiatric history by relation (mother, father, siblings, other):
+
+Family history of mental health conditions (select all that apply):
+☐ Depression
+☐ Bipolar disorder
+☐ Anxiety disorder
+☐ ADHD
+☐ Psychotic disorder / schizophrenia
+☐ Substance use disorder
+☐ OCD
+☐ Eating disorder
+☐ Autism spectrum disorder
+☐ Suicide attempt or death by suicide
+☐ Unknown
+☐ None of the above
+☐ Other: _________________________________
+
+Family history of deaths by suicide?
+☐ Yes
+☐ No
+Medical history by relation (mother, father, siblings, other):
+
+Family history of substance use disorder?
+☐ Yes
+☐ No
+
+18. SOCIAL AND DEVELOPMENTAL HISTORY
+Developmental and Background
+Where were you born and raised?
+
+Who did you primarily live with during childhood? (Select all that apply)
+☐ Both parents living together in the same household
+☐ Parents separated or divorced with shared or split custody
+☐ One parent primarily
+☐ Grandparents
+☐ Other relatives
+☐ Foster care
+☐ Adoptive family
+☐ Other: __________________________
+☐ Prefer not to answer
+How would you describe your childhood overall?
+○ Generally stable and supportive
+○ Mixed or somewhat difficult
+○ Mostly stressful or unstable
+○ Prefer not to answer
+Did you experience learning, behavioral, or developmental challenges during childhood or adolescence?
+(Examples may include learning disabilities, attention difficulties, behavioral concerns, or developmental delays.)
+○ Yes
+○ No
+○ Unsure
+If yes, please describe:
+
+Current Living Situation
+What is your current living situation?
+☐ Live alone
+☐ Live with spouse or partner
+☐ Live with family members
+☐ Live with roommates
+☐ Transitional housing or shelter
+☐ Other: __________________________
+Do you feel safe in your current living environment?
+○ Yes
+○ No
+○ Unsure
+If you selected no or unsure, you may provide additional details if you wish:
+
+Relationships and Social Support
+What is your current relationship status?
+○ Single
+○ In a relationship
+○ Married or partnered
+○ Separated
+○ Divorced
+○ Widowed
+○ Prefer not to answer
+How would you describe your current relationships with family members?
+○ Generally supportive
+○ Mixed or somewhat strained
+○ Mostly difficult or conflictual
+○ Limited or no contact
+○ Prefer not to answer
+How would you describe your social support system?
+○ Strong support system
+○ Some support
+○ Limited support
+○ Little or no support
+○ Prefer not to answer
+Do you currently feel socially isolated?
+○ Yes
+○ No
+○ Sometimes
+
+Education and Learning History
+What is the highest level of education you completed?
+○ Less than high school
+○ High school diploma or GED
+○ Some college
+○ Associate degree
+○ Bachelor’s degree
+○ Graduate or professional degree
+○ Other: __________________________
+Did you experience academic difficulties in school (for example learning disabilities, attention problems, or repeated grade difficulties)?
+○ Yes
+○ No
+○ Unsure
+If yes, please describe:
+
+Employment and Work History
+What is your current employment status?
+○ Employed full-time
+○ Employed part-time
+○ Self-employed
+○ Student
+○ Unemployed
+○ On disability
+○ Retired
+○ Other: __________________________
+If employed, how long have you been in your current job?
+○ Less than 6 months
+○ 6–12 months
+○ 1–3 years
+○ More than 3 years
+○ Not applicable
+Have you experienced significant difficulties at work, such as frequent job changes, workplace conflict, or difficulty maintaining employment?
+○ Yes
+○ No
+○ Prefer not to answer
+If yes, you may describe briefly:
+
+Legal and Safety History
+Have you ever had legal involvement such as arrests, charges, convictions, or probation?
+○ Yes
+○ No
+○ Prefer not to answer
+If yes, please describe briefly:
+
+Are you currently experiencing legal, financial, or housing-related stress?
+○ Yes
+○ No
+○ Prefer not to answer
+If yes, please describe:
+
+Military Service
+Have you ever served in the military?
+○ Yes
+○ No
+If yes:
+Branch of service: __________________________
+Did you experience combat or deployment in a conflict zone?
+○ Yes
+○ No
+○ Prefer not to answer
+
+Daily Activities and Coping
+What activities, hobbies, or interests do you enjoy?
+
+How do you typically cope with stress or difficult emotions?
+
+Impact on Mental Health and Functioning
+Have any of the life circumstances described above significantly affected your mental health or daily functioning?
+○ Yes
+○ No
+○ Unsure
+If yes, please describe how these experiences have affected you:
+
+Optional Additional Information
+Is there anything about your background, upbringing, relationships, or life circumstances that you feel may be important for your provider to understand?
+
+19. CURRENT STRESSORS
+Please select any current stressors you are experiencing:
+☐ Finances
+☐ Mental Health
+☐ Personal Stressors (family, relationships)
+☐ Employment Stressors
+☐ Social Stressors
+☐ Medical / health stressors
+☐ Housing stressors
+☐ Caregiving responsibilities
+☐ No Current Stressors
+☐ Other: _________________________________
+Please clarify or describe any selected stressors (except “No Current Stressors”):
+
+
+20. FUNCTIONAL IMPAIRMENT
+In the past month, have your symptoms affected your ability to:
+Take care of yourself (hygiene, meals)?
+○ Yes
+○ No
+Manage finances?
+○ Yes
+○ No
+Maintain housing?
+○ Yes
+○ No
+Participate in community activities?
+○ Yes
+○ No
+If you answered YES to any of the above, please describe/specify:
+
+
+21. SLEEP HABITS AND HYGIENE
+How many hours of actual sleep do you usually get on a typical weeknight?
+(Estimate if unsure)
+________ hours
+How many hours of actual sleep do you usually get on a typical weekend night?
+________ hours
+Usual bedtime: __________ (e.g., 10:00 PM)
+Usual wake-up time: __________ (e.g., 6:30 AM)
+Do you use electronic devices within one hour before bed?
+○ Yes
+○ No
+Do you consume caffeine or other stimulants after noon?
+○ Yes
+○ No
+Are your sleep hours consistent or variable?
+○ Consistent
+○ Variable
+Do you feel rested when you wake up?
+○ Yes
+○ No
+○ Sometimes
+If you have any difficulties falling asleep, staying asleep, or other sleep issues, please describe/specify:
+
+
+22. CULTURAL AND LINGUISTIC CONSIDERATIONS
+Is English your preferred language for healthcare?
+○ Yes
+○ No
+Interpreter needed?
+○ Yes
+○ No
+Do you have any cultural or religious beliefs that affect how you want your mental health care delivered?
+○ Yes
+○ No
+If yes, please describe:
+
+
+23. STRENGTHS AND COPING
+Coping skills:
+
+Hobbies/interests:
+
+Support systems:
+
+Spirituality/religion:
+
+Recovery or support groups (AA, NA, SMART Recovery, etc.):
+
+
+24. TREATMENT GOALS
+What are your main goals or desired outcomes for treatment?
+
+
+
+25. FINAL REVIEW
+Before submitting this intake questionnaire, please review your answers.
+This information helps your provider understand your concerns and prepare for your appointment.
+
+26. FINAL NOTES
+Is there anything else you would like your provider to know before your first visit?
+
+
+
+End of Intake Questionnaire

@@ -298,10 +298,9 @@
                         <input type="text" name="prefPharmacyAddress" required>
                     </div>
                     <div class="field-group">
-                        <label>Pharmacy Phone: <span class="required-mark">*</span></label>
-                        <input type="tel" name="prefPharmacyPhone" required pattern="[0-9\-\+\s\(\)]*"
-                            oninput="this.value = this.value.replace(/[^0-9\-\+\s\(\)]/g, '')"
-                            title="Please enter a valid phone number">
+                        <label>Pharmacy Phone:</label>
+                        <input type="tel" name="prefPharmacyPhone" pattern="[0-9\-\+\s\(\)]*"
+                            title="Format: 123-456-7890">
                     </div>
 
                     <hr style="margin: 20px 0; border: 0; border-top: 1px solid #dcdde1;">
@@ -315,10 +314,9 @@
                         <input type="text" name="prefLabAddress" required>
                     </div>
                     <div class="field-group">
-                        <label>Lab Phone/Fax: <span class="required-mark">*</span></label>
-                        <input type="tel" name="prefLabPhone" required pattern="[0-9\-\+\s\(\)]*"
-                            oninput="this.value = this.value.replace(/[^0-9\-\+\s\(\)]/g, '')"
-                            title="Please enter a valid phone number">
+                        <label>Lab Phone/Fax:</label>
+                        <input type="tel" name="prefLabPhone" pattern="[0-9\-\+\s\(\)]*"
+                            title="Format: 123-456-7890">
                     </div>
 
                     <hr style="margin: 20px 0; border: 0; border-top: 1px solid #dcdde1;">
@@ -329,14 +327,13 @@
                         <input type="text" name="pcpName" required>
                     </div>
                     <div class="field-group">
-                        <label>PCP Phone/Fax (if known): <span class="required-mark">*</span></label>
-                        <input type="tel" name="pcpPhone" required pattern="[0-9\-\+\s\(\)]*"
-                            oninput="this.value = this.value.replace(/[^0-9\-\+\s\(\)]/g, '')"
-                            title="Please enter a valid phone number">
+                        <label>PCP Phone/Fax (if known):</label>
+                        <input type="tel" name="pcpPhone" pattern="[0-9\-\+\s\(\)]*"
+                            title="Format: 123-456-7890">
                     </div>
-                    <div class="field-group">
-                        <label>Date of most recent PCP visit (if known): <span class="required-mark">*</span></label>
-                        <input type="text" name="pcpLastVisit" required>
+                        <div class="field-group">
+                        <label>Date of most recent PCP visit (if known):</label>
+                        <input type="text" name="pcpLastVisit">
                     </div>
                 </div>
 
@@ -502,11 +499,23 @@
                 <!-- SECTION 5b -->
                 <div class="form-section" id="section-5b">
                     <h2 class="section-title">5b. CURRENTLY PRESCRIBED PSYCHIATRIC MEDICATIONS</h2>
-                    <p>Please list all psychiatric medications you are currently taking, including medication name,
-                        dose, how often you take it, how long you have taken it, prescribing provider, side effects (if
-                        any). If none, write None.</p>
+                    <div class="field-group">
+                        <label>Are you currently taking any medications for mental health or emotional health? <span class="required-mark">*</span></label>
+                        <div class="options-list">
+                            <div class="option-item"><input type="radio" name="takingCurrentMeds" value="Yes" required onchange="toggleCurrentMedsList()"> <label>Yes</label></div>
+                            <div class="option-item"><input type="radio" name="takingCurrentMeds" value="No" onchange="toggleCurrentMedsList()"> <label>No</label></div>
+                            <div class="option-item"><input type="radio" name="takingCurrentMeds" value="Unsure" onchange="toggleCurrentMedsList()"> <label>Unsure</label></div>
+                        </div>
+                    </div>
 
-                    <div id="currentMedsList">
+                    <div id="currentMedsContainer" style="display: none;" class="conditional-field">
+                        <p>Please list all psychiatric medications you are currently taking, including medication name,
+                            dose, how often you take it, how long you have taken it, prescribing provider, side effects (if
+                            any). If none, write None.</p>
+                        
+                        <p class="help-text" style="font-style: italic; color: #555;">If you are unsure about the exact medication name or dose, please enter whatever information you remember (for example: “blue capsule for anxiety,” “Adderall XR 20 mg maybe,” or “sleep medication from my PCP”). Your provider can help clarify during the appointment.</p>
+
+                        <div id="currentMedsList">
                         <!-- Javascript will handle the consistency logic upon next button -->
                         <!-- I am providing 5 initial fields based on the PDF -->
                         <div class="current-med-entry" style="border:1px solid #ddd; padding:15px; margin-top:15px;">
@@ -580,13 +589,12 @@
                         </div>
                     </div>
 
-                    <div class="field-group" style="margin-top:20px;">
-                        <label>Additional psychiatric medications (if more than five):</label>
-                        <textarea name="extraCurrPsychMeds"></textarea>
+                        <div class="field-group" style="margin-top:20px;">
+                            <label>Additional psychiatric medications (if more than five):</label>
+                            <textarea name="extraCurrPsychMeds"></textarea>
+                        </div>
                     </div>
-                </div>
-
-                <!-- SECTION 6 -->
+                </div>                <!-- SECTION 6 -->
                 <div class="form-section" id="section-6">
                     <h2 class="section-title">6. PAST PSYCHIATRIC MEDICATION HISTORY</h2>
                     <p class="help-text">The following sections list psychiatric medications organized by medication
@@ -3565,12 +3573,16 @@
                             <label>Have you ever intentionally harmed yourself without intending to die (for example
                                 cutting, burning, or other self-injury)? <span class="required-mark">*</span></label>
                             <div class="options-list">
-                                <div class="option-item"><input type="radio" name="selfHarm" value="Yes" required>
+                                <div class="option-item"><input type="radio" name="selfHarm" value="Yes" required onclick="document.getElementById('selfHarmDetails').style.display='block';">
                                     <label>Yes</label>
                                 </div>
-                                <div class="option-item"><input type="radio" name="selfHarm" value="No">
+                                <div class="option-item"><input type="radio" name="selfHarm" value="No" onclick="document.getElementById('selfHarmDetails').style.display='none';">
                                     <label>No</label>
                                 </div>
+                            </div>
+                            <div id="selfHarmDetails" style="display:none; margin-top:10px;">
+                                <label>If yes, please share any details you feel comfortable providing:</label>
+                                <textarea name="selfHarmText"></textarea>
                             </div>
                         </div>
 
@@ -3947,18 +3959,15 @@
 
                     <h3>Kratom</h3>
                     <div class="field-group">
-                        <label>Have you ever used kratom? <span class="required-mark">*</span></label>
+                        <label>Have you ever used kratom?</label>
                         <div class="options-list">
-                            <div class="option-item"><input type="radio" name="kratomUse" value="Never" required
-                                    onclick="document.getElementById('kratomDetails').style.display='none';">
+                            <div class="option-item"><input type="radio" name="kratomUse" value="Never" onclick="document.getElementById('kratomDetails').style.display='none';">
                                 <label>Never</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="kratomUse" value="Past use only"
-                                    onclick="document.getElementById('kratomDetails').style.display='block';">
+                            <div class="option-item"><input type="radio" name="kratomUse" value="Past use only" onclick="document.getElementById('kratomDetails').style.display='block';">
                                 <label>Past use only</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="kratomUse" value="Current use"
-                                    onclick="document.getElementById('kratomDetails').style.display='block';">
+                            <div class="option-item"><input type="radio" name="kratomUse" value="Current use" onclick="document.getElementById('kratomDetails').style.display='block';">
                                 <label>Current use</label>
                             </div>
                         </div>
@@ -3966,87 +3975,146 @@
 
                     <div id="kratomDetails" style="display:none;" class="conditional-field">
                         <div class="field-group border-left-pad">
-                            <label>If yes, how often do you use kratom? <span class="required-mark">*</span></label>
+                            <label>If yes, how often do/did you use kratom?</label>
                             <div class="options-list">
-                                <div class="option-item"><input type="radio" name="kratomFreq" value="Less than monthly"
-                                        required> <label>Less than monthly</label></div>
-                                <div class="option-item"><input type="radio" name="kratomFreq" value="Monthly">
-                                    <label>Monthly</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="kratomFreq" value="Weekly">
-                                    <label>Weekly</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="kratomFreq" value="Daily">
-                                    <label>Daily</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="kratomFreq" value="Not applicable">
-                                    <label>Not applicable</label>
-                                </div>
+                                <div class="option-item"><input type="radio" name="kratomFreq" value="Less than monthly"> <label>Less than monthly</label></div>
+                                <div class="option-item"><input type="radio" name="kratomFreq" value="Monthly"> <label>Monthly</label></div>
+                                <div class="option-item"><input type="radio" name="kratomFreq" value="Weekly"> <label>Weekly</label></div>
+                                <div class="option-item"><input type="radio" name="kratomFreq" value="Daily"> <label>Daily</label></div>
+                                <div class="option-item"><input type="radio" name="kratomFreq" value="Not applicable"> <label>Not applicable</label></div>
                             </div>
                         </div>
                         <div class="field-group border-left-pad">
-                            <label>Duration of use (how long have you used kratom?):</label>
-                            <input type="text" name="kratomDuration" placeholder="e.g., 6 months, 2 years">
-                        </div>
-                        <div class="field-group border-left-pad">
-                            <label>Reason for use (select all that apply):</label>
+                            <label>Reason for use (select any):</label>
                             <div class="options-list">
-                                <div class="option-item"><input type="checkbox" name="kratomReason"
-                                        value="Mood / Anxiety"> <label>Mood / Anxiety</label></div>
-                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Energy">
-                                    <label>Energy</label>
-                                </div>
-                                <div class="option-item"><input type="checkbox" name="kratomReason"
-                                        value="Pain management"> <label>Pain management</label></div>
-                                <div class="option-item"><input type="checkbox" name="kratomReason"
-                                        value="Withdrawal management"> <label>Withdrawal management</label></div>
-                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Relaxation">
-                                    <label>Relaxation</label>
-                                </div>
+                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Pain"> <label>Pain</label></div>
+                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Anxiety"> <label>Anxiety</label></div>
+                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Mood"> <label>Mood</label></div>
+                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Energy"> <label>Energy</label></div>
+                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Withdrawal symptoms"> <label>Withdrawal symptoms</label></div>
                                 <div class="option-item">
-                                    <input type="checkbox" name="kratomReason" value="Other"
-                                        onclick="document.getElementById('kratomOther').style.display=this.checked?'block':'none';">
+                                    <input type="checkbox" name="kratomReason" value="Other" onclick="document.getElementById('kratomOther').style.display=this.checked?'block':'none';">
                                     <label>Other</label>
-                                    <input type="text" id="kratomOther" name="kratomReasonOther"
-                                        style="display:none; margin-top:5px;" placeholder="Please specify...">
+                                    <input type="text" id="kratomOther" name="kratomReasonOther" style="display:none; margin-top:5px;" placeholder="Please specify...">
                                 </div>
-                                <div class="option-item"><input type="checkbox" name="kratomReason"
-                                        value="None of the above" class="none-option"> <label>None of the above</label>
-                                </div>
+                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Not applicable"> <label>Not applicable</label></div>
                             </div>
                         </div>
                     </div>
 
                     <h3>Opioids</h3>
                     <div class="field-group">
-                        <label>Have you ever used opioids outside of medical treatment? <span
-                                class="required-mark">*</span></label>
+                        <label>Have you ever used opioids outside of medical treatment?</label>
                         <div class="options-list">
-                            <div class="option-item"><input type="radio" name="opioidUse" value="Never" required>
+                            <div class="option-item"><input type="radio" name="opioidUse" value="Never" onclick="document.getElementById('opioidDetails').style.display='none';">
                                 <label>Never</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="opioidUse" value="Past use only">
+                            <div class="option-item"><input type="radio" name="opioidUse" value="Past use only" onclick="document.getElementById('opioidDetails').style.display='block';">
                                 <label>Past use only</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="opioidUse" value="Current use">
+                            <div class="option-item"><input type="radio" name="opioidUse" value="Current use" onclick="document.getElementById('opioidDetails').style.display='block';">
                                 <label>Current use</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="opioidDetails" style="display:none;" class="conditional-field">
+                        <div class="field-group border-left-pad">
+                            <label>If yes, how often do/did you use opioids?</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="radio" name="opioidFreq" value="Less than monthly"> <label>Less than monthly</label></div>
+                                <div class="option-item"><input type="radio" name="opioidFreq" value="Monthly"> <label>Monthly</label></div>
+                                <div class="option-item"><input type="radio" name="opioidFreq" value="Weekly"> <label>Weekly</label></div>
+                                <div class="option-item"><input type="radio" name="opioidFreq" value="Daily"> <label>Daily</label></div>
+                                <div class="option-item"><input type="radio" name="opioidFreq" value="Not applicable"> <label>Not applicable</label></div>
+                            </div>
+                        </div>
+                        <div class="field-group border-left-pad">
+                            <label>Which opioids have you used? (Select all that apply)</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="checkbox" name="opioidType" value="Prescription pain medications"> <label>Prescription pain medications (e.g., oxycodone, hydrocodone, Percocet, Vicodin)</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidType" value="Fentanyl"> <label>Fentanyl</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidType" value="Heroin"> <label>Heroin</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidType" value="Buprenorphine"> <label>Buprenorphine (Suboxone, Subutex, Sublocade, etc.)</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidType" value="Methadone"> <label>Methadone</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidType" value="Other opioid"> <label>Other opioid</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidType" value="Unsure"> <label>Unsure</label></div>
+                            </div>
+                        </div>
+                        <div class="field-group border-left-pad">
+                            <label>Reason for use (select any):</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="checkbox" name="opioidReason" value="Pain"> <label>Pain</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidReason" value="Anxiety"> <label>Anxiety</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidReason" value="Mood"> <label>Mood</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidReason" value="Energy"> <label>Energy</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidReason" value="Withdrawal symptoms"> <label>Withdrawal symptoms</label></div>
+                                <div class="option-item">
+                                    <input type="checkbox" name="opioidReason" value="Other" onclick="document.getElementById('opioidOther').style.display=this.checked?'block':'none';">
+                                    <label>Other</label>
+                                    <input type="text" id="opioidOther" name="opioidReasonOther" style="display:none; margin-top:5px;" placeholder="Please specify...">
+                                </div>
+                                <div class="option-item"><input type="checkbox" name="opioidReason" value="Not applicable"> <label>Not applicable</label></div>
                             </div>
                         </div>
                     </div>
 
                     <h3>Stimulants (Non-Prescribed)</h3>
                     <div class="field-group">
-                        <label>Have you ever used stimulants such as cocaine, crack cocaine, methamphetamine, or
-                            non-prescribed stimulant medications? <span class="required-mark">*</span></label>
+                        <label>Have you ever used stimulants such as cocaine, crack cocaine, methamphetamine, or non-prescribed stimulant medications?</label>
                         <div class="options-list">
-                            <div class="option-item"><input type="radio" name="stimulantUse" value="Never" required>
+                            <div class="option-item"><input type="radio" name="stimulantUse" value="Never" onclick="document.getElementById('stimulantDetails').style.display='none';">
                                 <label>Never</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="stimulantUse" value="Past use only">
+                            <div class="option-item"><input type="radio" name="stimulantUse" value="Past use only" onclick="document.getElementById('stimulantDetails').style.display='block';">
                                 <label>Past use only</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="stimulantUse" value="Current use">
+                            <div class="option-item"><input type="radio" name="stimulantUse" value="Current use" onclick="document.getElementById('stimulantDetails').style.display='block';">
                                 <label>Current use</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="stimulantDetails" style="display:none;" class="conditional-field">
+                        <div class="field-group border-left-pad">
+                            <label>If yes, how often do/did you use stimulants?</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="radio" name="stimulantFreq" value="Less than monthly"> <label>Less than monthly</label></div>
+                                <div class="option-item"><input type="radio" name="stimulantFreq" value="Monthly"> <label>Monthly</label></div>
+                                <div class="option-item"><input type="radio" name="stimulantFreq" value="Weekly"> <label>Weekly</label></div>
+                                <div class="option-item"><input type="radio" name="stimulantFreq" value="Daily"> <label>Daily</label></div>
+                                <div class="option-item"><input type="radio" name="stimulantFreq" value="Not applicable"> <label>Not applicable</label></div>
+                            </div>
+                        </div>
+                        <div class="field-group border-left-pad">
+                            <label>Which stimulants have you used? (Select all that apply)</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="checkbox" name="stimulantType" value="Cocaine"> <label>Cocaine</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantType" value="Crack cocaine"> <label>Crack cocaine</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantType" value="Methamphetamine"> <label>Methamphetamine</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantType" value="Non-prescribed stimulant medications"> <label>Non-prescribed stimulant medications (e.g., Adderall, Ritalin, Vyvanse)</label></div>
+                                <div class="option-item">
+                                    <input type="checkbox" name="stimulantType" value="Other stimulant" onclick="document.getElementById('stimulantTypeOther').style.display=this.checked?'block':'none';">
+                                    <label>Other stimulant</label>
+                                    <input type="text" id="stimulantTypeOther" name="stimulantTypeOtherText" style="display:none; margin-top:5px;" placeholder="Please specify...">
+                                </div>
+                                <div class="option-item"><input type="checkbox" name="stimulantType" value="Unsure"> <label>Unsure</label></div>
+                            </div>
+                        </div>
+                        <div class="field-group border-left-pad">
+                            <label>Reason for use (select any):</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Energy or alertness"> <label>Energy or alertness</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Focus or concentration"> <label>Focus or concentration</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Weight loss or appetite suppression"> <label>Weight loss or appetite suppression</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Mood or euphoria"> <label>Mood or euphoria</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Partying or recreation"> <label>Partying or recreation</label></div>
+                                <div class="option-item">
+                                    <input type="checkbox" name="stimulantReason" value="Other" onclick="document.getElementById('stimulantReasonOther').style.display=this.checked?'block':'none';">
+                                    <label>Other</label>
+                                    <input type="text" id="stimulantReasonOther" name="stimulantReasonOtherText" style="display:none; margin-top:5px;" placeholder="Please specify...">
+                                </div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Not applicable"> <label>Not applicable</label></div>
                             </div>
                         </div>
                     </div>
@@ -4171,39 +4239,55 @@
                 <div class="form-section" id="section-12">
                     <h2 class="section-title">12. OPIOID USE DISORDER TREATMENT</h2>
                     <div class="field-group">
-                        <label>Are you currently receiving treatment for opioid use disorder (OUD)? <span
+                        <label>Are you currently receiving or have you previously received treatment for opioid use disorder (OUD)? <span
                                 class="required-mark">*</span></label>
                         <div class="options-list">
-                            <div class="option-item"><input type="radio" name="oudTx" value="Yes" required
-                                    onclick="document.getElementById('oudDetails').style.display='block';">
-                                <label>Yes</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="oudTx" value="No"
+                            <div class="option-item"><input type="radio" name="oudTx" value="No" required
                                     onclick="document.getElementById('oudDetails').style.display='none';">
                                 <label>No</label>
+                            </div>
+                            <div class="option-item"><input type="radio" name="oudTx" value="Yes — currently receiving treatment"
+                                    onclick="document.getElementById('oudDetails').style.display='block';">
+                                <label>Yes — currently receiving treatment</label>
+                            </div>
+                            <div class="option-item"><input type="radio" name="oudTx" value="Yes — in the past but not currently"
+                                    onclick="document.getElementById('oudDetails').style.display='block';">
+                                <label>Yes — in the past but not currently</label>
                             </div>
                         </div>
                     </div>
 
                     <div id="oudDetails" style="display:none;" class="conditional-field">
                         <div class="field-group border-left-pad">
-                            <label>If yes, which medication is used?</label>
+                            <label>If yes, which medication is/was used?</label>
                             <div class="options-list">
-                                <div class="option-item"><input type="checkbox" name="oudMedication"
-                                        value="Buprenorphine"> <label>Buprenorphine (Suboxone / Subutex / Sublocade /
-                                        Brixadi)</label></div>
-                                <div class="option-item"><input type="checkbox" name="oudMedication" value="Methadone">
-                                    <label>Methadone</label>
-                                </div>
-                                <div class="option-item"><input type="checkbox" name="oudMedication" value="Naltrexone">
-                                    <label>Naltrexone (Vivitrol)</label>
-                                </div>
+                                <div class="option-item"><input type="checkbox" name="oudMedication" value="Buprenorphine"> <label>Buprenorphine (Suboxone / Subutex / Sublocade / Brixadi)</label></div>
+                                <div class="option-item"><input type="checkbox" name="oudMedication" value="Methadone"> <label>Methadone</label></div>
+                                <div class="option-item"><input type="checkbox" name="oudMedication" value="Naltrexone"> <label>Naltrexone (Vivitrol)</label></div>
                                 <div class="option-item">
-                                    <input type="checkbox" name="oudMedication" value="Other"
-                                        onclick="document.getElementById('oudMedOther').style.display=this.checked?'block':'none';">
-                                    <label>Other</label>
-                                    <input type="text" id="oudMedOther" name="oudMedOtherText"
-                                        style="display:none; margin-top:5px;">
+                                    <input type="checkbox" name="oudMedication" value="Other" onclick="document.getElementById('oudMedOther').style.display=this.checked?'block':'none';"> <label>Other</label>
+                                    <input type="text" id="oudMedOther" name="oudMedicationOther" style="display:none; margin-top:5px;" placeholder="Please specify...">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="field-group border-left-pad">
+                            <label>Are you currently taking medication for opioid use disorder?</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="radio" name="oudCurrentMed" value="No" onclick="document.getElementById('oudCurrentMedDetails').style.display='none';"> <label>No</label></div>
+                                <div class="option-item"><input type="radio" name="oudCurrentMed" value="Yes" onclick="document.getElementById('oudCurrentMedDetails').style.display='block';"> <label>Yes</label></div>
+                            </div>
+                        </div>
+
+                        <div id="oudCurrentMedDetails" style="display:none;" class="field-group border-left-pad">
+                            <label>If yes, which medication are you currently taking?</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="checkbox" name="oudCurrentMedType" value="Buprenorphine"> <label>Buprenorphine (Suboxone / Subutex / Sublocade / Brixadi)</label></div>
+                                <div class="option-item"><input type="checkbox" name="oudCurrentMedType" value="Methadone"> <label>Methadone</label></div>
+                                <div class="option-item"><input type="checkbox" name="oudCurrentMedType" value="Naltrexone"> <label>Naltrexone (Vivitrol)</label></div>
+                                <div class="option-item">
+                                    <input type="checkbox" name="oudCurrentMedType" value="Other" onclick="document.getElementById('oudCurrentMedOther').style.display=this.checked?'block':'none';"> <label>Other</label>
+                                    <input type="text" id="oudCurrentMedOther" name="oudCurrentMedTypeOther" style="display:none; margin-top:5px;" placeholder="Please specify...">
                                 </div>
                             </div>
                         </div>
@@ -4360,20 +4444,20 @@
                     <h3>Medications and Procedures</h3>
                     <div class="field-group">
                         <label>Please list all current non-psychiatric prescription medications, including dose,
-                            frequency, and reason for taking them:</label>
-                        <textarea name="currentNonPsychMeds"></textarea>
+                            frequency, and reason for taking them. <span class="required-mark">*</span><br>(If none, please write “None” or “N/A”.)</label>
+                        <textarea name="currentNonPsychMeds" required></textarea>
                     </div>
 
                     <div class="field-group">
                         <label>Please list all current over-the-counter medications, vitamins, supplements, or herbal
-                            products:</label>
-                        <textarea name="currentOTCMeds"></textarea>
+                            products. <span class="required-mark">*</span><br>(If none, please write “None” or “N/A”.)</label>
+                        <textarea name="currentOTCMeds" required></textarea>
                     </div>
 
                     <div class="field-group">
                         <label>Please list any past non-psychiatric medications that caused side effects, serious
-                            reactions, or were otherwise important (if important for your care):</label>
-                        <textarea name="pastNonPsychMeds"></textarea>
+                            reactions, or were otherwise important for your care. <span class="required-mark">*</span><br>(If none, please write “None” or “N/A”.)</label>
+                        <textarea name="pastNonPsychMeds" required></textarea>
                     </div>
 
                     <div class="field-group">
@@ -4657,13 +4741,10 @@
                 <!-- Handled by togglePerinatalSection in script.js based on sex assigned at birth -->
                 <div class="form-section" id="section-14" style="display:none;">
                     <h2 class="section-title">14. PERINATAL AND REPRODUCTIVE HEALTH</h2>
-                    <div class="alert alert-info">
-                        Please complete this section only if relevant. Otherwise, continue to the next section.
-                    </div>
 
                     <div class="field-group">
                         <label>To help us prepare for your evaluation, please select all that apply to your current
-                            situation:</label>
+                            situation: <span class="required-mark">*</span></label>
                         <div class="options-list">
                             <div class="option-item"><input type="checkbox" name="perinatalStatus"
                                     value="Currently Pregnant" class="perinatal-status-cb"
@@ -5206,7 +5287,6 @@
                     </div>
 
                     <div class="field-group">
-                        <label>Family history of substance use disorder? <span class="required-mark">*</span></label>
                         <div class="options-list">
                             <div class="option-item"><input type="radio" name="famSUD" value="Yes" required>
                                 <label>Yes</label>
@@ -5263,14 +5343,13 @@
                                 class="required-mark">*</span></label>
                         <div class="options-list">
                             <div class="option-item"><input type="radio" name="childhoodDesc"
-                                    value="Generally stable and supportive" required> <label>Generally stable and
-                                    supportive</label></div>
+                                    value="Very stable and supportive" required> <label>Very stable and supportive</label></div>
                             <div class="option-item"><input type="radio" name="childhoodDesc"
-                                    value="Mixed or somewhat difficult"> <label>Mixed or somewhat difficult</label>
-                            </div>
+                                    value="Generally stable with some challenges"> <label>Generally stable with some challenges</label></div>
                             <div class="option-item"><input type="radio" name="childhoodDesc"
-                                    value="Mostly stressful or unstable"> <label>Mostly stressful or unstable</label>
-                            </div>
+                                    value="Mixed or somewhat difficult"> <label>Mixed or somewhat difficult</label></div>
+                            <div class="option-item"><input type="radio" name="childhoodDesc"
+                                    value="Mostly stressful or unstable"> <label>Mostly stressful or unstable</label></div>
                             <div class="option-item"><input type="radio" name="childhoodDesc"
                                     value="Prefer not to answer"> <label>Prefer not to answer</label></div>
                         </div>
@@ -6045,6 +6124,57 @@
                 </div>
             </div>
         </div>
+
+    <!-- Final Review Page Navigation -->
+    <div id="review-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; overflow-y: auto; padding: 20px;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2>Review Your Intake Before Submitting</h2>
+            <p>You may review or update any section before submitting your intake form. If you remember additional information or want to add details, you may return to any section below.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0;">
+                <button type="button" class="btn" onclick="goToSection('section-1')">Personal Information</button>
+                <button type="button" class="btn" onclick="goToSection('section-2')">Medical History / Insurance</button>
+                <button type="button" class="btn" onclick="goToSection('section-5b')">Current Psychiatric Medications</button>
+                <button type="button" class="btn" onclick="goToSection('section-6')">Past Psychiatric Medications</button>
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; border: 1px solid #ccc; background: #f9f9f9;">
+                <h3>INTAKE COMPLETION CONFIRMATION</h3>
+                <div style="margin-top: 10px;">
+                    <input type="checkbox" id="finalConfirmation" required>
+                    <label for="finalConfirmation">I confirm that the information provided in this intake form is accurate to the best of my knowledge.</label>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; text-align: right;">
+                <button type="button" class="btn" onclick="closeReview()">Close Review</button>
+                <button type="submit" class="btn btn-primary" id="finalSubmitBtn" form="intakeForm">Submit Intake Form</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showReview() {
+            document.getElementById('review-modal').style.display = 'block';
+        }
+
+        function closeReview() {
+            document.getElementById('review-modal').style.display = 'none';
+        }
+
+        function goToSection(sectionId) {
+            closeReview();
+            // Assuming there's a showSection function in the original code to handle navigation
+            if (typeof window.showSection === 'function') {
+                window.showSection(sectionId);
+            } else {
+                // simple fallback
+                document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
+                const target = document.getElementById(sectionId);
+                if(target) target.classList.add('active');
+            }
+        }
+    </script>
 </body>
 
 </html>

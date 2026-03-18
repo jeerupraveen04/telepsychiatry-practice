@@ -342,7 +342,7 @@ window.handlePerinatalStatusChange = function (event) {
 
     const birthControlFields = document.getElementById('birthControlFields');
     if (birthControlFields) {
-        const isShown = (!isPregnant && !isPlanning && !noneCb.checked);
+        const isShown = (!isPregnant && !isPlanning);
         birthControlFields.style.display = isShown ? 'block' : 'none';
 
         // Handle required for useContraception radio
@@ -364,6 +364,39 @@ window.handlePerinatalStatusChange = function (event) {
         dcRadios.forEach(r => {
             if (isShown) r.setAttribute('required', 'required');
             else r.removeAttribute('required');
+        });
+    }
+
+    // Evaluate if any child screening triggered the detail text block
+    const checks = ['Memory problems', 'Trouble concentrating', 'Disorientation/confusion', 'Unusual perceptions (hallucinations, illusions)', 'History of seizures, TBI, stroke'];
+    // Assuming Section 15 check below...
+};
+
+window.checkSection15Logic = function() {
+    const memory = document.querySelector('input[name="cogMemory"][value="Yes"]')?.checked;
+    const conc = document.querySelector('input[name="cogConcentrating"][value="Yes"]')?.checked;
+    const conf = document.querySelector('input[name="cogConfusion"][value="Yes"]')?.checked;
+    const perc = document.querySelector('input[name="cogPerceptions"][value="Yes"]')?.checked;
+    const neuro = document.querySelector('input[name="cogHistoryNeuro"][value="Yes"]')?.checked;
+    const grp = document.getElementById('neuroHistoryDetailsGroup');
+    if (grp) {
+        grp.style.display = (memory || conc || conf || perc || neuro) ? 'block' : 'none';
+        const txt = grp.querySelector('textarea');
+        if (txt) {
+            (memory || conc || conf || perc || neuro) ? txt.setAttribute('required', 'required') : txt.removeAttribute('required');
+        }
+    }
+};
+
+window.togglePerinatalSection = function () {
+    const sexVal = document.querySelector('input[name="sexAssigned"]:checked')?.value;
+    const perinatalSection = document.getElementById('section-14');
+    if (perinatalSection && sexVal === 'Male') {
+        // Uncheck/clear any data in the perinatal section so it doesn't submit
+        const inputs = perinatalSection.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            if (input.type === 'radio' || input.type === 'checkbox') input.checked = false;
+            else input.value = '';
         });
     }
 };
