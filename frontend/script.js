@@ -968,6 +968,46 @@ document.addEventListener('change', function (e) {
     }
 });
 
+function updateLegalHistoryFollowup() {
+    const checkboxes = document.querySelectorAll('.legal-history-option');
+    const followupGroup = document.getElementById('legalHistoryDetailsGroup');
+    const followupTextarea = document.getElementById('legalHistoryDetailsText');
+    if (!followupGroup || checkboxes.length === 0) return;
+
+    const hasReportableHistory = Array.from(checkboxes).some(cb => cb.checked && cb.value !== 'No legal history');
+    followupGroup.style.display = hasReportableHistory ? 'block' : 'none';
+
+    if (followupTextarea) {
+        if (hasReportableHistory) {
+            followupTextarea.setAttribute('required', 'required');
+        } else {
+            followupTextarea.removeAttribute('required');
+            followupTextarea.value = '';
+        }
+    }
+}
+
+document.addEventListener('change', function (e) {
+    if (e.target.classList && e.target.classList.contains('legal-history-option')) {
+        const checkboxes = document.querySelectorAll('.legal-history-option');
+        const isNoneOption = e.target.value === 'No legal history';
+
+        if (isNoneOption && e.target.checked) {
+            checkboxes.forEach(cb => {
+                if (cb !== e.target) cb.checked = false;
+            });
+        } else if (!isNoneOption && e.target.checked) {
+            checkboxes.forEach(cb => {
+                if (cb.value === 'No legal history') cb.checked = false;
+            });
+        }
+
+        updateLegalHistoryFollowup();
+    }
+});
+
+document.addEventListener('DOMContentLoaded', updateLegalHistoryFollowup);
+
 // "None of the above" handler for PTSD symptom categories 
 window.handleNoneOption = window.handleNoneOption || function (noneCb) {
     if (noneCb.checked) {

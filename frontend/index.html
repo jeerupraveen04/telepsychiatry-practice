@@ -3049,15 +3049,15 @@
                                         responsibility for important parts of my life, such as finances or major
                                         decisions.</label></div>
                                 <div class="option-item"><input type="checkbox" name="perPattern"
-                                        value="Indifferent to praise/criticism"> <label>☐ I find it difficult to
+                                        value="Indifferent to praise/criticism"> <label> I find it difficult to
                                         disagree with people because I worry about losing their support or
                                         approval.</label></div>
                                 <div class="option-item"><input type="checkbox" name="perPattern"
-                                        value="Indifferent to praise/criticism"> <label>☐ Being alone may feel very
+                                        value="Indifferent to praise/criticism"> <label> Being alone may feel very
                                         uncomfortable or frightening because I worry about managing things on my
                                         own.</label></div>
                                 <div class="option-item"><input type="checkbox" name="perPattern"
-                                        value="Indifferent to praise/criticism"> <label>☐ I may go to great lengths to
+                                        value="Indifferent to praise/criticism"> <label> I may go to great lengths to
                                         maintain relationships or receive care and support.</label></div>
                                 <div class="option-item"><input type="checkbox" name="perPattern" value="None-2"
                                         class="none-option"> <label>None of the above</label></div>
@@ -3071,13 +3071,13 @@
                                         value="Unusual beliefs/behavior"> <label>I often avoid social situations because
                                         I worry about being judged, criticized, or rejected.</label></div>
                                 <div class="option-item"><input type="checkbox" name="perPattern"
-                                        value="Socially anxious even with familiars"> <label>☐ I tend to feel socially
+                                        value="Socially anxious even with familiars"> <label>I tend to feel socially
                                         awkward, inadequate, or inferior compared to others.</label></div>
                                 <div class="option-item"><input type="checkbox" name="perPattern"
-                                        value="Unusual perceptions"> <label>☐ I may want close relationships but hold
+                                        value="Unusual perceptions"> <label>I may want close relationships but hold
                                         back because I fear embarrassment or rejection.</label></div>
                                 <div class="option-item"><input type="checkbox" name="perPattern"
-                                        value="Unusual perceptions"> <label>☐ I often feel very sensitive to criticism
+                                        value="Unusual perceptions"> <label>I often feel very sensitive to criticism
                                         or disapproval..</label></div>
                                 <div class="option-item"><input type="checkbox" name="perPattern" value="None-3"
                                         class="none-option"> <label>None of the above</label></div>
@@ -5519,50 +5519,26 @@
                     </div>
 
                     <div class="field-group">
-                        <label>Legal and Safety History</label>
-                        <p class="help-text">Have you ever had legal involvement such as arrests, charges, convictions,
-                            or probation?</p>
+                        <label>Legal History</label>
+                        <p class="help-text">Have you ever been involved in any legal matters? (Select all that apply)</p>
                         <div class="options-list">
-                            <div class="option-item"><input type="radio" name="legalSafetyHistory" value="Yes"
-                                    onclick="document.getElementById('legalHistoryDetailsGroup').style.display='block';">
-                                <label>Yes</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="legalSafetyHistory" value="No"
-                                    onclick="document.getElementById('legalHistoryDetailsGroup').style.display='none';">
-                                <label>No</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="legalSafetyHistory"
-                                    value="Prefer not to answer"
-                                    onclick="document.getElementById('legalHistoryDetailsGroup').style.display='none';">
-                                <label>Prefer not to answer</label>
-                            </div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="No legal history" class="legal-history-option"> <label>No legal history</label></div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="Arrest(s)" class="legal-history-option"> <label>Arrest(s)</label></div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="Charge(s) or conviction(s)" class="legal-history-option"> <label>Charge(s) or conviction(s)</label></div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="Incarceration (jail or prison)" class="legal-history-option"> <label>Incarceration (jail or prison)</label></div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="Currently on probation or parole" class="legal-history-option"> <label>Currently on probation or parole</label></div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="Pending legal charges or court cases" class="legal-history-option"> <label>Pending legal charges or court cases</label></div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="Involvement in custody or family court disputes" class="legal-history-option"> <label>Involvement in custody or family court disputes</label></div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="Involvement with child protective services" class="legal-history-option"> <label>Involvement with child protective services (e.g., DHHS/CPS)</label></div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="Restraining or protection orders" class="legal-history-option"> <label>Restraining or protection orders (filed or against you)</label></div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="Legal issues related to substance use" class="legal-history-option"> <label>Legal issues related to substance use (e.g., DUI, possession)</label></div>
+                            <div class="option-item"><input type="checkbox" name="legalHistory[]" value="Other legal concerns" class="legal-history-option"> <label>Other legal concerns (please specify)</label></div>
                         </div>
                     </div>
 
                     <div id="legalHistoryDetailsGroup" style="display:none;" class="conditional-field field-group">
-                        <label>If yes, please describe briefly:</label>
-                        <textarea name="legalHistoryDetailsText"></textarea>
-                    </div>
-
-                    <div class="field-group">
-                        <label>Are you currently experiencing legal, financial, or housing-related stress? <span
-                                class="required-mark">*</span></label>
-                        <div class="options-list">
-                            <div class="option-item"><input type="radio" name="legalStress" value="Yes" required
-                                    onclick="document.getElementById('legalStressTxt').style.display='block';">
-                                <label>Yes</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="legalStress" value="No"
-                                    onclick="document.getElementById('legalStressTxt').style.display='none';">
-                                <label>No</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="legalStress" value="Prefer not to answer"
-                                    onclick="document.getElementById('legalStressTxt').style.display='none';">
-                                <label>Prefer not to answer</label>
-                            </div>
-                        </div>
-                        <textarea id="legalStressTxt" name="legalStressText" style="display:none; margin-top:10px;"
-                            placeholder="If yes, please describe..." required></textarea>
+                        <label>Please briefly describe relevant legal history, including dates (if known), current status, and any ongoing legal involvement.</label>
+                        <textarea name="legalHistoryDetailsText" id="legalHistoryDetailsText"></textarea>
                     </div>
 
                     <h3>Military Service</h3>
