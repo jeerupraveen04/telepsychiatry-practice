@@ -70,8 +70,8 @@
                         <input type="text" name="mailingAddress">
                     </div>
                     <div class="field-group">
-                        <label>Phone Number: <span class="required-mark">*</span></label>
-                        <input type="tel" name="phoneNumber" required pattern="[0-9\-\+\s\(\)]*"
+                        <label>Phone Number:</label>
+                        <input type="tel" name="phoneNumber" pattern="[0-9\-\+\s\(\)]*"
                             oninput="this.value = this.value.replace(/[^0-9\-\+\s\(\)]/g, '')"
                             title="Please enter a valid phone number">
                     </div>
@@ -91,8 +91,8 @@
                         <input type="text" name="emergencyContactRel" required>
                     </div>
                     <div class="field-group">
-                        <label>Emergency Contact Phone: <span class="required-mark">*</span></label>
-                        <input type="tel" name="emergencyContactPhone" required pattern="[0-9\-\+\s\(\)]*"
+                        <label>Emergency Contact Phone:</label>
+                        <input type="tel" name="emergencyContactPhone" pattern="[0-9\-\+\s\(\)]*"
                             oninput="this.value = this.value.replace(/[^0-9\-\+\s\(\)]/g, '')"
                             title="Please enter a valid phone number">
                     </div>
@@ -230,8 +230,8 @@
                         <input type="text" name="insuranceRelationship" required>
                     </div>
                     <div class="field-group">
-                        <label>Insurance Company Phone No.: <span class="required-mark">*</span></label>
-                        <input type="tel" name="insurancePhone" required pattern="[0-9\-\+\s\(\)]*"
+                        <label>Insurance Company Phone No.:</label>
+                        <input type="tel" name="insurancePhone" pattern="[0-9\-\+\s\(\)]*"
                             oninput="this.value = this.value.replace(/[^0-9\-\+\s\(\)]/g, '')"
                             title="Please enter a valid phone number">
                     </div>
@@ -600,6 +600,8 @@
                     <p class="help-text">The following sections list psychiatric medications organized by medication
                         class. These sections are used to collect a patient’s past and current psychiatric medication
                         history.</p>
+
+                    <p class="help-text" style="font-style: italic; color: #555;">If you are unsure about the exact medication name or dose, please enter whatever information you remember (for example: &ldquo;blue capsule for anxiety,&rdquo; &ldquo;Adderall XR 20 mg maybe,&rdquo; or &ldquo;sleep medication from my PCP&rdquo;). Your provider can help clarify during the appointment.</p>
 
                     <div class="field-group">
                         <label>Have you previously taken any psychiatric medications for mental health treatment? <span
@@ -1503,28 +1505,10 @@
                     <div class="field-group"
                         style="background:#f9f9f9; padding:20px; border-radius:5px; margin-bottom:20px;">
                         <h3>MAJOR DEPRESSIVE DISORDER SCREENING</h3>
-                        <label>Have you experienced symptoms consistent with depression during any period of your life?
-                            <span class="required-mark">*</span></label>
-                        <div class="options-list">
-                            <div class="option-item"><input type="radio" name="screenMDD" value="Yes" required
-                                    class="dsm-screen-radio"
-                                    onclick="document.getElementById('mddChecklist').style.display='block';">
-                                <label>Yes</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="screenMDD" value="No"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('mddChecklist').style.display='none';">
-                                <label>No</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="screenMDD" value="Substance"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('mddChecklist').style.display='none';"> <label>Yes
-                                    — but only while using substances, medications, or during withdrawal</label></div>
-                        </div>
 
                         <div id="mddChecklist"
-                            style="display:none; margin-top:15px; border-top:1px solid #ccc; padding-top:15px;">
-                            <label>If YES, which symptoms occurred during the same time period?</label>
+                            style="margin-top:15px;">
+                            <label>Please select any depression symptoms you have experienced, either currently or at any point in your life. <span class="required-mark">*</span></label>
                             <div class="options-list">
                                 <div class="option-item"><input type="checkbox" name="mddSymp"
                                         value="Persistent sadness or depressed mood"> <label>Persistent sadness or
@@ -1556,6 +1540,9 @@
                                 <div class="option-item"><input type="checkbox" name="mddSymp"
                                         value="Recurrent thoughts of death or suicide"> <label>Recurrent thoughts of
                                         death or suicide</label></div>
+                                <div class="option-item"><input type="checkbox" name="mddSymp"
+                                        value="None of the above" class="none-option"
+                                        onchange="window.handleNoneOption && window.handleNoneOption(this)"> <label>None of the above</label></div>
                             </div>
 
                             <div style="margin-top:20px;">
@@ -1642,8 +1629,9 @@
                             <div class="option-item"><input type="radio" name="bipolarProb" value="No"
                                     class="dsm-screen-radio dsm-none"> <label>No</label></div>
                             <div class="option-item"><input type="radio" name="bipolarProb" value="Substance"
-                                    class="dsm-screen-radio dsm-none"> <label>Yes — but only while using substances,
-                                    medications, or during withdrawal</label></div>
+                                    class="dsm-screen-radio dsm-none"> <label>Yes — but only under the influence of alcohol, cannabis, or other substances</label></div>
+                            <div class="option-item"><input type="radio" name="bipolarProb" value="Unsure"
+                                    class="dsm-screen-radio"> <label>Unsure</label></div>
                         </div>
 
                         <label style="margin-top:20px; display:block;">Have you ever experienced a distinct period
@@ -1660,8 +1648,12 @@
                                 <label>No</label>
                             </div>
                             <div class="option-item"><input type="radio" name="bipolarPeriod" value="Substance"
-                                    onclick="document.getElementById('bipolarChecklist').style.display='none';">
-                                <label>Yes — but only while using substances, medications, or during withdrawal</label>
+                                    onclick="document.getElementById('bipolarChecklist').style.display='block';">
+                                <label>Yes — but only under the influence of alcohol, cannabis, or other substances</label>
+                            </div>
+                            <div class="option-item"><input type="radio" name="bipolarPeriod" value="Unsure"
+                                    onclick="document.getElementById('bipolarChecklist').style.display='block';">
+                                <label>Unsure</label>
                             </div>
                         </div>
 
@@ -1784,8 +1776,9 @@
                             <div class="option-item"><input type="radio" name="gadWorry" value="No"
                                     class="dsm-screen-radio dsm-none"> <label>No</label></div>
                             <div class="option-item"><input type="radio" name="gadWorry" value="Substance"
-                                    class="dsm-screen-radio dsm-none"> <label>Yes — but only while using substances,
-                                    medications, or during withdrawal</label></div>
+                                    class="dsm-screen-radio dsm-none"> <label>Yes — but only under the influence of alcohol, cannabis, or other substances</label></div>
+                            <div class="option-item"><input type="radio" name="gadWorry" value="Unsure"
+                                    class="dsm-screen-radio"> <label>Unsure</label></div>
                         </div>
 
                         <label style="margin-top:20px; display:block;">Have you experienced persistent anxiety or
@@ -1800,8 +1793,11 @@
                                 <label>No</label>
                             </div>
                             <div class="option-item"><input type="radio" name="gadMultiple" value="Substance"
-                                    onclick="document.getElementById('gadChecklist').style.display='none';"> <label>Yes
-                                    — but only while using substances, medications, or during withdrawal</label></div>
+                                    onclick="document.getElementById('gadChecklist').style.display='block';"> <label>Yes — but only under the influence of alcohol, cannabis, or other substances</label></div>
+                            <div class="option-item"><input type="radio" name="gadMultiple" value="Unsure"
+                                    onclick="document.getElementById('gadChecklist').style.display='block';">
+                                <label>Unsure</label>
+                            </div>
                         </div>
 
                         <div id="gadChecklist"
@@ -1882,8 +1878,13 @@
                             </div>
                             <div class="option-item"><input type="radio" name="panicScreen" value="Substance"
                                     class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('panicChecklist').style.display='none';">
-                                <label>Yes — but only while using substances, medications, or during withdrawal</label>
+                                    onclick="document.getElementById('panicChecklist').style.display='block';">
+                                <label>Yes — but only under the influence of alcohol, cannabis, or other substances</label>
+                            </div>
+                            <div class="option-item"><input type="radio" name="panicScreen" value="Unsure"
+                                    class="dsm-screen-radio"
+                                    onclick="document.getElementById('panicChecklist').style.display='block';">
+                                <label>Unsure</label>
                             </div>
                         </div>
 
@@ -1997,8 +1998,13 @@
                             </div>
                             <div class="option-item"><input type="radio" name="socialAnxScreen" value="Substance"
                                     class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('socialAnxChecklist').style.display='none';">
-                                <label>Yes — but only while using substances, medications, or during withdrawal</label>
+                                    onclick="document.getElementById('socialAnxChecklist').style.display='block';">
+                                <label>Yes — but only under the influence of alcohol, cannabis, or other substances</label>
+                            </div>
+                            <div class="option-item"><input type="radio" name="socialAnxScreen" value="Unsure"
+                                    class="dsm-screen-radio"
+                                    onclick="document.getElementById('socialAnxChecklist').style.display='block';">
+                                <label>Unsure</label>
                             </div>
                         </div>
 
@@ -2070,8 +2076,8 @@
                     <div class="field-group"
                         style="background:#f9f9f9; padding:20px; border-radius:5px; margin-bottom:20px;">
                         <h3>PTSD SCREENING</h3>
-                        <label>Have you experienced or witnessed an event involving actual or threatened death, serious
-                            injury, or sexual violence? <span class="required-mark">*</span></label>
+                        <label>Have you experienced something in your life that continues to cause distressing memories, avoidance, nightmares, or emotional reactions? <span
+                                class="required-mark">*</span></label>
                         <div class="options-list">
                             <div class="option-item"><input type="radio" name="ptsdScreen" value="Yes" required
                                     class="dsm-screen-radio"
@@ -2083,37 +2089,25 @@
                                     onclick="document.getElementById('ptsdChecklist').style.display='none';">
                                 <label>No</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="ptsdScreen" value="Unsure"
+                            <div class="option-item"><input type="radio" name="ptsdScreen" value="Substance"
                                     class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('ptsdChecklist').style.display='none';">
+                                    onclick="document.getElementById('ptsdChecklist').style.display='block';">
+                                <label>Yes — but only under the influence of alcohol, cannabis, or other substances</label>
+                            </div>
+                            <div class="option-item"><input type="radio" name="ptsdScreen" value="Unsure"
+                                    class="dsm-screen-radio"
+                                    onclick="document.getElementById('ptsdChecklist').style.display='block';">
                                 <label>Unsure</label>
                             </div>
                         </div>
+                        <p class="help-text" style="font-style: italic; color: #555; margin-top: 10px;">If you are unsure whether your experiences qualify, you may still answer Yes or Unsure so your provider can discuss this with you during the appointment.</p>
 
                         <div id="ptsdChecklist"
                             style="display:none; margin-top:15px; border-top:1px solid #ccc; padding-top:15px;">
 
                             <h4>Intrusion Symptoms</h4>
-                            <label>Have you experienced intrusion symptoms related to the traumatic event?</label>
-                            <div class="options-list" style="margin-bottom:10px;">
-                                <div class="option-item"><input type="radio" name="ptsdIntrusionScreen" value="Yes"
-                                        onclick="document.getElementById('ptsdIntrusionSymp').style.display='block';">
-                                    <label>Yes</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="ptsdIntrusionScreen" value="No"
-                                        onclick="document.getElementById('ptsdIntrusionSymp').style.display='none';">
-                                    <label>No</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="ptsdIntrusionScreen"
-                                        value="Substance"
-                                        onclick="document.getElementById('ptsdIntrusionSymp').style.display='none';">
-                                    <label>Yes — but only while using substances, medications, or during
-                                        withdrawal</label>
-                                </div>
-                            </div>
-                            <div id="ptsdIntrusionSymp" style="display:none; margin-bottom:20px;">
-                                <label>If YES, which symptoms occurred?</label>
-                                <div class="options-list">
+                            <label>Select any intrusion symptoms you have experienced:</label>
+                            <div class="options-list">
                                     <div class="option-item"><input type="checkbox" name="ptsdSymp"
                                             value="Unwanted memories of the trauma"> <label>Unwanted memories of the
                                             trauma</label></div>
@@ -2129,29 +2123,14 @@
                                     <div class="option-item"><input type="checkbox" name="ptsdSymp"
                                             value="Physical reactions when reminded of the trauma"> <label>Physical
                                             reactions when reminded of the trauma</label></div>
-                                </div>
+                                    <div class="option-item"><input type="checkbox" name="ptsdSymp"
+                                            value="None of the above - Intrusion" class="none-option"
+                                            onchange="window.handleNoneOption && window.handleNoneOption(this)"> <label>None of the above</label></div>
                             </div>
 
                             <h4>Avoidance Symptoms</h4>
-                            <label>Have you experienced avoidance related to the trauma?</label>
-                            <div class="options-list" style="margin-bottom:10px;">
-                                <div class="option-item"><input type="radio" name="ptsdAvoidScreen" value="Yes"
-                                        onclick="document.getElementById('ptsdAvoidSymp').style.display='block';">
-                                    <label>Yes</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="ptsdAvoidScreen" value="No"
-                                        onclick="document.getElementById('ptsdAvoidSymp').style.display='none';">
-                                    <label>No</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="ptsdAvoidScreen" value="Substance"
-                                        onclick="document.getElementById('ptsdAvoidSymp').style.display='none';">
-                                    <label>Yes — but only while using substances, medications, or during
-                                        withdrawal</label>
-                                </div>
-                            </div>
-                            <div id="ptsdAvoidSymp" style="display:none; margin-bottom:20px;">
-                                <label>If YES, which symptoms occurred?</label>
-                                <div class="options-list">
+                            <label>Select any avoidance symptoms you have experienced:</label>
+                            <div class="options-list">
                                     <div class="option-item"><input type="checkbox" name="ptsdSymp"
                                             value="Avoiding trauma-related thoughts or memories"> <label>Avoiding
                                             trauma-related thoughts or memories</label></div>
@@ -2159,29 +2138,14 @@
                                             value="Avoiding reminders such as people, places, or situations">
                                         <label>Avoiding reminders such as people, places, or situations</label>
                                     </div>
-                                </div>
+                                    <div class="option-item"><input type="checkbox" name="ptsdSymp"
+                                            value="None of the above - Avoidance" class="none-option"
+                                            onchange="window.handleNoneOption && window.handleNoneOption(this)"> <label>None of the above</label></div>
                             </div>
 
                             <h4>Negative Mood / Cognition Changes</h4>
-                            <label>Have you experienced negative changes in thinking or mood after trauma?</label>
-                            <div class="options-list" style="margin-bottom:10px;">
-                                <div class="option-item"><input type="radio" name="ptsdMoodScreen" value="Yes"
-                                        onclick="document.getElementById('ptsdMoodSymp').style.display='block';">
-                                    <label>Yes</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="ptsdMoodScreen" value="No"
-                                        onclick="document.getElementById('ptsdMoodSymp').style.display='none';">
-                                    <label>No</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="ptsdMoodScreen" value="Substance"
-                                        onclick="document.getElementById('ptsdMoodSymp').style.display='none';">
-                                    <label>Yes — but only while using substances, medications, or during
-                                        withdrawal</label>
-                                </div>
-                            </div>
-                            <div id="ptsdMoodSymp" style="display:none; margin-bottom:20px;">
-                                <label>If YES, which symptoms occurred?</label>
-                                <div class="options-list">
+                            <label>Select any negative mood or cognition changes you have experienced:</label>
+                            <div class="options-list">
                                     <div class="option-item"><input type="checkbox" name="ptsdSymp"
                                             value="Persistent negative beliefs about yourself or others">
                                         <label>Persistent negative beliefs about yourself or others</label>
@@ -2201,29 +2165,14 @@
                                     <div class="option-item"><input type="checkbox" name="ptsdSymp"
                                             value="Difficulty experiencing positive emotions"> <label>Difficulty
                                             experiencing positive emotions</label></div>
-                                </div>
+                                    <div class="option-item"><input type="checkbox" name="ptsdSymp"
+                                            value="None of the above - Mood" class="none-option"
+                                            onchange="window.handleNoneOption && window.handleNoneOption(this)"> <label>None of the above</label></div>
                             </div>
 
                             <h4>Arousal / Reactivity Symptoms</h4>
-                            <label>Have you experienced increased reactivity or arousal after trauma?</label>
-                            <div class="options-list" style="margin-bottom:10px;">
-                                <div class="option-item"><input type="radio" name="ptsdArousalScreen" value="Yes"
-                                        onclick="document.getElementById('ptsdArousalSymp').style.display='block';">
-                                    <label>Yes</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="ptsdArousalScreen" value="No"
-                                        onclick="document.getElementById('ptsdArousalSymp').style.display='none';">
-                                    <label>No</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="ptsdArousalScreen" value="Substance"
-                                        onclick="document.getElementById('ptsdArousalSymp').style.display='none';">
-                                    <label>Yes — but only while using substances, medications, or during
-                                        withdrawal</label>
-                                </div>
-                            </div>
-                            <div id="ptsdArousalSymp" style="display:none; margin-bottom:20px;">
-                                <label>If YES, which symptoms occurred?</label>
-                                <div class="options-list">
+                            <label>Select any arousal or reactivity symptoms you have experienced:</label>
+                            <div class="options-list">
                                     <div class="option-item"><input type="checkbox" name="ptsdSymp"
                                             value="Irritability or anger outbursts"> <label>Irritability or anger
                                             outbursts</label></div>
@@ -2240,7 +2189,9 @@
                                     </div>
                                     <div class="option-item"><input type="checkbox" name="ptsdSymp"
                                             value="Sleep disturbance"> <label>Sleep disturbance</label></div>
-                                </div>
+                                    <div class="option-item"><input type="checkbox" name="ptsdSymp"
+                                            value="None of the above - Arousal" class="none-option"
+                                            onchange="window.handleNoneOption && window.handleNoneOption(this)"> <label>None of the above</label></div>
                             </div>
 
                             <div style="margin-top:20px;">
@@ -2299,28 +2250,10 @@
                     <div class="field-group"
                         style="background:#f9f9f9; padding:20px; border-radius:5px; margin-bottom:20px;">
                         <h3>OBSESSIVE-COMPULSIVE DISORDER SCREENING</h3>
-                        <label>Have you experienced obsessions or compulsions that felt difficult to control? <span
-                                class="required-mark">*</span></label>
-                        <div class="options-list">
-                            <div class="option-item"><input type="radio" name="ocdScreen" value="Yes" required
-                                    class="dsm-screen-radio"
-                                    onclick="document.getElementById('ocdChecklist').style.display='block';">
-                                <label>Yes</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="ocdScreen" value="No"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('ocdChecklist').style.display='none';">
-                                <label>No</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="ocdScreen" value="Substance"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('ocdChecklist').style.display='none';"> <label>Yes
-                                    — but only while using substances, medications, or during withdrawal</label></div>
-                        </div>
 
                         <div id="ocdChecklist"
-                            style="display:none; margin-top:15px; border-top:1px solid #ccc; padding-top:15px;">
-                            <label>If YES, which of the following have you experienced?</label>
+                            style="margin-top:15px;">
+                            <label>Please select any obsessive-compulsive symptoms you have experienced, either currently or at any point in your life. <span class="required-mark">*</span></label>
                             <h4>Obsessions</h4>
                             <div class="options-list">
                                 <div class="option-item"><input type="checkbox" name="ocdSymp"
@@ -2353,6 +2286,9 @@
                                     <label>Feeling driven to perform these behaviors to reduce anxiety or prevent
                                         something bad from happening</label>
                                 </div>
+                                <div class="option-item"><input type="checkbox" name="ocdSymp"
+                                        value="None of the above" class="none-option"
+                                        onchange="window.handleNoneOption && window.handleNoneOption(this)"> <label>None of the above</label></div>
                             </div>
 
                             <div style="margin-top:20px;">
@@ -2396,28 +2332,10 @@
                     <div class="field-group"
                         style="background:#f9f9f9; padding:20px; border-radius:5px; margin-bottom:20px;">
                         <h3>OBSESSIVE-COMPULSIVE PERSONALITY DISORDER SCREENING</h3>
-                        <label>Have you experienced a long-standing pattern of rigidity, perfectionism, or excessive
-                            need for control? <span class="required-mark">*</span></label>
-                        <div class="options-list">
-                            <div class="option-item"><input type="radio" name="ocpdScreen" value="Yes" required
-                                    class="dsm-screen-radio"
-                                    onclick="document.getElementById('ocpdChecklist').style.display='block';">
-                                <label>Yes</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="ocpdScreen" value="No"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('ocpdChecklist').style.display='none';">
-                                <label>No</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="ocpdScreen" value="Substance"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('ocpdChecklist').style.display='none';"> <label>Yes
-                                    — but only while using substances, medications, or during withdrawal</label></div>
-                        </div>
 
                         <div id="ocpdChecklist"
-                            style="display:none; margin-top:15px; border-top:1px solid #ccc; padding-top:15px;">
-                            <label>If YES, which of the following have you experienced?</label>
+                            style="margin-top:15px;">
+                            <label>Please select any of the following rigid or perfectionistic patterns you have experienced. <span class="required-mark">*</span></label>
                             <div class="options-list">
                                 <div class="option-item"><input type="checkbox" name="ocpdSymp"
                                         value="Preoccupation with rules, order, lists, schedules, or organization">
@@ -2447,6 +2365,9 @@
                                         hoarding money</label></div>
                                 <div class="option-item"><input type="checkbox" name="ocpdSymp"
                                         value="Stubbornness or rigidity"> <label>Stubbornness or rigidity</label></div>
+                                <div class="option-item"><input type="checkbox" name="ocpdSymp"
+                                        value="None of the above" class="none-option"
+                                        onchange="window.handleNoneOption && window.handleNoneOption(this)"> <label>None of the above</label></div>
                             </div>
 
                             <div style="margin-top:20px;">
@@ -2579,28 +2500,10 @@
                     <div class="field-group"
                         style="background:#f9f9f9; padding:20px; border-radius:5px; margin-bottom:20px;">
                         <h3>BORDERLINE PERSONALITY DISORDER SCREENING</h3>
-                        <label>Have you experienced a long-standing pattern of intense emotions, unstable relationships,
-                            or difficulty with self-image? <span class="required-mark">*</span></label>
-                        <div class="options-list">
-                            <div class="option-item"><input type="radio" name="bpdScreen" value="Yes" required
-                                    class="dsm-screen-radio"
-                                    onclick="document.getElementById('bpdChecklist').style.display='block';">
-                                <label>Yes</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="bpdScreen" value="No"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('bpdChecklist').style.display='none';">
-                                <label>No</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="bpdScreen" value="Substance"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('bpdChecklist').style.display='none';"> <label>Yes
-                                    — but only while using substances, medications, or during withdrawal</label></div>
-                        </div>
 
                         <div id="bpdChecklist"
-                            style="display:none; margin-top:15px; border-top:1px solid #ccc; padding-top:15px;">
-                            <label>If YES, which of the following have you experienced?</label>
+                            style="margin-top:15px;">
+                            <label>Please select any of the following patterns you have experienced, either currently or at any point in your life. <span class="required-mark">*</span></label>
                             <div class="options-list">
                                 <div class="option-item"><input type="checkbox" name="bpdSymp"
                                         value="Intense fear of abandonment"> <label>Intense fear of abandonment</label>
@@ -2632,6 +2535,9 @@
                                 <div class="option-item"><input type="checkbox" name="bpdSymp"
                                         value="Feeling suspicious, unreal, or disconnected under stress"> <label>Feeling
                                         suspicious, unreal, or disconnected under stress</label></div>
+                                <div class="option-item"><input type="checkbox" name="bpdSymp"
+                                        value="None of the above" class="none-option"
+                                        onchange="window.handleNoneOption && window.handleNoneOption(this)"> <label>None of the above</label></div>
                             </div>
 
                             <div style="margin-top:20px;">
@@ -2662,29 +2568,10 @@
                     <div class="field-group"
                         style="background:#f9f9f9; padding:20px; border-radius:5px; margin-bottom:20px;">
                         <h3>ADHD SCREENING</h3>
-                        <label>Have you experienced attention or hyperactivity symptoms since childhood? <span
-                                class="required-mark">*</span></label>
-                        <div class="options-list">
-                            <div class="option-item"><input type="radio" name="adhdScreen" value="Yes" required
-                                    class="dsm-screen-radio"
-                                    onclick="document.getElementById('adhdChecklist').style.display='block';">
-                                <label>Yes</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="adhdScreen" value="No"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('adhdChecklist').style.display='none';">
-                                <label>No</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="adhdScreen" value="Substance"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('adhdChecklist').style.display='none';">
-                                <label>Yes — but only while using substances, medications, or during withdrawal</label>
-                            </div>
-                        </div>
 
                         <div id="adhdChecklist"
-                            style="display:none; margin-top:15px; border-top:1px solid #ccc; padding-top:15px;">
-                            <label>If YES, which symptoms occurred?</label>
+                            style="margin-top:15px;">
+                            <label>Please select any attention or hyperactivity symptoms you have experienced, either currently or since childhood. <span class="required-mark">*</span></label>
 
                             <div style="margin-top:10px;">
                                 <strong>Inattention</strong>
@@ -2834,29 +2721,10 @@
                     <div class="field-group"
                         style="background:#f9f9f9; padding:20px; border-radius:5px; margin-bottom:20px;">
                         <h3>AUTISM SPECTRUM DISORDER SCREENING</h3>
-                        <label>Have you experienced long-standing differences in social communication, routines, or
-                            sensory sensitivity? <span class="required-mark">*</span></label>
-                        <div class="options-list">
-                            <div class="option-item"><input type="radio" name="autismScreen" value="Yes" required
-                                    class="dsm-screen-radio"
-                                    onclick="document.getElementById('autismChecklist').style.display='block';">
-                                <label>Yes</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="autismScreen" value="No"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('autismChecklist').style.display='none';">
-                                <label>No</label>
-                            </div>
-                            <div class="option-item"><input type="radio" name="autismScreen" value="Substance"
-                                    class="dsm-screen-radio dsm-none"
-                                    onclick="document.getElementById('autismChecklist').style.display='none';">
-                                <label>Yes — but only while using substances, medications, or during withdrawal</label>
-                            </div>
-                        </div>
 
                         <div id="autismChecklist"
-                            style="display:none; margin-top:15px; border-top:1px solid #ccc; padding-top:15px;">
-                            <label>If YES, which of the following have you experienced?</label>
+                            style="margin-top:15px;">
+                            <label>Please select any of the following social communication or sensory patterns you have experienced. <span class="required-mark">*</span></label>
 
                             <div style="margin-top:10px;">
                                 <strong>Social communication</strong>
@@ -3255,21 +3123,6 @@
                 </div>
             </div>
 
-            <div class="personality-group" style="margin-bottom:20px;">
-                <label><strong>6. Attention &amp; Self-Image Patterns</strong></label>
-                <div class="options-list">
-                <div class="option-item"><input type="checkbox" name="perPattern"
-                    value="uncomfortable_not_center_g6"> <label>I sometimes feel uncomfortable when I am not the center of attention.</label></div>
-                <div class="option-item"><input type="checkbox" name="perPattern"
-                    value="dramatic_emotions_g6"> <label>I may express emotions in ways that others experience as dramatic or intense.</label></div>
-                <div class="option-item"><input type="checkbox" name="perPattern"
-                    value="importance_appearance_g6"> <label>I place strong importance on how I appear to others.</label></div>
-                <div class="option-item"><input type="checkbox" name="perPattern"
-                    value="seek_reassurance_attention_g6"> <label>I may seek reassurance, attention, or approval in relationships.</label></div>
-                <div class="option-item"><input type="checkbox" name="perPattern" value="None-6"
-                    class="none-option"> <label>None of the above</label></div>
-                </div>
-            </div>
 
             <div class="personality-group" style="margin-bottom:20px;">
                 <label><strong>7. Self-Importance &amp; Recognition Patterns</strong></label>
@@ -3416,17 +3269,28 @@
                                 <div class="option-item"><input type="checkbox" name="traumaHistory"
                                         value="Other traumatic experience"> <label>Other traumatic experience</label>
                                 </div>
-                                <div class="option-item"><input type="checkbox" name="traumaHistory"
-                                        value="Prefer not to answer"> <label>Prefer not to answer</label></div>
+
                                 <div class="option-item"><input type="checkbox" name="traumaHistory"
                                         value="No trauma history" id="noTraumaOption"> <label>No trauma history</label>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Trauma Timing Question (conditional) -->
+                        <div id="traumaTimingGroup" class="field-group" style="display:none;">
+                            <label>TRAUMA TIMING <span class="required-mark">*</span><br>When did the trauma occur? (Select all that apply)</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="checkbox" name="traumaTiming" value="Early childhood (before age 6)"> <label>Early childhood (before age 6)</label></div>
+                                <div class="option-item"><input type="checkbox" name="traumaTiming" value="Childhood (6–12)"> <label>Childhood (6–12)</label></div>
+                                <div class="option-item"><input type="checkbox" name="traumaTiming" value="Adolescence (13–17)"> <label>Adolescence (13–17)</label></div>
+                                <div class="option-item"><input type="checkbox" name="traumaTiming" value="Adulthood (18+)"> <label>Adulthood (18+)</label></div>
+                                <div class="option-item"><input type="checkbox" name="traumaTiming" value="Ongoing / repeated over time"> <label>Ongoing / repeated over time</label></div>
+                                <div class="option-item"><input type="checkbox" name="traumaTiming" value="Unsure"> <label>Unsure</label></div>
+                            </div>
+                        </div>
+
                         <div class="field-group">
-                            <label>If you feel comfortable sharing, you may briefly describe the experience(s). This is
-                                optional and you do not need to provide details if you prefer not to.</label>
+                            <label>If you would like to share any additional context about these experiences, you may do so here. This is optional.</label>
                             <textarea name="traumaDetails"></textarea>
                         </div>
 
@@ -4332,9 +4196,7 @@
                                     onclick="togglePerinatalSection()"> <label>Male</label></div>
                             <div class="option-item"><input type="radio" name="sexAssigned" value="Intersex"
                                     onclick="togglePerinatalSection()"> <label>Intersex</label></div>
-                            <div class="option-item"><input type="radio" name="sexAssigned" value="Not captured"
-                                    onclick="togglePerinatalSection()"> <label>My information is not captured by these
-                                    options</label></div>
+
                         </div>
                     </div>
 
@@ -5070,10 +4932,11 @@
                     <div class="field-group">
                         <label>Memory problems?</label>
                         <div class="options-list">
-                            <div class="option-item"><input type="radio" name="cogMemory" value="Yes">
+                            <div class="option-item"><input type="radio" name="cogMemory" value="Yes" onclick="showCogDetails();">
                                 <label>Yes</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="cogMemory" value="No"> <label>No</label>
+                            <div class="option-item"><input type="radio" name="cogMemory" value="No" onclick="showCogDetails();">
+                                <label>No</label>
                             </div>
                         </div>
                     </div>
@@ -5081,10 +4944,10 @@
                     <div class="field-group">
                         <label>Trouble concentrating?</label>
                         <div class="options-list">
-                            <div class="option-item"><input type="radio" name="cogConcentrating" value="Yes">
+                            <div class="option-item"><input type="radio" name="cogConcentrating" value="Yes" onclick="showCogDetails();">
                                 <label>Yes</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="cogConcentrating" value="No">
+                            <div class="option-item"><input type="radio" name="cogConcentrating" value="No" onclick="showCogDetails();">
                                 <label>No</label>
                             </div>
                         </div>
@@ -5093,10 +4956,10 @@
                     <div class="field-group">
                         <label>Disorientation/confusion?</label>
                         <div class="options-list">
-                            <div class="option-item"><input type="radio" name="cogConfusion" value="Yes">
+                            <div class="option-item"><input type="radio" name="cogConfusion" value="Yes" onclick="showCogDetails();">
                                 <label>Yes</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="cogConfusion" value="No">
+                            <div class="option-item"><input type="radio" name="cogConfusion" value="No" onclick="showCogDetails();">
                                 <label>No</label>
                             </div>
                         </div>
@@ -5105,10 +4968,10 @@
                     <div class="field-group">
                         <label>Unusual perceptions (hallucinations, illusions)?</label>
                         <div class="options-list">
-                            <div class="option-item"><input type="radio" name="cogPerceptions" value="Yes">
+                            <div class="option-item"><input type="radio" name="cogPerceptions" value="Yes" onclick="showCogDetails();">
                                 <label>Yes</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="cogPerceptions" value="No">
+                            <div class="option-item"><input type="radio" name="cogPerceptions" value="No" onclick="showCogDetails();">
                                 <label>No</label>
                             </div>
                         </div>
@@ -5118,11 +4981,11 @@
                         <label>History of seizures, TBI, stroke?</label>
                         <div class="options-list">
                             <div class="option-item"><input type="radio" name="cogHistoryNeuro" value="Yes"
-                                    onclick="document.getElementById('neuroHistoryDetailsGroup').style.display='block';">
+                                    onclick="showCogDetails();">
                                 <label>Yes</label>
                             </div>
                             <div class="option-item"><input type="radio" name="cogHistoryNeuro" value="No"
-                                    onclick="document.getElementById('neuroHistoryDetailsGroup').style.display='none';">
+                                    onclick="showCogDetails();">
                                 <label>No</label>
                             </div>
                         </div>
@@ -6083,7 +5946,50 @@
             </form>
         </div>
         <script src="script.js"></script>
-        <!-- Medication History Reminder Modal -->
+
+        <!-- Section 5B: Medication Confirmation Modal (Logic 1 - "No" selected) -->
+        <div id="currentMedsConfirmationModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <h3>Medication Confirmation</h3>
+                <p>You indicated that you are <strong>not</strong> currently taking any psychiatric medications.</p>
+                <p>Please note: some patients receive psychiatric medications (such as antidepressants, sleep aids, or anxiety medications) from their primary care provider or another prescriber and may not initially think to list them here.</p>
+                <p>If you are receiving any such medications, please go back and list them. If you are truly not taking any psychiatric medications, you may continue.</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('currentMedsConfirmationModal').style.display='none';">Go back and update</button>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('currentMedsConfirmationModal').style.display='none'; window.confirmCurrentMedsNo && window.confirmCurrentMedsNo();">Confirm — I am not taking psychiatric medications</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5B: Medication Information Reminder Modal (Logic 2 - Yes/Unsure but blank fields) -->
+        <div id="currentMedsReminderModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <h3>Medication Information Reminder</h3>
+                <p>You indicated that you are currently taking psychiatric medications, but no medication names were entered.</p>
+                <p>If possible, please list any medications you are currently taking. This information helps your provider prepare for your appointment.</p>
+                <p>If you do not remember the medication names, you may continue without entering them.</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('currentMedsReminderModal').style.display='none';">Return to update responses</button>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('currentMedsReminderModal').style.display='none'; window.confirmCurrentMedsBlank && window.confirmCurrentMedsBlank();">Continue if information is not available</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Medication History Confirmation Modal (Logic 1 - "No" selected) -->
+        <div id="pastMedsConfirmationModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <h3>Medication History Confirmation</h3>
+                <p>You indicated that you have <strong>not</strong> previously taken any psychiatric medications.</p>
+                <p>Please note: some patients have taken psychiatric medications (such as antidepressants, sleep aids, or anxiety medications) prescribed by a primary care provider or another prescriber and may not initially recall them.</p>
+                <p>If you have taken any such medications in the past, please go back and update your response. If you are certain you have never taken psychiatric medications, you may continue.</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('pastMedsConfirmationModal').style.display='none';">Go back and update</button>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('pastMedsConfirmationModal').style.display='none'; window.confirmPastMedsNo && window.confirmPastMedsNo();">Confirm — I have not taken psychiatric medications</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medication History Reminder Modal (Section 6 Logic 2 - Yes/Unsure but blank) -->
         <div id="medicationHistoryReminderModal" class="modal" style="display:none;">
             <div class="modal-content">
                 <h3>Medication History Reminder</h3>

@@ -557,21 +557,15 @@ function checkSection8Consistency() {
 
     // Screening radio groups in Section 8 (16 groups)
     const screeningFields = [
-        { name: 'screenMDD', neg: ['No', 'Substance'] },
         { name: 'bipolarProb', neg: ['No', 'Substance'] },
         { name: 'bipolarPeriod', neg: ['No', 'Substance'] },
         { name: 'gadWorry', neg: ['No', 'Substance'] },
         { name: 'gadMultiple', neg: ['No', 'Substance'] },
         { name: 'panicScreen', neg: ['No', 'Substance'] },
         { name: 'socialAnxScreen', neg: ['No', 'Substance'] },
-        { name: 'ptsdScreen', neg: ['No', 'Unsure'] },
-        { name: 'ocdScreen', neg: ['No', 'Substance'] },
-        { name: 'ocpdScreen', neg: ['No', 'Substance'] },
+        { name: 'ptsdScreen', neg: ['No', 'Substance'] },
         { name: 'psychosisScreen', neg: ['No', 'Substance'] },
-        { name: 'bpdScreen', neg: ['No', 'Substance'] },
-        { name: 'adhdScreen', neg: ['No', 'Substance'] }, // Updated to 'Substance' based on form change
-        { name: 'autismScreen', neg: ['No', 'Substance'] }, // Updated to 'Substance' based on form change
-        { name: 'eatingScreen', neg: ['No', 'Substance'] }, // Updated to 'Substance' based on form change
+        { name: 'eatingScreen', neg: ['No', 'Substance'] },
         { name: 'sudScreen', neg: ['No', 'Unsure'] }
     ];
 
@@ -595,7 +589,7 @@ function checkSection8Consistency() {
     const totalItems = screeningFields.length + 1; // 17 items
     const negPercentage = (negativeCount / totalItems) * 100;
 
-    // Threshold: more than 85% negative (15 or more out of 17)
+    // Threshold: more than 85% negative
     if (negPercentage >= 85) {
         const modal = document.getElementById('consistencyReminderModal');
         if (modal) {
@@ -884,3 +878,102 @@ document.addEventListener('input', function (e) {
         }
     }
 });
+
+// ========== NEW FUNCTIONS FOR REQUIREMENTS ==========
+
+// Section 5B: Toggle medication fields based on Yes/No/Unsure
+window.toggleCurrentMedsList = function () {
+    const val = document.querySelector('input[name="takingCurrentMeds"]:checked')?.value;
+    const container = document.getElementById('currentMedsContainer');
+    if (container) {
+        container.style.display = (val === 'Yes' || val === 'Unsure') ? 'block' : 'none';
+    }
+};
+
+// Section 5B: Check if "No" or blank fields need confirmation
+window.checkSection5bConsistency = function () {
+    const val = document.querySelector('input[name="takingCurrentMeds"]:checked')?.value;
+    if (val === 'No') {
+        const modal = document.getElementById('currentMedsConfirmationModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            return false;
+        }
+    }
+    if (val === 'Yes' || val === 'Unsure') {
+        const medNames = document.querySelectorAll('.current-med-name');
+        let hasAnyMed = false;
+        medNames.forEach(input => {
+            if (input.value && input.value.trim()) hasAnyMed = true;
+        });
+        if (!hasAnyMed) {
+            const modal = document.getElementById('currentMedsReminderModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                return false;
+            }
+        }
+    }
+    return true;
+};
+
+// Section 6: Check if "No" selected needs confirmation 
+window.checkSection6NoConfirmation = function () {
+    const val = document.querySelector('input[name="pastPsychMedsScreen"]:checked')?.value;
+    if (val === 'No') {
+        const modal = document.getElementById('pastMedsConfirmationModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            return false;
+        }
+    }
+    return true;
+};
+
+// Section 5B/6 confirmation callbacks
+window.confirmCurrentMedsNo = function () {
+    // Confirmed - just allow proceed
+};
+window.confirmCurrentMedsBlank = function () {
+    // Confirmed - just allow proceed
+};
+window.confirmPastMedsNo = function () {
+    // Confirmed - just allow proceed
+};
+
+// Section 15: Show details field when ANY cognitive question is Yes
+window.showCogDetails = function () {
+    const memory = document.querySelector('input[name="cogMemory"][value="Yes"]')?.checked;
+    const conc = document.querySelector('input[name="cogConcentrating"][value="Yes"]')?.checked;
+    const conf = document.querySelector('input[name="cogConfusion"][value="Yes"]')?.checked;
+    const perc = document.querySelector('input[name="cogPerceptions"][value="Yes"]')?.checked;
+    const neuro = document.querySelector('input[name="cogHistoryNeuro"][value="Yes"]')?.checked;
+    const grp = document.getElementById('neuroHistoryDetailsGroup');
+    if (grp) {
+        grp.style.display = (memory || conc || conf || perc || neuro) ? 'block' : 'none';
+    }
+};
+
+// Trauma timing toggle: show timing question when ANY trauma type is checked (except "No trauma history")
+document.addEventListener('change', function (e) {
+    if (e.target.name === 'traumaHistory') {
+        const timingGroup = document.getElementById('traumaTimingGroup');
+        if (!timingGroup) return;
+        const checkedTraumas = document.querySelectorAll('input[name="traumaHistory"]:checked');
+        let hasTrauma = false;
+        checkedTraumas.forEach(cb => {
+            if (cb.value !== 'No trauma history') hasTrauma = true;
+        });
+        timingGroup.style.display = hasTrauma ? 'block' : 'none';
+    }
+});
+
+// "None of the above" handler for PTSD symptom categories 
+window.handleNoneOption = window.handleNoneOption || function (noneCb) {
+    if (noneCb.checked) {
+        const group = noneCb.closest('.options-list');
+        group.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            if (cb !== noneCb) cb.checked = false;
+        });
+    }
+};
