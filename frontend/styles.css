@@ -403,4 +403,16 @@ input:focus, textarea:focus, select:focus {
     margin-top: 2rem;
 }
 
+.review-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.review-link-btn {
+    text-align: left;
+    padding: 0.85rem 1rem;
+}
+
 /* End of stylesheet */

@@ -62,22 +62,32 @@ function restoreSanitizedControls(changed) {
 
 // Guard to prevent double submission from multiple clicks
 let submitInProgress = false;
+let formSections = [];
+let currentPage = 0;
+let returnToFinalReview = false;
+let allowCurrentMedsNoProceed = false;
+let allowCurrentMedsBlankProceed = false;
+let allowPastMedsNoProceed = false;
+let allowPastMedsBlankProceed = false;
+let section8ReminderAcknowledged = false;
 document.addEventListener("DOMContentLoaded", () => {
-    // Pagination Logic
-    const sections = Array.from(document.querySelectorAll('.form-section'));
-    let currentPage = 0;
+    const formEl = document.getElementById('intakeForm');
+    window.restructureIntakeFlow && window.restructureIntakeFlow();
 
-    // Ensure we start with section 0
+    formSections = Array.from(document.querySelectorAll('.form-section'))
+        .filter(section => section.dataset.excludeFlow !== 'true');
+    document.querySelectorAll('input[required], textarea[required], select[required]').forEach(field => {
+        field.dataset.baseRequired = 'true';
+    });
     const btnNext = document.getElementById('btn-next');
     const btnPrev = document.getElementById('btn-prev');
     const btnSubmit = document.getElementById('btn-submit');
-    const formEl = document.getElementById('intakeForm');
+    const btnReturnReview = document.getElementById('btn-return-review');
     const progressText = document.getElementById('progress-text');
     const progressBar = document.getElementById('progress-bar');
 
-
     function updateView() {
-        sections.forEach((sec, idx) => {
+        formSections.forEach((sec, idx) => {
             const visible = (idx === currentPage);
             sec.style.display = visible ? 'block' : 'none';
 
@@ -95,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     } else {
                         if (ctrl.hasAttribute && ctrl.hasAttribute('required')) {
+                            if (ctrl.dataset && !ctrl.dataset.baseRequired) ctrl.dataset.baseRequired = 'true';
                             if (ctrl.dataset) ctrl.dataset.requiredWas = 'true';
                             ctrl.removeAttribute('required');
                         }
@@ -106,8 +117,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (btnPrev) btnPrev.disabled = (currentPage === 0);
+        if (btnReturnReview) {
+            const currentSectionId = formSections[currentPage]?.id;
+            btnReturnReview.style.display = (returnToFinalReview && currentSectionId !== 'section-26') ? 'inline-block' : 'none';
+        }
 
-        if (currentPage === sections.length - 1) {
+        if (currentPage === formSections.length - 1) {
             if (btnNext) btnNext.style.display = 'none';
             if (btnSubmit) btnSubmit.style.display = 'inline-block';
         } else {
@@ -115,52 +130,114 @@ document.addEventListener("DOMContentLoaded", () => {
             if (btnSubmit) btnSubmit.style.display = 'none';
         }
 
-        const perc = Math.round(((currentPage) / (sections.length - 1)) * 100);
+        const perc = formSections.length > 1 ? Math.round((currentPage / (formSections.length - 1)) * 100) : 100;
 
         if (progressBar && progressText) {
             progressBar.style.width = perc + '%';
-            progressText.innerText = `Step ${currentPage + 1} of ${sections.length}`;
+            progressText.innerText = `Step ${currentPage + 1} of ${formSections.length}`;
         }
 
+        window.syncIntakeConditionalState && window.syncIntakeConditionalState();
+        window.toggleMedDetails && window.toggleMedDetails();
         window.scrollTo(0, 0);
     }
 
-    if (sections.length > 0) {
+    function validateVisibleSection(section) {
+        if (!section) return true;
+
+        const requiredFields = Array.from(section.querySelectorAll('[required]')).filter(field => field.offsetParent !== null);
+        const validatedGroups = new Set();
+
+        for (const field of requiredFields) {
+            if ((field.type === 'radio' || field.type === 'checkbox') && field.name) {
+                if (validatedGroups.has(field.name)) continue;
+                validatedGroups.add(field.name);
+
+                const visibleGroup = Array.from(section.querySelectorAll(`input[name="${field.name}"]`))
+                    .filter(input => input.offsetParent !== null);
+                const isSingleRequiredCheckbox = field.type === 'checkbox' && visibleGroup.length === 1;
+
+                if (isSingleRequiredCheckbox) {
+                    if (!field.checked) {
+                        alert('Please fill out all required fields marked with * before proceeding.');
+                        field.focus();
+                        return false;
+                    }
+                    continue;
+                }
+
+                if (!visibleGroup.some(input => input.checked)) {
+                    alert('Please fill out all required fields marked with * before proceeding.');
+                    visibleGroup[0]?.focus();
+                    return false;
+                }
+                continue;
+            }
+
+            if (!field.checkValidity()) {
+                alert('Please fill out all required fields marked with * before proceeding.');
+                field.focus();
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    function skipPerinatalIfNeeded(direction) {
+        if (formSections[currentPage] && formSections[currentPage].id === 'section-14') {
+            const sexVal = document.querySelector('input[name="sexAssigned"]:checked')?.value;
+            if (sexVal === 'Male') currentPage += direction;
+        }
+    }
+
+    window.goToSectionById = function (sectionId, shouldReturnToReview = false) {
+        const targetIndex = formSections.findIndex(section => section.id === sectionId);
+        if (targetIndex === -1) return;
+        if (sectionId === 'section-26') {
+            returnToFinalReview = false;
+        } else if (shouldReturnToReview) {
+            returnToFinalReview = true;
+        }
+        currentPage = targetIndex;
+        updateView();
+    };
+
+    window.navigateForm = function (direction) {
+        const currentSection = formSections[currentPage];
+
+        if (direction === 1) {
+            if (!validateVisibleSection(currentSection)) return;
+
+            if (currentSection?.id === 'section-5b' && window.checkSection5bConsistency && !window.checkSection5bConsistency()) return;
+            if (currentSection?.id === 'section-6') {
+                if (window.checkSection6NoConfirmation && !window.checkSection6NoConfirmation()) return;
+                if (window.checkSection6Consistency && !window.checkSection6Consistency()) return;
+            }
+        }
+
+        currentPage += direction;
+        skipPerinatalIfNeeded(direction);
+
+        if (currentPage < 0) currentPage = 0;
+        if (currentPage >= formSections.length) currentPage = formSections.length - 1;
+
+        updateView();
+    };
+
+    if (btnReturnReview) {
+        btnReturnReview.addEventListener('click', () => {
+            window.goToSectionById('section-26');
+        });
+    }
+
+    if (formSections.length > 0) {
         updateView();
     }
 
     // Ensure the DOM form has noValidate set (double-safety for browsers)
     if (formEl) formEl.noValidate = true;
 
-    // Helper: disable hidden form controls (returns array of affected elements)
-    function disableHiddenControls(form) {
-        const affected = [];
-        const elements = Array.from(form.elements || []);
-        elements.forEach(el => {
-            try {
-                if (!el.name) return;
-                if (el.offsetParent === null && !el.disabled) {
-                    el.dataset._wasDisabled = 'false';
-                    el.disabled = true;
-                    affected.push(el);
-                }
-            } catch (err) { }
-        });
-        return affected;
-    }
-
-    function restoreControls(list) {
-        list.forEach(el => {
-            try {
-                if (el && el.dataset && typeof el.dataset._wasDisabled !== 'undefined') {
-                    el.disabled = (el.dataset._wasDisabled === 'true');
-                    delete el.dataset._wasDisabled;
-                }
-            } catch (err) { }
-        });
-    }
-
-    // Use the global sanitizer we exposed above to avoid duplicate logic.
     function sanitizeHiddenControls(form) {
         return window.sanitizeHiddenControls(form);
     }
@@ -189,21 +266,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Robust click -> submit binding: ensure clicking the Submit button triggers
     // the form's submit handler even in older browsers.
     if (btnSubmit && formEl) {
-        btnSubmit.addEventListener('click', (ev) => {
-            // Prevent multiple rapid clicks
+        btnSubmit.addEventListener('click', () => {
+            if (!validateVisibleSection(formSections[currentPage])) return;
             if (submitInProgress) return;
             submitInProgress = true;
-            // Disable hidden controls first so any browser validation (if
-            // accidentally triggered) won't try to focus them. Then dispatch
-            // a synthetic submit event which invokes our JS submit handler
-            // without running native validation.
-            // Temporarily remove `required` from hidden controls so native
-            // validation won't try to focus them. Do NOT disable elements
-            // because disabled elements are excluded from FormData.
             const sanitized = sanitizeHiddenControls(formEl);
 
-            // Prefer requestSubmit (respects form-associated buttons) when available
-            // because it's less likely to trigger native validation in odd ways.
             if (typeof formEl.requestSubmit === 'function') {
                 formEl.requestSubmit();
             } else {
@@ -211,72 +279,472 @@ document.addEventListener("DOMContentLoaded", () => {
                 formEl.dispatchEvent(submitEvent);
             }
 
-            // Restore the required attributes shortly after. The submit handler
-            // will also restore them in its finally block; this is a safety net
-            // in case something prevents the submit handler from running.
             setTimeout(() => restoreSanitizedControls(sanitized), 200);
-            // allow click again after a short delay; actual submit handler will
-            // clear submitInProgress when finished
             setTimeout(() => { submitInProgress = false; }, 1000);
         });
     }
 
-    window.navigateForm = function (direction) {
-        if (direction === 1) {
-            // basic validation of visible required fields
-            const currentSection = sections[currentPage];
-            const requiredFields = currentSection.querySelectorAll('[required]');
-            let isValid = true;
-            let firstInvalid = null;
-
-            // Only validate elements that are part of a visible logical flow
-            requiredFields.forEach(field => {
-                // If the field or its parent conditional block is hidden, ignore validation
-                if (field.offsetParent === null) return;
-
-                if (field.type === 'radio' || field.type === 'checkbox') {
-                    const groupName = field.name;
-                    const checked = currentSection.querySelector(`input[name="${groupName}"]:checked`);
-                    if (!checked) {
-                        isValid = false;
-                        if (!firstInvalid) firstInvalid = field;
-                    }
-                } else if (!field.value.trim()) {
-                    isValid = false;
-                    if (!firstInvalid) firstInvalid = field;
-                }
-            });
-
-            if (!isValid) {
-                alert('Please fill out all required fields marked with * before proceeding.');
-                if (firstInvalid) firstInvalid.focus();
-                return;
-            }
-        }
-
-        currentPage += direction;
-
-        // Skip Section 14 (Perinatal) if Male
-        if (sections[currentPage] && sections[currentPage].id === 'section-14') {
-            const sexVal = document.querySelector('input[name="sexAssigned"]:checked')?.value;
-            if (sexVal === 'Male') {
-                currentPage += direction; // skip it, continue in same direction
-            }
-        }
-
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= sections.length) currentPage = sections.length - 1;
-
-        updateView();
-    };
-
     // Initialize PHQ-9 and GAD-7 listeners specifically if they are <select> or <input type="radio">
-    // Since we output them as radios:
     const phq9Radios = document.querySelectorAll('input[name^="phq9_"]');
     phq9Radios.forEach(r => r.addEventListener('change', window.handlePhq9));
 
     const gad7Radios = document.querySelectorAll('input[name^="gad7_"]');
     gad7Radios.forEach(r => r.addEventListener('change', window.handleGad7));
+});
+
+function clearFieldGroupValues(container) {
+    if (!container) return;
+    container.querySelectorAll('input, textarea, select').forEach(el => {
+        if (el.type === 'radio' || el.type === 'checkbox') el.checked = false;
+        else el.value = '';
+    });
+}
+
+function setRequiredWithin(container, shouldRequire) {
+    if (!container) return;
+    container.querySelectorAll('[data-required-when-visible="true"], input, textarea, select').forEach(el => {
+        const managed = el.dataset.baseRequired === 'true' || el.dataset.requiredWhenVisible === 'true';
+        if (!managed) return;
+        if (shouldRequire) el.setAttribute('required', 'required');
+        else el.removeAttribute('required');
+    });
+}
+
+window.restructureIntakeFlow = function () {
+    const section7 = document.getElementById('section-7');
+    const section8 = document.getElementById('section-8');
+    const section9 = document.getElementById('section-9');
+    const section4 = document.getElementById('section-4');
+    const section10 = document.getElementById('section-10');
+    const section11 = document.getElementById('section-11');
+    const section12 = document.getElementById('section-12');
+    const section15 = document.getElementById('section-15');
+    const sudBlock = document.getElementById('sudScreeningBlock');
+    if (!section8) return;
+
+    if (section4) {
+        section4.dataset.excludeFlow = 'true';
+        section4.style.display = 'none';
+    }
+
+    if (section15 && section15.previousElementSibling !== section8) {
+        section8.insertAdjacentElement('afterend', section15);
+    }
+
+    if (section7 && section7.previousElementSibling !== section15) {
+        section15.insertAdjacentElement('afterend', section7);
+    }
+
+    if (section10 && section10.previousElementSibling !== section7) {
+        section7.insertAdjacentElement('afterend', section10);
+    }
+
+    if (section9 && !document.getElementById('combinedTraumaGroup')) {
+        const ptsdGroup = section8.querySelector('input[name="ptsdScreen"]')?.closest('.field-group');
+        const combinedGroup = document.createElement('div');
+        combinedGroup.className = 'field-group';
+        combinedGroup.id = 'combinedTraumaGroup';
+        combinedGroup.style.background = '#f9f9f9';
+        combinedGroup.style.padding = '20px';
+        combinedGroup.style.borderRadius = '5px';
+        combinedGroup.style.marginBottom = '20px';
+
+        const childrenToMove = Array.from(section9.children).slice(1);
+        const intro = document.createElement('div');
+        intro.innerHTML = '<h3>TRAUMA HISTORY AND POST TRAUMATIC STRESS DISORDER SCREENING</h3>';
+        combinedGroup.appendChild(intro);
+        childrenToMove.forEach(child => combinedGroup.appendChild(child));
+
+        if (ptsdGroup) {
+            section8.insertBefore(combinedGroup, ptsdGroup);
+        } else {
+            section8.appendChild(combinedGroup);
+        }
+
+        section9.remove();
+    }
+
+    if (sudBlock && !document.getElementById('section-sud-screening')) {
+        const sudSection = document.createElement('div');
+        sudSection.className = 'form-section';
+        sudSection.id = 'section-sud-screening';
+        const title = document.createElement('h2');
+        title.className = 'section-title';
+        title.textContent = 'SUBSTANCE USE DISORDER SCREENING';
+        sudSection.appendChild(title);
+        sudSection.appendChild(sudBlock);
+
+        if (section12) {
+            section12.insertAdjacentElement('afterend', sudSection);
+        } else if (section11) {
+            section11.insertAdjacentElement('afterend', sudSection);
+        }
+    }
+
+    const desiredOrder = [
+        'section-intro',
+        'section-1',
+        'section-2',
+        'section-3',
+        'section-5a',
+        'section-5b',
+        'section-6',
+        'section-8',
+        'section-15',
+        'section-7',
+        'section-16',
+        'section-16b',
+        'section-17',
+        'section-10',
+        'section-11',
+        'section-12',
+        'section-sud-screening',
+        'section-13',
+        'section-14',
+        'section-18',
+        'section-19',
+        'section-20',
+        'section-21',
+        'section-22',
+        'section-23',
+        'section-24',
+        'section-25',
+        'section-26'
+    ];
+
+    const form = document.getElementById('intakeForm');
+    const navigation = form?.querySelector('.form-navigation');
+    desiredOrder.forEach(id => {
+        const section = document.getElementById(id);
+        if (section && form) {
+            if (navigation) {
+                form.insertBefore(section, navigation);
+            } else {
+                form.appendChild(section);
+            }
+        }
+    });
+};
+
+window.toggleInsuranceSection = function () {
+    const useInsurance = document.querySelector('input[name="useInsuranceForVisits"]:checked')?.value;
+    const insuranceFields = document.getElementById('insuranceFields');
+    const selfPayReminder = document.getElementById('selfPayReminder');
+    const showInsurance = useInsurance === 'Yes';
+
+    if (insuranceFields) {
+        insuranceFields.style.display = showInsurance ? 'block' : 'none';
+        insuranceFields.querySelectorAll('input, select, textarea').forEach(field => {
+            if (field.dataset.baseRequired === 'true' || field.dataset.requiredWas === 'true') {
+                if (showInsurance) field.setAttribute('required', 'required');
+                else field.removeAttribute('required');
+            }
+        });
+        if (!showInsurance) clearFieldGroupValues(insuranceFields);
+    }
+
+    if (selfPayReminder) selfPayReminder.style.display = useInsurance === 'No' ? 'block' : 'none';
+};
+
+window.toggleControlledMedDetails = function () {
+    const val = document.querySelector('input[name="hasControlledMeds"]:checked')?.value;
+    const details = document.getElementById('controlledMedDetails');
+    const showDetails = val === 'Yes';
+    if (!details) return;
+
+    details.style.display = showDetails ? 'block' : 'none';
+    details.querySelectorAll('input, textarea, select').forEach(field => {
+        if (showDetails) field.setAttribute('required', 'required');
+        else field.removeAttribute('required');
+    });
+
+    if (!showDetails) clearFieldGroupValues(details);
+};
+
+window.togglePastMedicationHistory = function () {
+    const val = document.querySelector('input[name="pastPsychMedsScreen"]:checked')?.value;
+    const container = document.getElementById('pastMedicationLists');
+    if (!container) return;
+    const show = val === 'Yes' || val === 'Unsure';
+    container.style.display = show ? 'block' : 'none';
+};
+
+window.togglePastPsychDetail = function (detailId, shouldShow) {
+    const detailGroup = document.getElementById(detailId);
+    if (!detailGroup) return;
+
+    detailGroup.style.display = shouldShow ? 'block' : 'none';
+    const detailField = detailGroup.querySelector('textarea, input, select');
+    if (detailField) {
+        if (shouldShow) detailField.setAttribute('required', 'required');
+        else detailField.removeAttribute('required');
+    }
+
+    if (!shouldShow) clearFieldGroupValues(detailGroup);
+};
+
+window.togglePastPsychTherapyDetails = function (shouldShow) {
+    const therapyGroup = document.getElementById('pastPsychTherapyDetails');
+    if (!therapyGroup) return;
+
+    therapyGroup.style.display = shouldShow ? 'block' : 'none';
+
+    const therapyTypeInputs = Array.from(therapyGroup.querySelectorAll('input[name="pastPsychTherapyType"]'));
+    therapyTypeInputs.forEach((input, index) => {
+        if (shouldShow && index === 0) input.setAttribute('required', 'required');
+        else input.removeAttribute('required');
+    });
+
+    therapyGroup.querySelectorAll('input[name="pastPsychTherapyHelpful"], input[name="pastPsychTherapyDuration"]').forEach(input => {
+        if (shouldShow) input.setAttribute('required', 'required');
+        else input.removeAttribute('required');
+    });
+
+    const therapyOtherCheckbox = document.getElementById('pastPsychTherapyTypeOther');
+    const therapyOtherText = document.getElementById('pastPsychTherapyTypeOtherText');
+    if (therapyOtherText) {
+        therapyOtherText.style.display = therapyOtherCheckbox?.checked && shouldShow ? 'block' : 'none';
+        if (therapyOtherCheckbox?.checked && shouldShow) therapyOtherText.setAttribute('required', 'required');
+        else therapyOtherText.removeAttribute('required');
+    }
+
+    const endedOtherCheckbox = document.getElementById('pastPsychTherapyEndedOther');
+    const endedOtherText = document.getElementById('pastPsychTherapyEndedOtherText');
+    if (endedOtherText) {
+        endedOtherText.style.display = endedOtherCheckbox?.checked && shouldShow ? 'block' : 'none';
+        if (endedOtherCheckbox?.checked && shouldShow) endedOtherText.setAttribute('required', 'required');
+        else endedOtherText.removeAttribute('required');
+    }
+
+    if (!shouldShow) clearFieldGroupValues(therapyGroup);
+};
+
+window.syncPastPsychHistory = function () {
+    const yesNoDetails = [
+        { name: 'pastPsychDiagnosis', detailId: 'pastPsychDiagnosisDetails' },
+        { name: 'pastPsychHosp', detailId: 'pastPsychHospDetails' },
+        { name: 'pastPsychIOP', detailId: 'pastPsychIOPDetails' },
+        { name: 'pastPsychSuicidalIdeation', detailId: 'pastPsychSuicidalIdeationDetails' },
+        { name: 'pastPsychSuicideAttempt', detailId: 'pastPsychSuicideAttemptDetails' },
+        { name: 'pastPsychSelfHarm', detailId: 'pastPsychSelfHarmDetails' }
+    ];
+
+    yesNoDetails.forEach(item => {
+        const selectedValue = document.querySelector(`input[name="${item.name}"]:checked`)?.value;
+        window.togglePastPsychDetail(item.detailId, selectedValue === 'Yes');
+    });
+
+    const therapyValue = document.querySelector('input[name="pastPsychTherapy"]:checked')?.value;
+    window.togglePastPsychTherapyDetails(therapyValue === 'Yes (current)' || therapyValue === 'Yes (past)');
+};
+
+window.toggleEatingChecklist = function () {
+    const val = document.querySelector('input[name="eatingScreen"]:checked')?.value;
+    const container = document.getElementById('eatingChecklist');
+    if (!container) return;
+    const show = val === 'Yes' || val === 'Unsure';
+    container.style.display = show ? 'block' : 'none';
+    if (!show) clearFieldGroupValues(container);
+};
+
+window.updateTwoQuestionScreeners = function () {
+    const pairs = [
+        { first: 'bipolarProb', second: 'bipolarPeriod', targetId: 'bipolarChecklist' },
+        { first: 'gadWorry', second: 'gadMultiple', targetId: 'gadChecklist' }
+    ];
+
+    pairs.forEach(pair => {
+        const first = document.querySelector(`input[name="${pair.first}"]:checked`)?.value;
+        const second = document.querySelector(`input[name="${pair.second}"]:checked`)?.value;
+        const target = document.getElementById(pair.targetId);
+        if (!target) return;
+
+        const positive = [first, second].some(value => value === 'Yes' || value === 'Unsure' || value === 'Substance');
+        const bothNo = first === 'No' && second === 'No';
+        target.style.display = positive && !bothNo ? 'block' : 'none';
+
+        if (!positive || bothNo) clearFieldGroupValues(target);
+    });
+};
+
+window.updateTraumaFollowup = function () {
+    const traumaOptions = Array.from(document.querySelectorAll('input[name="traumaHistory"]'));
+    if (!traumaOptions.length) return;
+
+    const noTrauma = traumaOptions.find(option => option.value === 'No trauma history');
+    const anyTraumaSelected = traumaOptions.some(option => option.checked && option.value !== 'No trauma history');
+
+    if (noTrauma?.checked) {
+        traumaOptions.forEach(option => {
+            if (option !== noTrauma) option.checked = false;
+        });
+    } else if (anyTraumaSelected && noTrauma) {
+        noTrauma.checked = false;
+    }
+
+    const traumaTimingGroup = document.getElementById('traumaTimingGroup');
+    const discussFieldGroup = document.querySelector('input[name="traumaDiscussPref"]')?.closest('.field-group');
+
+    if (traumaTimingGroup) {
+        traumaTimingGroup.style.display = anyTraumaSelected ? 'block' : 'none';
+        const timingInputs = traumaTimingGroup.querySelectorAll('input');
+        timingInputs.forEach((input, index) => {
+            if (anyTraumaSelected && index === 0) input.setAttribute('required', 'required');
+            else input.removeAttribute('required');
+        });
+        if (!anyTraumaSelected) clearFieldGroupValues(traumaTimingGroup);
+    }
+
+    if (discussFieldGroup) {
+        discussFieldGroup.style.display = anyTraumaSelected ? 'block' : 'none';
+        discussFieldGroup.querySelectorAll('input').forEach(input => {
+            if (anyTraumaSelected) input.setAttribute('required', 'required');
+            else input.removeAttribute('required');
+        });
+        if (!anyTraumaSelected) clearFieldGroupValues(discussFieldGroup);
+    }
+};
+
+window.updateChecklistFollowups = function () {
+    const configs = [
+        { containerId: 'mddChecklist', names: ['mddSymp'], followupStart: 2 },
+        { containerId: 'ocdChecklist', names: ['ocdSymp'], followupStart: 5 },
+        { containerId: 'ocpdChecklist', names: ['ocpdSymp'], followupStart: 2 },
+        { containerId: 'bpdChecklist', names: ['bpdSymp'], followupStart: 2 },
+        { containerId: 'adhdChecklist', names: ['adhdInattSymp', 'adhdHypSymp'], followupStart: 3 },
+        { containerId: 'autismChecklist', names: ['autismSocialSymp', 'autismPatternsSymp', 'autismSensorySymp'], followupStart: 4 }
+    ];
+
+    configs.forEach(config => {
+        const container = document.getElementById(config.containerId);
+        if (!container) return;
+
+        const hasSymptoms = config.names.some(name =>
+            Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).some(input => !input.classList.contains('none-option'))
+        );
+
+        Array.from(container.children).slice(config.followupStart).forEach(child => {
+            child.style.display = hasSymptoms ? 'block' : 'none';
+            child.querySelectorAll('input, textarea, select').forEach(field => {
+                if (field.type === 'radio') {
+                    if (hasSymptoms) field.setAttribute('required', 'required');
+                    else field.removeAttribute('required');
+                } else if (field.dataset.baseRequired === 'true' || field.dataset.requiredWas === 'true') {
+                    if (hasSymptoms) field.setAttribute('required', 'required');
+                    else field.removeAttribute('required');
+                }
+            });
+            if (!hasSymptoms) clearFieldGroupValues(child);
+        });
+    });
+};
+
+window.updateChecklistSelectionRequirements = function () {
+    const checkboxGroups = [
+        'mddSymp',
+        'ocdSymp',
+        'ocpdSymp',
+        'bpdSymp',
+        'adhdInattSymp',
+        'adhdHypSymp',
+        'autismSocialSymp',
+        'autismPatternsSymp',
+        'autismSensorySymp',
+        'eatingSymp'
+    ];
+
+    checkboxGroups.forEach(name => {
+        const visibleInputs = Array.from(document.querySelectorAll(`input[name="${name}"]`))
+            .filter(input => input.offsetParent !== null);
+        visibleInputs.forEach((input, index) => {
+            if (index === 0) input.setAttribute('required', 'required');
+            else input.removeAttribute('required');
+        });
+    });
+};
+
+window.updatePersonalityFollowup = function () {
+    const followupGroup = document.getElementById('personalityFollowupGroup');
+    if (!followupGroup) return;
+
+    const hasPositivePattern = Array.from(document.querySelectorAll('input[name="perPattern"]:checked'))
+        .some(input => !input.classList.contains('none-option'));
+
+    followupGroup.style.display = hasPositivePattern ? 'block' : 'none';
+    followupGroup.querySelectorAll('input[type="radio"]').forEach(input => {
+        if (hasPositivePattern) input.setAttribute('required', 'required');
+        else input.removeAttribute('required');
+    });
+
+    if (!hasPositivePattern) clearFieldGroupValues(followupGroup);
+};
+
+window.updateFamilyPsychHistoryFollowup = function () {
+    const checkboxes = document.querySelectorAll('input[name="famConditions"]');
+    const followupGroup = document.getElementById('famConditionDetailsGroup');
+    const followupTextarea = document.getElementById('famConditionDetailsText');
+    if (!followupGroup || checkboxes.length === 0) return;
+
+    const hasReportableHistory = Array.from(checkboxes).some(cb =>
+        cb.checked && cb.value !== 'None of the above' && cb.value !== 'Unknown'
+    );
+
+    followupGroup.style.display = hasReportableHistory ? 'block' : 'none';
+
+    if (followupTextarea) {
+        if (hasReportableHistory) {
+            followupTextarea.setAttribute('required', 'required');
+        } else {
+            followupTextarea.removeAttribute('required');
+            followupTextarea.value = '';
+        }
+    }
+};
+
+window.syncIntakeConditionalState = function () {
+    document.querySelectorAll('[required]').forEach(field => {
+        if (!field.dataset.baseRequired) field.dataset.baseRequired = 'true';
+    });
+
+    window.toggleInsuranceSection && window.toggleInsuranceSection();
+    window.toggleControlledMedDetails && window.toggleControlledMedDetails();
+    window.toggleCurrentMedsList && window.toggleCurrentMedsList();
+    window.togglePastMedicationHistory && window.togglePastMedicationHistory();
+    window.syncPastPsychHistory && window.syncPastPsychHistory();
+    window.toggleEatingChecklist && window.toggleEatingChecklist();
+    window.updateTwoQuestionScreeners && window.updateTwoQuestionScreeners();
+    window.updateChecklistFollowups && window.updateChecklistFollowups();
+    window.updateChecklistSelectionRequirements && window.updateChecklistSelectionRequirements();
+    window.updateTraumaFollowup && window.updateTraumaFollowup();
+    window.updatePersonalityFollowup && window.updatePersonalityFollowup();
+    window.updateFamilyPsychHistoryFollowup && window.updateFamilyPsychHistoryFollowup();
+    window.updateLegalHistoryFollowup && window.updateLegalHistoryFollowup();
+    window.handleSafetyLogic && window.handleSafetyLogic();
+    window.toggleSudDetails && window.toggleSudDetails();
+    window.showCogDetails && window.showCogDetails();
+};
+
+document.addEventListener('change', (event) => {
+    if (event.target.name === 'useInsuranceForVisits') window.toggleInsuranceSection();
+    if (event.target.name === 'hasControlledMeds') window.toggleControlledMedDetails();
+    if (event.target.name === 'pastPsychMedsScreen') window.togglePastMedicationHistory();
+    if (['pastPsychDiagnosis', 'pastPsychHosp', 'pastPsychIOP', 'pastPsychSuicidalIdeation', 'pastPsychSuicideAttempt', 'pastPsychSelfHarm', 'pastPsychTherapy'].includes(event.target.name)) {
+        window.syncPastPsychHistory();
+    }
+    if (event.target.id === 'pastPsychTherapyTypeOther' || event.target.id === 'pastPsychTherapyEndedOther') {
+        window.syncPastPsychHistory();
+    }
+    if (event.target.name === 'eatingScreen') window.toggleEatingChecklist();
+    if (event.target.name === 'bipolarProb' || event.target.name === 'bipolarPeriod' || event.target.name === 'gadWorry' || event.target.name === 'gadMultiple') {
+        window.updateTwoQuestionScreeners();
+    }
+    if (['mddSymp', 'ocdSymp', 'ocpdSymp', 'bpdSymp', 'adhdInattSymp', 'adhdHypSymp', 'autismSocialSymp', 'autismPatternsSymp', 'autismSensorySymp'].includes(event.target.name)) {
+        window.updateChecklistFollowups();
+    }
+    if (event.target.name === 'perPattern') window.updatePersonalityFollowup();
+    if (event.target.name === 'famConditions') window.updateFamilyPsychHistoryFollowup();
+    if (event.target.name === 'traumaHistory') window.updateTraumaFollowup();
+    if (event.target.name === 'sudScreen' || event.target.name === 'sudSymp') window.toggleSudDetails();
 });
 
 
@@ -426,32 +894,32 @@ window.handleGad7 = function () {
 };
 
 window.toggleSudDetails = function () {
-    const sudScreenYes = document.querySelector('input[name="sudScreen"][value="Yes"]')?.checked;
-    const sympCheckboxes = document.querySelectorAll('input[name="sudSymp"]:checked');
+    const sudScreenVal = document.querySelector('input[name="sudScreen"]:checked')?.value;
     const conditionalGroup = document.getElementById('sudConditionalGroup');
-    const hasAnyChecked = sympCheckboxes.length > 0;
+    const checklist = document.getElementById('sudChecklist');
+    const showSection = sudScreenVal === 'Yes' || sudScreenVal === 'Unsure';
 
-    // Show conditional group if "Yes" is selected AND at least one symptom is checked
+    if (checklist) {
+        checklist.style.display = showSection ? 'block' : 'none';
+        if (!showSection) clearFieldGroupValues(checklist);
+    }
+
     if (conditionalGroup) {
-        const isShown = sudScreenYes && hasAnyChecked;
-        conditionalGroup.style.display = isShown ? 'block' : 'none';
+        conditionalGroup.style.display = showSection ? 'block' : 'none';
 
-        // Handle required state for fields in the conditional group
-        const requiredFields = conditionalGroup.querySelectorAll('input[type="radio"], input[name="sudSubstances"]');
-        requiredFields.forEach(f => {
-            if (isShown) {
-                if (f.name === 'sudSubstances') {
-                    // For checkboxes, we often set required on the first one as a hint/validation trigger
-                    // But standard HTML required on checkboxes means THAT checkbox MUST be checked.
-                    // Better to handle this in custom validation if needed. 
-                    // For now, I'll use the radio pattern for radio groups.
-                } else {
-                    f.setAttribute('required', 'required');
-                }
-            } else {
-                f.removeAttribute('required');
-            }
+        const timeframeInputs = conditionalGroup.querySelectorAll('input[name="sudTimeframe"]');
+        timeframeInputs.forEach(input => {
+            if (showSection) input.setAttribute('required', 'required');
+            else input.removeAttribute('required');
         });
+
+        const substanceInputs = conditionalGroup.querySelectorAll('input[name="sudSubstances"]');
+        substanceInputs.forEach((input, index) => {
+            if (showSection && index === 0) input.setAttribute('required', 'required');
+            else input.removeAttribute('required');
+        });
+
+        if (!showSection) clearFieldGroupValues(conditionalGroup);
     }
 };
 
@@ -506,15 +974,13 @@ window.handleSafetyLogic = function () {
     }
 };
 
-let forceSubmit = false;
-
 window.closeConsistencyModal = function () {
     const modal = document.getElementById('consistencyReminderModal');
     if (modal) modal.style.display = 'none';
 };
 
 window.confirmConsistencyAndSubmit = function () {
-    forceSubmit = true;
+    section8ReminderAcknowledged = true;
     window.closeConsistencyModal();
     document.getElementById('intakeForm')?.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
 };
@@ -524,14 +990,17 @@ window.closeMedicationModal = function () {
     if (modal) modal.style.display = 'none';
 };
 
-window.confirmMedicationAndSubmit = function () {
-    forceSubmit = true;
+window.confirmPastMedsBlank = function () {
+    allowPastMedsBlankProceed = true;
     window.closeMedicationModal();
-    document.getElementById('intakeForm')?.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+    window.navigateForm && window.navigateForm(1);
 };
 
 function checkSection6Consistency() {
-    if (forceSubmit) return true;
+    if (allowPastMedsBlankProceed) {
+        allowPastMedsBlankProceed = false;
+        return true;
+    }
 
     const screeningVal = document.querySelector('input[name="pastPsychMedsScreen"]:checked')?.value;
     if (screeningVal === 'Yes' || screeningVal === 'Unsure') {
@@ -553,49 +1022,45 @@ function checkSection6Consistency() {
 }
 
 function checkSection8Consistency() {
-    if (forceSubmit) return true;
+    if (section8ReminderAcknowledged) return true;
 
-    // Screening radio groups in Section 8 (16 groups)
-    const screeningFields = [
-        { name: 'bipolarProb', neg: ['No', 'Substance'] },
-        { name: 'bipolarPeriod', neg: ['No', 'Substance'] },
-        { name: 'gadWorry', neg: ['No', 'Substance'] },
-        { name: 'gadMultiple', neg: ['No', 'Substance'] },
-        { name: 'panicScreen', neg: ['No', 'Substance'] },
-        { name: 'socialAnxScreen', neg: ['No', 'Substance'] },
-        { name: 'ptsdScreen', neg: ['No', 'Substance'] },
-        { name: 'psychosisScreen', neg: ['No', 'Substance'] },
-        { name: 'eatingScreen', neg: ['No', 'Substance'] },
-        { name: 'sudScreen', neg: ['No', 'Unsure'] }
+    const section8 = document.getElementById('section-8');
+    if (!section8) return true;
+
+    const anyPositive = name =>
+        Array.from(section8.querySelectorAll(`input[name="${name}"]:checked`)).some(input => !input.classList.contains('none-option'));
+    const radioValue = name => section8.querySelector(`input[name="${name}"]:checked`)?.value;
+    const positiveRadio = name => {
+        const value = radioValue(name);
+        return value === 'Yes' || value === 'Unsure' || value === 'Substance';
+    };
+
+    const categories = [
+        { name: 'Depression', positive: anyPositive('mddSymp') },
+        { name: 'Bipolar / BPAD', positive: positiveRadio('bipolarProb') || positiveRadio('bipolarPeriod') },
+        { name: 'GAD', positive: positiveRadio('gadWorry') || positiveRadio('gadMultiple') },
+        { name: 'Panic', positive: positiveRadio('panicScreen') },
+        { name: 'Social Anxiety', positive: positiveRadio('socialAnxScreen') },
+        { name: 'PTSD', positive: radioValue('ptsdScreen') === 'Yes' || radioValue('ptsdScreen') === 'Unsure' },
+        { name: 'OCD', positive: anyPositive('ocdSymp') },
+        { name: 'OCPD', positive: anyPositive('ocpdSymp') },
+        { name: 'Psychosis', positive: positiveRadio('psychosisScreen') },
+        { name: 'Borderline Personality Disorder', positive: anyPositive('bpdSymp') },
+        { name: 'ADHD', positive: anyPositive('adhdInattSymp') || anyPositive('adhdHypSymp') },
+        { name: 'Autism Spectrum Disorder', positive: anyPositive('autismSocialSymp') || anyPositive('autismPatternsSymp') || anyPositive('autismSensorySymp') },
+        { name: 'Eating Disorder', positive: positiveRadio('eatingScreen') },
+        { name: 'Personality Patterns', positive: anyPositive('perPattern') }
     ];
 
-    let negativeCount = 0;
-    screeningFields.forEach(field => {
-        const val = document.querySelector(`input[name="${field.name}"]:checked`)?.value;
-        // Consider unanswered or negative responses
-        if (!val || field.neg.includes(val) || val.includes('No')) {
-            negativeCount++;
-        }
-    });
+    const positiveCategories = categories.filter(category => category.positive);
+    const shouldShowReminder = positiveCategories.length === 0 || positiveCategories.length === 1;
 
-    // Personality Patterns Checkbox Group (Count as 1 screener)
-    const perPatterns = document.querySelectorAll('input[name="perPattern"]:checked');
-    const hasPersonalityPatterns = perPatterns.length > 0 && Array.from(perPatterns).every(p => !p.classList.contains('none-option'));
+    if (!shouldShowReminder) return true;
 
-    if (!hasPersonalityPatterns) {
-        negativeCount++;
-    }
-
-    const totalItems = screeningFields.length + 1; // 17 items
-    const negPercentage = (negativeCount / totalItems) * 100;
-
-    // Threshold: more than 85% negative
-    if (negPercentage >= 85) {
-        const modal = document.getElementById('consistencyReminderModal');
-        if (modal) {
-            modal.style.display = 'flex';
-            return false;
-        }
+    const modal = document.getElementById('consistencyReminderModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        return false;
     }
 
     return true;
@@ -603,11 +1068,7 @@ function checkSection8Consistency() {
 
 document.getElementById('intakeForm')?.addEventListener('submit', async function (e) {
     e.preventDefault();
-
-    // Check Section 6 consistency first
-    if (!checkSection6Consistency()) {
-        return;
-    }
+    if (!document.getElementById('finalConfirmation')?.checked) return;
 
     // Check Section 8 consistency before proceeding
     if (!checkSection8Consistency()) {
@@ -682,7 +1143,7 @@ document.getElementById('intakeForm')?.addEventListener('submit', async function
 
         if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Submit Questionnaire';
+            submitBtn.innerHTML = 'Submit Intake Form';
         }
     }
 });
@@ -768,18 +1229,6 @@ window.toggleMedDetails = function () {
             const safeId = med.id.replace(/[^a-zA-Z0-9]/g, '_');
             wrapper.querySelector('.med-title-placeholder').innerText = med.name;
 
-            // Current taking radios
-            wrapper.querySelectorAll('.current-radio-yes, .current-radio-no').forEach(r => {
-                r.name = `med_current_${safeId}`;
-                r.setAttribute('required', 'required');
-            });
-
-            // Help / benefit radios
-            wrapper.querySelectorAll('.help-radio-yes, .help-radio-no, .help-radio-partial, .help-radio-unsure').forEach(r => {
-                r.name = `med_help_${safeId}`;
-                r.setAttribute('required', 'required');
-            });
-
             // Length radios (required)
             wrapper.querySelectorAll('.length-radio').forEach(r => {
                 r.name = `med_length_${safeId}`;
@@ -795,14 +1244,11 @@ window.toggleMedDetails = function () {
                 lengthOtherInput.name = `med_length_other_${safeId}`;
             }
 
-            // Dose
-            const doseEl = wrapper.querySelector('.med-dose');
-            if (doseEl) doseEl.name = `med_dose_${safeId}`;
-
             // Reasons (checkboxes) - allow multiple, name as array
             const stopReasons = wrapper.querySelectorAll('.med-stop-reason');
             stopReasons.forEach(cb => {
                 cb.name = `med_stop_${safeId}[]`;
+                cb.setAttribute('required', 'required');
             });
 
             // 'Other' text for stop reasons
@@ -833,16 +1279,15 @@ window.toggleMedDetails = function () {
             const sideEffectsContainer = wrapper.querySelector('.side-effects-container');
             const intolerableCb = Array.from(stopReasons).find(c => (c.value && c.value.toLowerCase().includes('intolerable')) );
             const updateSeVisibility = () => {
-                if (intolerableCb && intolerableCb.checked) { if (sideEffectsContainer) sideEffectsContainer.style.display = 'block'; }
-                else { if (sideEffectsContainer) sideEffectsContainer.style.display = 'none'; }
+                if (intolerableCb && intolerableCb.checked) {
+                    if (sideEffectsContainer) sideEffectsContainer.style.display = 'block';
+                } else {
+                    if (sideEffectsContainer) sideEffectsContainer.style.display = 'none';
+                }
             };
             stopReasons.forEach(cb => cb.addEventListener('change', updateSeVisibility));
             // initialize
             updateSeVisibility();
-
-            // Additional notes
-            const notes = wrapper.querySelector('.med-additional-notes');
-            if (notes) notes.name = `med_notes_${safeId}`;
 
             container.appendChild(wrapper);
         } else if (block) {
@@ -886,12 +1331,23 @@ window.toggleCurrentMedsList = function () {
     const val = document.querySelector('input[name="takingCurrentMeds"]:checked')?.value;
     const container = document.getElementById('currentMedsContainer');
     if (container) {
-        container.style.display = (val === 'Yes' || val === 'Unsure') ? 'block' : 'none';
+        const show = (val === 'Yes' || val === 'Unsure');
+        container.style.display = show ? 'block' : 'none';
+        if (!show) clearFieldGroupValues(container);
     }
 };
 
 // Section 5B: Check if "No" or blank fields need confirmation
 window.checkSection5bConsistency = function () {
+    if (allowCurrentMedsNoProceed) {
+        allowCurrentMedsNoProceed = false;
+        return true;
+    }
+    if (allowCurrentMedsBlankProceed) {
+        allowCurrentMedsBlankProceed = false;
+        return true;
+    }
+
     const val = document.querySelector('input[name="takingCurrentMeds"]:checked')?.value;
     if (val === 'No') {
         const modal = document.getElementById('currentMedsConfirmationModal');
@@ -906,6 +1362,8 @@ window.checkSection5bConsistency = function () {
         medNames.forEach(input => {
             if (input.value && input.value.trim()) hasAnyMed = true;
         });
+        const extraMeds = document.querySelector('textarea[name="extraCurrPsychMeds"]')?.value.trim();
+        if (extraMeds) hasAnyMed = true;
         if (!hasAnyMed) {
             const modal = document.getElementById('currentMedsReminderModal');
             if (modal) {
@@ -919,6 +1377,11 @@ window.checkSection5bConsistency = function () {
 
 // Section 6: Check if "No" selected needs confirmation 
 window.checkSection6NoConfirmation = function () {
+    if (allowPastMedsNoProceed) {
+        allowPastMedsNoProceed = false;
+        return true;
+    }
+
     const val = document.querySelector('input[name="pastPsychMedsScreen"]:checked')?.value;
     if (val === 'No') {
         const modal = document.getElementById('pastMedsConfirmationModal');
@@ -932,13 +1395,16 @@ window.checkSection6NoConfirmation = function () {
 
 // Section 5B/6 confirmation callbacks
 window.confirmCurrentMedsNo = function () {
-    // Confirmed - just allow proceed
+    allowCurrentMedsNoProceed = true;
+    window.navigateForm && window.navigateForm(1);
 };
 window.confirmCurrentMedsBlank = function () {
-    // Confirmed - just allow proceed
+    allowCurrentMedsBlankProceed = true;
+    window.navigateForm && window.navigateForm(1);
 };
 window.confirmPastMedsNo = function () {
-    // Confirmed - just allow proceed
+    allowPastMedsNoProceed = true;
+    window.navigateForm && window.navigateForm(1);
 };
 
 // Section 15: Show details field when ANY cognitive question is Yes
@@ -953,20 +1419,6 @@ window.showCogDetails = function () {
         grp.style.display = (memory || conc || conf || perc || neuro) ? 'block' : 'none';
     }
 };
-
-// Trauma timing toggle: show timing question when ANY trauma type is checked (except "No trauma history")
-document.addEventListener('change', function (e) {
-    if (e.target.name === 'traumaHistory') {
-        const timingGroup = document.getElementById('traumaTimingGroup');
-        if (!timingGroup) return;
-        const checkedTraumas = document.querySelectorAll('input[name="traumaHistory"]:checked');
-        let hasTrauma = false;
-        checkedTraumas.forEach(cb => {
-            if (cb.value !== 'No trauma history') hasTrauma = true;
-        });
-        timingGroup.style.display = hasTrauma ? 'block' : 'none';
-    }
-});
 
 function updateLegalHistoryFollowup() {
     const checkboxes = document.querySelectorAll('.legal-history-option');
