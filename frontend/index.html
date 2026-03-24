@@ -91,10 +91,10 @@
                         <input type="text" name="emergencyContactRel" required>
                     </div>
                     <div class="field-group">
-                        <label>Emergency Contact Phone:</label>
+                        <label>Emergency Contact Phone: <span class="required-mark">*</span></label>
                         <input type="tel" name="emergencyContactPhone" pattern="[0-9\-\+\s\(\)]*"
                             oninput="this.value = this.value.replace(/[^0-9\-\+\s\(\)]/g, '')"
-                            title="Please enter a valid phone number">
+                            title="Please enter a valid phone number" required>
                     </div>
 
                     <hr style="margin: 20px 0; border: 0; border-top: 1px solid #dcdde1;">
@@ -3277,31 +3277,6 @@
                             </div>
                         </div>
 
-                        <div class="field-group">
-                            <label>When did your mental health symptoms first begin? <span
-                                    class="required-mark">*</span></label>
-                            <div class="options-list">
-                                <div class="option-item"><input type="radio" name="symptomsOnset" value="Childhood"
-                                        required> <label>During childhood (before age 12)</label></div>
-                                <div class="option-item"><input type="radio" name="symptomsOnset" value="Adolescence">
-                                    <label>During adolescence (ages 12–17)</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="symptomsOnset" value="Adulthood">
-                                    <label>During adulthood</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="symptomsOnset"
-                                        value="After stressful event"> <label>After a specific stressful or traumatic
-                                        life
-                                        event</label></div>
-                                <div class="option-item"><input type="radio" name="symptomsOnset"
-                                        value="Multiple points">
-                                    <label>Symptoms have occurred at multiple points in life</label>
-                                </div>
-                                <div class="option-item"><input type="radio" name="symptomsOnset" value="Unsure">
-                                    <label>Unsure</label>
-                                </div>
-                            </div>
-                    </div>
                 </div>
 
                 <!-- SECTION 10 -->
@@ -3362,13 +3337,21 @@
                         <div class="field-group">
                             <label>Have you ever made a suicide plan? <span class="required-mark">*</span></label>
                             <div class="options-list">
-                                <div class="option-item"><input type="radio" name="suicidePlan" value="Yes" required>
+                                <div class="option-item"><input type="radio" name="suicidePlan" value="Yes" required
+                                        onclick="window.toggleSuicidePlanDetails && window.toggleSuicidePlanDetails()">
                                     <label>Yes</label>
                                 </div>
-                                <div class="option-item"><input type="radio" name="suicidePlan" value="No">
+                                <div class="option-item"><input type="radio" name="suicidePlan" value="No"
+                                        onclick="window.toggleSuicidePlanDetails && window.toggleSuicidePlanDetails()">
                                     <label>No</label>
                                 </div>
                             </div>
+                        </div>
+
+                        <div id="suicidePlanDetailsGroup" style="display:none;" class="conditional-field field-group">
+                            <label>Please share any details you feel comfortable providing (for example approximate
+                                year, method, hospitalization, or circumstances):</label>
+                            <textarea name="suicidePlanText"></textarea>
                         </div>
 
                         <div class="field-group">
@@ -3621,6 +3604,25 @@
                                         value="Not applicable"> <label>Not applicable</label></div>
                             </div>
                         </div>
+                        <div class="field-group border-left-pad">
+                            <label>Reason for use (select any):</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="checkbox" name="alcoholReason" value="Pain"> <label>Pain</label></div>
+                                <div class="option-item"><input type="checkbox" name="alcoholReason" value="Anxiety"> <label>Anxiety</label></div>
+                                <div class="option-item"><input type="checkbox" name="alcoholReason" value="Mood"> <label>Mood</label></div>
+                                <div class="option-item"><input type="checkbox" name="alcoholReason" value="Energy"> <label>Energy</label></div>
+                                <div class="option-item"><input type="checkbox" name="alcoholReason" value="Sleep"> <label>Sleep</label></div>
+                                <div class="option-item"><input type="checkbox" name="alcoholReason" value="Coping"> <label>Coping</label></div>
+                                <div class="option-item"><input type="checkbox" name="alcoholReason" value="Withdrawal symptoms"> <label>Withdrawal symptoms</label></div>
+                                <div class="option-item"><input type="checkbox" name="alcoholReason" value="Social Context"> <label>Social Context</label></div>
+                                <div class="option-item">
+                                    <input type="checkbox" name="alcoholReason" value="Other" onclick="document.getElementById('alcoholOther').style.display=this.checked?'block':'none';">
+                                    <label>Other</label>
+                                    <input type="text" id="alcoholOther" name="alcoholReasonOther" style="display:none; margin-top:5px;" placeholder="Please specify...">
+                                </div>
+                                <div class="option-item"><input type="checkbox" name="alcoholReason" value="Not applicable"> <label>Not applicable</label></div>
+                            </div>
+                        </div>
                     </div>
 
                     <h3>Cannabis / Marijuana</h3>
@@ -3683,6 +3685,25 @@
                                 </div>
                                 <div class="option-item"><input type="checkbox" name="cannabisMethod"
                                         value="Not applicable"> <label>Not applicable</label></div>
+                            </div>
+                        </div>
+                        <div class="field-group border-left-pad">
+                            <label>Reason for use (select any):</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="checkbox" name="cannabisReason" value="Pain"> <label>Pain</label></div>
+                                <div class="option-item"><input type="checkbox" name="cannabisReason" value="Anxiety"> <label>Anxiety</label></div>
+                                <div class="option-item"><input type="checkbox" name="cannabisReason" value="Mood"> <label>Mood</label></div>
+                                <div class="option-item"><input type="checkbox" name="cannabisReason" value="Energy"> <label>Energy</label></div>
+                                <div class="option-item"><input type="checkbox" name="cannabisReason" value="Sleep"> <label>Sleep</label></div>
+                                <div class="option-item"><input type="checkbox" name="cannabisReason" value="Coping"> <label>Coping</label></div>
+                                <div class="option-item"><input type="checkbox" name="cannabisReason" value="Withdrawal symptoms"> <label>Withdrawal symptoms</label></div>
+                                <div class="option-item"><input type="checkbox" name="cannabisReason" value="Social Context"> <label>Social Context</label></div>
+                                <div class="option-item">
+                                    <input type="checkbox" name="cannabisReason" value="Other" onclick="document.getElementById('cannabisOther').style.display=this.checked?'block':'none';">
+                                    <label>Other</label>
+                                    <input type="text" id="cannabisOther" name="cannabisReasonOther" style="display:none; margin-top:5px;" placeholder="Please specify...">
+                                </div>
+                                <div class="option-item"><input type="checkbox" name="cannabisReason" value="Not applicable"> <label>Not applicable</label></div>
                             </div>
                         </div>
                     </div>
@@ -3813,7 +3834,10 @@
                                 <div class="option-item"><input type="checkbox" name="kratomReason" value="Anxiety"> <label>Anxiety</label></div>
                                 <div class="option-item"><input type="checkbox" name="kratomReason" value="Mood"> <label>Mood</label></div>
                                 <div class="option-item"><input type="checkbox" name="kratomReason" value="Energy"> <label>Energy</label></div>
+                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Sleep"> <label>Sleep</label></div>
+                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Coping"> <label>Coping</label></div>
                                 <div class="option-item"><input type="checkbox" name="kratomReason" value="Withdrawal symptoms"> <label>Withdrawal symptoms</label></div>
+                                <div class="option-item"><input type="checkbox" name="kratomReason" value="Social Context"> <label>Social Context</label></div>
                                 <div class="option-item">
                                     <input type="checkbox" name="kratomReason" value="Other" onclick="document.getElementById('kratomOther').style.display=this.checked?'block':'none';">
                                     <label>Other</label>
@@ -3870,7 +3894,10 @@
                                 <div class="option-item"><input type="checkbox" name="opioidReason" value="Anxiety"> <label>Anxiety</label></div>
                                 <div class="option-item"><input type="checkbox" name="opioidReason" value="Mood"> <label>Mood</label></div>
                                 <div class="option-item"><input type="checkbox" name="opioidReason" value="Energy"> <label>Energy</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidReason" value="Sleep"> <label>Sleep</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidReason" value="Coping"> <label>Coping</label></div>
                                 <div class="option-item"><input type="checkbox" name="opioidReason" value="Withdrawal symptoms"> <label>Withdrawal symptoms</label></div>
+                                <div class="option-item"><input type="checkbox" name="opioidReason" value="Social Context"> <label>Social Context</label></div>
                                 <div class="option-item">
                                     <input type="checkbox" name="opioidReason" value="Other" onclick="document.getElementById('opioidOther').style.display=this.checked?'block':'none';">
                                     <label>Other</label>
@@ -3926,11 +3953,14 @@
                         <div class="field-group border-left-pad">
                             <label>Reason for use (select any):</label>
                             <div class="options-list">
-                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Energy or alertness"> <label>Energy or alertness</label></div>
-                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Focus or concentration"> <label>Focus or concentration</label></div>
-                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Weight loss or appetite suppression"> <label>Weight loss or appetite suppression</label></div>
-                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Mood or euphoria"> <label>Mood or euphoria</label></div>
-                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Partying or recreation"> <label>Partying or recreation</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Pain"> <label>Pain</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Anxiety"> <label>Anxiety</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Mood"> <label>Mood</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Energy"> <label>Energy</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Sleep"> <label>Sleep</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Coping"> <label>Coping</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Withdrawal symptoms"> <label>Withdrawal symptoms</label></div>
+                                <div class="option-item"><input type="checkbox" name="stimulantReason" value="Social Context"> <label>Social Context</label></div>
                                 <div class="option-item">
                                     <input type="checkbox" name="stimulantReason" value="Other" onclick="document.getElementById('stimulantReasonOther').style.display=this.checked?'block':'none';">
                                     <label>Other</label>
@@ -4043,10 +4073,46 @@
                     <div class="field-group">
                         <label>History of IV drug use? <span class="required-mark">*</span></label>
                         <div class="options-list">
-                            <div class="option-item"><input type="radio" name="sudIVuse" value="Yes" required>
+                            <div class="option-item"><input type="radio" name="sudIVuse" value="Yes" required
+                                    onclick="window.toggleIvDrugUseDetails && window.toggleIvDrugUseDetails()">
                                 <label>Yes</label>
                             </div>
-                            <div class="option-item"><input type="radio" name="sudIVuse" value="No"> <label>No</label>
+                            <div class="option-item"><input type="radio" name="sudIVuse" value="No"
+                                    onclick="window.toggleIvDrugUseDetails && window.toggleIvDrugUseDetails()"> <label>No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="ivDrugUseDetails" style="display:none;" class="conditional-field">
+                        <div class="field-group border-left-pad">
+                            <label>Have you ever had screening for HIV, hepatitis C, or hepatitis B related to injection drug use risk? <span class="required-mark">*</span></label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="radio" name="sudIvScreeningHistory" value="Yes"
+                                        onchange="window.toggleIvDrugUseDetails && window.toggleIvDrugUseDetails()"> <label>Yes</label></div>
+                                <div class="option-item"><input type="radio" name="sudIvScreeningHistory" value="No"
+                                        onchange="window.toggleIvDrugUseDetails && window.toggleIvDrugUseDetails()"> <label>No</label></div>
+                                <div class="option-item"><input type="radio" name="sudIvScreeningHistory" value="Unsure"
+                                        onchange="window.toggleIvDrugUseDetails && window.toggleIvDrugUseDetails()"> <label>Unsure</label></div>
+                            </div>
+                        </div>
+
+                        <div id="ivDrugUseAbnormalResultsGroup" style="display:none;" class="conditional-field field-group border-left-pad">
+                            <label>Were any results abnormal or positive?</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="radio" name="sudIvAbnormalResults" value="No"> <label>No</label></div>
+                                <div class="option-item"><input type="radio" name="sudIvAbnormalResults" value="Yes"> <label>Yes</label></div>
+                                <div class="option-item"><input type="radio" name="sudIvAbnormalResults" value="Unsure"> <label>Unsure</label></div>
+                            </div>
+                            <label style="margin-top:10px;">Please share any details if you’d like</label>
+                            <textarea name="sudIvAbnormalResultsDetails"></textarea>
+                        </div>
+
+                        <div id="ivDrugUseDiscussLabsGroup" style="display:none;" class="conditional-field field-group border-left-pad">
+                            <label>Would you like to discuss or request screening labs for this?</label>
+                            <div class="options-list">
+                                <div class="option-item"><input type="radio" name="sudIvRequestLabs" value="Yes"> <label>Yes</label></div>
+                                <div class="option-item"><input type="radio" name="sudIvRequestLabs" value="No"> <label>No</label></div>
+                                <div class="option-item"><input type="radio" name="sudIvRequestLabs" value="Unsure"> <label>Unsure</label></div>
                             </div>
                         </div>
                     </div>

@@ -720,7 +720,9 @@ window.syncIntakeConditionalState = function () {
     window.updateFamilyPsychHistoryFollowup && window.updateFamilyPsychHistoryFollowup();
     window.updateLegalHistoryFollowup && window.updateLegalHistoryFollowup();
     window.handleSafetyLogic && window.handleSafetyLogic();
+    window.toggleSuicidePlanDetails && window.toggleSuicidePlanDetails();
     window.toggleSudDetails && window.toggleSudDetails();
+    window.toggleIvDrugUseDetails && window.toggleIvDrugUseDetails();
     window.showCogDetails && window.showCogDetails();
 };
 
@@ -745,6 +747,8 @@ document.addEventListener('change', (event) => {
     if (event.target.name === 'famConditions') window.updateFamilyPsychHistoryFollowup();
     if (event.target.name === 'traumaHistory') window.updateTraumaFollowup();
     if (event.target.name === 'sudScreen' || event.target.name === 'sudSymp') window.toggleSudDetails();
+    if (event.target.name === 'suicidePlan') window.toggleSuicidePlanDetails();
+    if (event.target.name === 'sudIVuse' || event.target.name === 'sudIvScreeningHistory') window.toggleIvDrugUseDetails();
 });
 
 
@@ -971,6 +975,53 @@ window.handleSafetyLogic = function () {
             if (showMeansSafety) input.setAttribute('required', 'required');
             else input.removeAttribute('required');
         });
+    }
+};
+
+window.toggleSuicidePlanDetails = function () {
+    const selectedValue = document.querySelector('input[name="suicidePlan"]:checked')?.value;
+    const detailsGroup = document.getElementById('suicidePlanDetailsGroup');
+
+    if (!detailsGroup) return;
+
+    const showDetails = selectedValue === 'Yes';
+    detailsGroup.style.display = showDetails ? 'block' : 'none';
+
+    if (!showDetails) clearFieldGroupValues(detailsGroup);
+};
+
+window.toggleIvDrugUseDetails = function () {
+    const ivDrugUseValue = document.querySelector('input[name="sudIVuse"]:checked')?.value;
+    const screeningValue = document.querySelector('input[name="sudIvScreeningHistory"]:checked')?.value;
+
+    const detailsGroup = document.getElementById('ivDrugUseDetails');
+    const abnormalResultsGroup = document.getElementById('ivDrugUseAbnormalResultsGroup');
+    const discussLabsGroup = document.getElementById('ivDrugUseDiscussLabsGroup');
+
+    const showDetails = ivDrugUseValue === 'Yes';
+    const showAbnormalResults = showDetails && screeningValue === 'Yes';
+    const showDiscussLabs = showDetails && (screeningValue === 'No' || screeningValue === 'Unsure');
+
+    if (detailsGroup) {
+        detailsGroup.style.display = showDetails ? 'block' : 'none';
+
+        const screeningInputs = detailsGroup.querySelectorAll('input[name="sudIvScreeningHistory"]');
+        screeningInputs.forEach(input => {
+            if (showDetails) input.setAttribute('required', 'required');
+            else input.removeAttribute('required');
+        });
+
+        if (!showDetails) clearFieldGroupValues(detailsGroup);
+    }
+
+    if (abnormalResultsGroup) {
+        abnormalResultsGroup.style.display = showAbnormalResults ? 'block' : 'none';
+        if (!showAbnormalResults) clearFieldGroupValues(abnormalResultsGroup);
+    }
+
+    if (discussLabsGroup) {
+        discussLabsGroup.style.display = showDiscussLabs ? 'block' : 'none';
+        if (!showDiscussLabs) clearFieldGroupValues(discussLabsGroup);
     }
 };
 
